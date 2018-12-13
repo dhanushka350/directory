@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/fontello.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"/>
+
+
+<div class="tp-page-head">
+    <!-- page header -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <div class="page-header text-center">
+                    <div class="icon-circle">
+                        <i class="icon icon-size-60 icon-padlock-1 icon-white"></i>
+                    </div>
+                    <h1>Welcome back to your account</h1>
+                    <p>We're happy to have you back.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tp-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Login Page</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 st-tabs">
+                <!-- Nav tabs -->
+                <div class="well-box">
+                    <h3>Login</h3>
+                    <form class="form-signin">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">E-mail<span class="required">*</span></label>
+                            <input type="text" id="email" name="email" th:placeholder="Email"
+                                   class="form-control"/>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="control-label" for="password">Password<span class="required">*</span></label>
+                            <input type="password" th:placeholder="Password"
+                                   id="password" name="password" class="form-control"/>
+                        </div>
+                        <br>
+                        <div align="center">
+                            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+                        </div>
+                        <!-- Button -->
+                        <div class="form-group">
+                            <!--<button id="submit" name="submit" class="btn btn-primary btn-lg" type="submit">Login</button>-->
+                            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="button"
+                                    th:text="Login" id="login"></button>
+                            <a href="/registration" class="pull-right">
+                                <small>Create New Account</small>
+                            </a>
+                            <br>
+                            <a href="/home/help/recover-password" class="pull-right">
+                                <small>Forgot Password ?</small>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+
+</div>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.flexnav.js" type="text/javascript"></script>
+<script src="/js/navigation.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/header-sticky.js"></script>
+<script type='text/javascript' src='/noty/jquery.noty.js'></script>
+<script type='text/javascript' src='/noty/layouts/topCenter.js'></script>
+<script type='text/javascript' src='/noty/layouts/topLeft.js'></script>
+<script type='text/javascript' src='/noty/layouts/topRight.js'></script>
+<script type='text/javascript' src='/noty/themes/default.js'></script>
+<script src="/static/js/jquery.min.js" type="application/javascript"></script>
+<script type="text/javascript" src="/app/Registration.js"></script>
+<script>
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+
+    if (page.length > 2) {
+        addLogo2();
+    } else {
+        addLogo1();
+    }
+
+    function addLogo2() {
+        var div = document.createElement('a');
+        div.innerHTML =
+            ' <a href="index.html"><img src="/images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+        document.getElementById('logo').appendChild(div);
+    }
+
+    function addLogo1() {
+        var div = document.createElement('a');
+        div.innerHTML =
+            ' <a href="index.html"><img src="images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+        document.getElementById('logo').appendChild(div);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ads Manager! | </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md" onload="VENDOR.getDetails();profileImage()">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="fragments/sidebar :: sidebar"/>
+
+        <!-- top navigation -->
+        <div th:replace="fragments/header2 :: header2"/>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Ads Manager</h3>
+                        <small style="color: red" id="test"></small>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Create Advertisement
+                                    <small>your profile details will be linked automatically</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Settings 1</a>
+                                            </li>
+                                            <li><a href="#">Settings 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <form class="form-horizontal form-label-left">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Title</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Ad Title"
+                                                   id="ad_title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="form-control" id="city">
+                                                <option disabled="disabled">Choose option</option>
+                                                <option>Galle</option>
+                                                <option>Matara</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="form-control" id="type">
+                                                <option disabled="disabled">Choose option</option>
+                                                <option>Cake</option>
+                                                <option>DJ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Opening Dates</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="eg. all days / week days / sunday only..."
+                                                   id="opening_days">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Opening Times</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="eg. 12.00 am / 08.00 am on sundays..."
+                                                   id="opening_time">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Closing Times</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="eg. 07.00pm / 07.00pm on every weekdays and 10.00pm on weekend days"
+                                                   id="closing_time">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <textarea id="desc" required="required" class="form-control"
+                                                      name="message" data-parsley-trigger="keyup"
+                                                      data-parsley-minlength="20" data-parsley-maxlength="100"
+                                                      data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                                      data-parsley-validation-threshold="10"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Social Media</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Facebook</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="facebook link"
+                                                   id="facebook">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Twitter</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="twitter link"
+                                                   id="twitter">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Experience in
+                                            field<span
+                                                    class="required"></span>
+                                        </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Experience</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="form-control" id="experience">
+                                                <option>Choose option</option>
+                                                <option value="Upto 2 month of service">Upto 2 month of service</option>
+                                                <option value="Upto 6 month of service">Upto 6 month of service</option>
+                                                <option value="Upto 1 year of service">Upto 1 year of service</option>
+                                                <option value="Upto 2 year of service">Upto 2 year of service</option>
+                                                <option value="Upto 5 year of service">Upto 5 year of service</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">professionals</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" checked="" value="yes we are"
+                                                           id="optionsRadios1"
+                                                           name="optionsRadios"> yes we are.
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" value="not yet" id="optionsRadios2"
+                                                           name="optionsRadios"> not yet.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Map</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Past your iframe code here"
+                                                   id="google">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">360 image</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Past your iframe code here"
+                                                   id="view">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">You Can Add Six Package
+                                            Names Here</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Package Name 1</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Package Name 1"
+                                                   id="packageName1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Package Name 2</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Package Name 2"
+                                                   id="packageName2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Package Name 3</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Package Name 3"
+                                                   id="packageName3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Package Name 4</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Package Name 4"
+                                                   id="packageName4">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Package Name 5</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Package Name 5"
+                                                   id="packageName5">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Package Name 6</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Package Name 6"
+                                                   id="packageName6">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="button" class="btn btn-primary">Cancel</button>
+                                            <button type="reset" class="btn btn-primary">Reset</button>
+                                            <button type="button" id="save" class="btn btn-success">Submit and move to
+                                                next step
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="/vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="/vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/vendors/starrr/dist/starrr.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/build/js/custom.min.js"></script>
+<script src="/management/ADD_LISTING.js"></script>
+<script>
+    var name = localStorage.getItem('VENDOR');
+
+    function profileImage() {
+        $.ajax({
+            url: "/admin/view_profile",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            data: name,
+            success: function (data, textStatus, jqXHR) {
+                if (data.image === null) {
+                } else {
+                    $("#prof").attr("src", data.image);
+                }
+
+                document.getElementById("welcome").innerText = data.name;
+                document.getElementById("test").innerText = "Hey "+data.name + " please test this page and give us a feedback";
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            },
+            beforeSend: function (xhr) {
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

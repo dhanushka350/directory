@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 top-message">
+                    <p>Welcome to Wedding Vendor.</p>
+                </div>
+                <div class="col-md-6 top-links">
+                    <ul class="listnone">
+                        <li><a href="/login">Log in</a></li>
+                        <li>
+                            <a role="button" data-toggle="collapse" href="#searcharea" aria-expanded="false"
+                               aria-controls="searcharea"> <i class="fa fa-search"></i> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 logo">
+                    <div class="navbar-brand" id="logo">
+
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12">
+                    <div class="navigation" id="navigation">
+                        <ul>
+                            <li class="active"><a href="/" title="Back To Home Page">Home</a></li>
+                            <li><a href="/home/listing/all-vendors" title="Find Your Vendor Here">Categories</a></li>
+                            <li><a href="/home/about-us" title="About Us" class="animsition-link">About Us</a></li>
+                            <li><a href="/login" title="Are You A Vendor?" class="animsition-link">Add
+                                Advertisement</a></li>
+                            <li><a href="/home/help-center" title="Site Help" class="animsition-link">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
+<script>
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+
+    if (page.length > 2) {
+        addLogo2();
+    } else {
+        addLogo1();
+    }
+
+    function addLogo2() {
+        var div = document.createElement('a');
+        div.innerHTML =
+            ' <a href="index.html"><img src="/images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+        document.getElementById('logo').appendChild(div);
+    }
+
+    function addLogo1() {
+        var div = document.createElement('a');
+        div.innerHTML =
+            ' <a href="index.html"><img src="images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+        document.getElementById('logo').appendChild(div);
+    }
+</script>

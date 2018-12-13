@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Directory! | </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md" onload="profileImage();">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="fragments/sidebar :: sidebar"/>
+
+        <!-- top navigation -->
+        <div th:replace="fragments/header2 :: header2"/>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>User Profile</h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Personal Information
+                                    <small>All fields are requierd</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Settings 1</a>
+                                            </li>
+                                            <li><a href="#">Settings 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <form class="form-horizontal form-label-left input_mask">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <input type="text" class="form-control has-feedback-left" id="user_name"
+                                               placeholder="First Name">
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <input type="text" class="form-control"
+                                               placeholder="Last Name" id="last_name">
+                                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <input type="text" class="form-control has-feedback-left" id="email"
+                                               placeholder="Email" disabled="disabled">
+                                        <span class="fa fa-envelope form-control-feedback left"
+                                              aria-hidden="true"></span>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                        <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of birth</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Date of birth"
+                                                   id="dob">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Address</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="Lives in"
+                                                   id="address">
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="button" class="btn btn-primary">Cancel</button>
+                                            <button class="btn btn-primary" type="reset">Reset</button>
+                                            <button type="button" id="update" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top: 8%;">
+                        <div class="col-md-6" style="margin-left: 10%">
+                            <div class="thumbnail">
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block;" src="/app/images/media.jpg"
+                                         alt="image" id="main_prof_image"/>
+                                    <div class="mask">
+                                        <p id="main_prof"></p>
+                                        <div class="tools tools-bottom">
+                                            <a href="" id="image_link"><i class="fa fa-link"></i></a>
+                                            <a href="/home/fileStorage"><i class="fa fa-pencil"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="caption" style="text-align: center">
+                                    <button type="button" id="update_image" class="btn btn-success">Update image
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/vendors/nprogress/nprogress.js"></script>
+<!-- morris.js -->
+<script src="/vendors/raphael/raphael.min.js"></script>
+<script src="/vendors/morris.js/morris.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+
+<script src="/vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="/vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/vendors/starrr/dist/starrr.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/build/js/custom.min.js"></script>
+<script src="/management/MY_PROFILE.js"></script>
+<script>
+    var name = localStorage.getItem('VENDOR');
+
+    function profileImage() {
+        $.ajax({
+            url: "/admin/view_profile",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            data: name,
+            success: function (data, textStatus, jqXHR) {
+                if (data.image === null) {
+                } else {
+                    $("#prof").attr("src", data.image);
+                    $("#prof1").attr("src", data.image);
+                    $("#main_prof_image").attr("src", data.image);
+                    $("#image_link").attr("href", data.image);
+                }
+
+
+                document.getElementById("welcome").innerText = data.name;
+                document.getElementById("main_prof").innerText = data.name;
+                document.getElementById("name").innerText = data.name;
+                document.getElementById("address").innerText = data.address;
+                document.getElementById("email").innerText = data.email;
+                document.getElementById("phone").innerText = data.phone;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            },
+            beforeSend: function (xhr) {
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

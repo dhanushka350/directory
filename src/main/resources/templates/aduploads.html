@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Advertisement Images | </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <!-- Custom styling plus plugins -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md" onload="profileImage();AD.getAdDetails()">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="fragments/sidebar :: sidebar"/>
+
+        <!-- top navigation -->
+        <div th:replace="fragments/header2 :: header2"/>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3> Vendors Media Gallery
+                            <small style="color: red">Warning.. this page is under construction.</small>
+                        </h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <a href="/home/fileStorage/ads/upload" style="font-weight: bold">Click here to upload
+                                images</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Advertisement Gallery
+                                    <small> set your images here</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Settings 1</a>
+                                            </li>
+                                            <li><a href="#">Settings 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+
+                                <div class="row">
+
+                                    <p>Add Slider Images</p>
+
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="s1"/>
+                                                <div class="mask">
+                                                    <p>Slider 01</p>
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                    Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="s2"/>
+                                                <div class="mask">
+                                                    <p>Slider 02</p>
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="s3"/>
+                                                <div class="mask">
+                                                    <p>Slider 03</p>
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="s4"/>
+                                                <div class="mask">
+                                                    <p>Slider 04</p>
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="cover"/>
+                                                <div class="mask">
+                                                    <p>Cover Image</p>
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="p1"/>
+                                                <div class="mask no-caption">
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <p><strong>Package 01</strong>
+                                                </p>
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="p2"/>
+                                                <div class="mask no-caption">
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <p><strong>Package 02</strong>
+                                                </p>
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="p3"/>
+                                                <div class="mask no-caption">
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <p><strong>Package 03</strong>
+                                                </p>
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="p4"/>
+                                                <div class="mask no-caption">
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <p><strong>Package 04</strong>
+                                                </p>
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-55">
+                                        <div class="thumbnail">
+                                            <div class="image view view-first">
+                                                <img style="width: 100%; display: block;" src="images/media.jpg"
+                                                     alt="image" id="p5"/>
+                                                <div class="mask no-caption">
+                                                    <div class="tools tools-bottom">
+                                                        <a href="#"><i class="fa fa-link"></i></a>
+                                                        <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#"><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="caption">
+                                                <p><strong>Package 05</strong>
+                                                </p>
+                                                <a href="" style="font-weight: bold">Add Image</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/vendors/nprogress/nprogress.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="/build/js/custom.min.js"></script>
+<script src="/management/ADD_LISTING.js"></script>
+<script>
+    var name = localStorage.getItem('VENDOR');
+
+    function profileImage() {
+        $.ajax({
+            url: "/admin/view_profile",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            data: name,
+            success: function (data, textStatus, jqXHR) {
+                if (data.image === null) {
+                } else {
+                    $("#prof").attr("src", data.image);
+                }
+
+                document.getElementById("welcome").innerText = data.name;
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            },
+            beforeSend: function (xhr) {
+
+            }
+        });
+    }
+</script>
+</body>
+</html>
