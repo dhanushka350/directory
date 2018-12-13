@@ -91,10 +91,25 @@ public class SiteController {
         modelAndView.setViewName("multi-uploads");
         return modelAndView;
     }
+
     @RequestMapping(value = {"home/profileview"}, method = RequestMethod.GET)
     public ModelAndView profileView() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profile-view");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"home/profile/pending"}, method = RequestMethod.GET)
+    public ModelAndView profileNotActivated() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("approval-waiting");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"home/profile/registration/success"}, method = RequestMethod.GET)
+    public ModelAndView profileRegistered() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("registration-success");
         return modelAndView;
     }
 }

@@ -27,7 +27,7 @@ var VENDOR = {
                 swal("hi " + data.name + ". ", "Your advertisement limit is - 01.");
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("PLEASE NOTE : Developers are currently working here..");
+
             },
             beforeSend: function (xhr) {
 
@@ -124,7 +124,7 @@ var AD = {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("PLEASE NOTE : Developers are currently working here..");
+
             },
             beforeSend: function (xhr) {
 

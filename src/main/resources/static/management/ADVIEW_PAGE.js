@@ -1,3 +1,4 @@
-function iiii() {
-    alert("dsds");
-}
+$(window).load(function () {
+    alert("ssssss");
+    alert(localStorage.getItem("selectedAd"));
+});

@@ -30,7 +30,7 @@ var VENDOR = {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("something wrong in server side.. sending error details to developers");
+
             },
             beforeSend: function (xhr) {
 
