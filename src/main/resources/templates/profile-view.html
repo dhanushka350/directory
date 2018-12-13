@@ -4,7 +4,7 @@
 
 
 <head>
-    <title>World Best Local Directory Website template</title>
+    <title>Vendor Title</title>
     <!-- META TAGS -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,26 +13,29 @@
     <!-- GOOGLE FONT -->
     <link href="../../../../fonts.googleapis.com/css4ab1.css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
     <!-- FONTAWESOME ICONS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="/profile/css/font-awesome.min.css">
     <!-- ALL CSS FILES -->
     <link href="/profile/css/materialize.css" rel="stylesheet">
     <link href="/profile/css/style.css" rel="stylesheet">
     <link href="/profile/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
     <link href="/profile/css/responsive.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="/profile/js/html5shiv.js"></script>
-    <script src="/profile/js/respond.min.js"></script>
-    <![endif]-->
+
+    <!--top header -->
+    <script src="/app/test.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.transitions.css">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 
 <body>
 <!--TOP SEARCH SECTION-->
 <div th:replace="fragments/header :: header"/>
 <!--LISTING DETAILS-->
-<section class="pg-list-1">
+<section class="pg-list-1" style="">
     <div class="container">
         <div class="row">
             <div class="pg-list-1-left"><a href="#"><h3>Taj Luxury Hotel & Resorts</h3></a>
@@ -841,6 +844,30 @@
 <script src="/profile/js/materialize.min.js" type="text/javascript"></script>
 <script src="/profile/js/custom.js"></script>
 </body>
+<script>
+    localStorage.removeItem('VENDOR');
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
 
+    if (page.length > 2) {
+        addLogo2();
+    } else {
+        addLogo1();
+    }
+
+    function addLogo2() {
+        var div = document.createElement('a');
+        div.innerHTML =
+            ' <a href="index.html"><img src="/images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+        document.getElementById('logo').appendChild(div);
+    }
+
+    function addLogo1() {
+        var div = document.createElement('a');
+        div.innerHTML =
+            ' <a href="index.html"><img src="images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+        document.getElementById('logo').appendChild(div);
+    }
+</script>
 
 </html>
