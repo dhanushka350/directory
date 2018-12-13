@@ -57,7 +57,7 @@ public class LoginController {
             modelAndView.setViewName("registration.html");
         } else {
             userService.saveUser(user);
-            modelAndView.setViewName("login.html");
+            modelAndView.setViewName("registration-success.html");
 
         }
         return modelAndView;

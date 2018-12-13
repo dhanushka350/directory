@@ -38,7 +38,7 @@ public class UserService {
 
     public void saveUser(User user) {
         user.setPassword(user.getPassword());
-        user.setActive(1);
+        user.setActive(0);
         Role userRole = roleRepository.findByRole("VENDOR");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
@@ -49,6 +49,9 @@ public class UserService {
         if (byEmail == null) {
             return "WRONG EMAIL";
         } else {
+            if (byEmail.getActive() == 0) {
+                return "home/profile/pending";
+            }
             if (byEmail.getPassword().equalsIgnoreCase(user.getPassword())) {
                 return "admin/home";
             } else {
