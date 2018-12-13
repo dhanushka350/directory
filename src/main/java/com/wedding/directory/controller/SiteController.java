@@ -91,4 +91,10 @@ public class SiteController {
         modelAndView.setViewName("multi-uploads");
         return modelAndView;
     }
+    @RequestMapping(value = {"home/profileview"}, method = RequestMethod.GET)
+    public ModelAndView profileView() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("profile-view");
+        return modelAndView;
+    }
 }
