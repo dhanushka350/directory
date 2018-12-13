@@ -2,4 +2,7 @@
 //     alert("ssssss");
 //     alert(localStorage.getItem("selectedAd"));
 // });
-alert("fff");
+window.addEventListener('load', function () {
+    alert("ssssss");
+    alert(localStorage.getItem("selectedAd"));
+}, false);
