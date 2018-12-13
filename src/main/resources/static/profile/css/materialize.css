@@ -4300,8 +4300,8 @@ html {} @media only screen and (min-width: 0) {
 }
 .btn:hover,
 .btn-large:hover {
-    background: #263a78;
-    background: linear-gradient(to bottom, #455ca2, #263a78);
+    background: #f99a20;
+    background: linear-gradient(to bottom, #f9a630, #f99a20);
     color: #fff;
 }
 .btn-floating {

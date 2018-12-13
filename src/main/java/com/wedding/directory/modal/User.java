@@ -63,4 +63,5 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER)
     private List<ADProfile> ads = new ArrayList<>();
 
+
 }

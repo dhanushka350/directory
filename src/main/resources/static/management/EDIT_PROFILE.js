@@ -10,7 +10,7 @@ var image = "";
 var VENDOR = {
     getDetails: function (name) {
         $.ajax({
-            url: "/admin/view_profile",
+            url: "/admin/getAll",
             dataType: 'json',
             contentType: "application/json",
             type: 'POST',
