@@ -8,6 +8,8 @@ import com.wedding.directory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/admin")
 public class AdvertisementController {
@@ -29,8 +31,9 @@ public class AdvertisementController {
     public ADProfile getDetails(@RequestBody String user) {
         User modal = userService.findUserModalByEmail(user);
         ADProfile adProfile = service.getByVendor(modal);
-        System.out.println(user+"===============================================");
+        System.out.println(user + "===============================================");
         return adProfile;
 
     }
+
 }

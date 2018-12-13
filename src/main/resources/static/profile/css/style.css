@@ -3701,7 +3701,7 @@
  .pg-list-1:before {
      content: '';
      position: absolute;
-     background: linear-gradient(to top, rgba(12, 12, 40, 0.88) 14%, rgba(0, 0, 0, 0.14) 66%);
+     background: linear-gradient(to top, #0000004d 14%, rgba(0, 0, 0, 0.14) 66%);
      top: 0px;
      bottom: 0px;
      left: 0px;
@@ -4287,7 +4287,7 @@
      font-size: 15px;
 }
  .list-pg-upro a {
-     background: #f44336;
+     background: #f9a630;
 }
  .list-pg-map {
 }

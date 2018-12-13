@@ -4,9 +4,11 @@ import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.payload.ADResponse;
 import com.wedding.directory.repository.AdvertisementRepository;
-import com.wedding.directory.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AdvertisementService {
@@ -65,4 +67,103 @@ public class AdvertisementService {
     public ADProfile getByVendor(User user) {
         return repository.findTopByVendor(user);
     }
+
+
+    public List<ADResponse> getAll() {
+        List<ADResponse> adResponses = new ArrayList<>();
+        ADResponse adResponse;
+        List<ADProfile> all = repository.findAll();
+
+        for (ADProfile adProfile : all) {
+            adResponse = new ADResponse();
+            adResponse.setId(adProfile.getId());
+            adResponse.setVendor(adProfile.getVendor().getEmail());
+            adResponse.setTitle(adProfile.getTitle());
+            adResponse.setType(adProfile.getType());
+            adResponse.setCity(adProfile.getCity());
+            adResponse.setCategory(adProfile.getCategory());
+            adResponse.setOpeningTime(adProfile.getOpeningTime());
+            adResponse.setOpeningDates(adProfile.getOpeningDates());
+            adResponse.setClosingTime(adProfile.getClosingTime());
+            adResponse.setDescription(adProfile.getDescription());
+            adResponse.setFacebook(adProfile.getFacebook());
+            adResponse.setTwitter(adProfile.getTwitter());
+            adResponse.setExperience(adProfile.getExperience());
+            adResponse.setProfessionals(adProfile.getProfessionals());
+            adResponse.setMap(adProfile.getMap());
+            adResponse.setView(adProfile.getView());
+
+            adResponse.setCoverImage1(adProfile.getCoverImage1());
+            adResponse.setCoverImage2(adProfile.getCoverImage2());
+            adResponse.setCoverImage3(adProfile.getCoverImage3());
+            adResponse.setCoverImage4(adProfile.getCoverImage4());
+
+            adResponse.setPackageImage1(adProfile.getPackageImage1());
+            adResponse.setPackageImage2(adProfile.getPackageImage2());
+            adResponse.setPackageImage3(adProfile.getPackageImage3());
+            adResponse.setPackageImage4(adProfile.getPackageImage4());
+
+            adResponse.setPackageName1(adProfile.getPackageName1());
+            adResponse.setPackageName2(adProfile.getPackageName2());
+            adResponse.setPackageName3(adProfile.getPackageName3());
+            adResponse.setPackageName4(adProfile.getPackageName4());
+            adResponse.setPackageName5(adProfile.getPackageName5());
+            adResponse.setPackageName6(adProfile.getPackageName6());
+            adResponses.add(adResponse);
+        }
+        return adResponses;
+    }
+
+    public List<ADResponse> getTopRatedAdvertiesments() {
+        List<ADResponse> adResponses = new ArrayList<>();
+        ADResponse adResponse;
+        List<ADProfile> all = repository.getLmitedData();
+        for (ADProfile adProfile : all) {
+            adResponse = new ADResponse();
+            adResponse.setId(adProfile.getId());
+            adResponse.setVendor(adProfile.getVendor().getEmail());
+            adResponse.setTitle(adProfile.getTitle());
+            adResponse.setType(adProfile.getType());
+            adResponse.setCity(adProfile.getCity());
+            adResponse.setCategory(adProfile.getCategory());
+            adResponse.setOpeningTime(adProfile.getOpeningTime());
+            adResponse.setOpeningDates(adProfile.getOpeningDates());
+            adResponse.setClosingTime(adProfile.getClosingTime());
+            adResponse.setDescription(adProfile.getDescription());
+            adResponse.setFacebook(adProfile.getFacebook());
+            adResponse.setTwitter(adProfile.getTwitter());
+            adResponse.setExperience(adProfile.getExperience());
+            adResponse.setProfessionals(adProfile.getProfessionals());
+            adResponse.setMap(adProfile.getMap());
+            adResponse.setView(adProfile.getView());
+            adResponse.setCoverImage1(adProfile.getCoverImage1());
+            adResponse.setCoverImage2(adProfile.getCoverImage2());
+            adResponse.setCoverImage3(adProfile.getCoverImage3());
+            adResponse.setCoverImage4(adProfile.getCoverImage4());
+
+            adResponse.setPackageImage1(adProfile.getPackageImage1());
+            adResponse.setPackageImage2(adProfile.getPackageImage2());
+            adResponse.setPackageImage3(adProfile.getPackageImage3());
+            adResponse.setPackageImage4(adProfile.getPackageImage4());
+
+            adResponse.setPackageName1(adProfile.getPackageName1());
+            adResponse.setPackageName2(adProfile.getPackageName2());
+            adResponse.setPackageName3(adProfile.getPackageName3());
+            adResponse.setPackageName4(adProfile.getPackageName4());
+            adResponse.setPackageName5(adProfile.getPackageName5());
+            adResponse.setPackageName6(adProfile.getPackageName6());
+            adResponses.add(adResponse);
+
+        }
+        return adResponses;
+    }
+
+    public List<String> getAllCity() {
+        return repository.getDistinctByCity();
+    }
+
+    public List<String> getAllVenoCat() {
+        return repository.getAllVenoCat();
+    }
 }
+
