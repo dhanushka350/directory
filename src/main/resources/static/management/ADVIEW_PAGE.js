@@ -1,4 +1,5 @@
-$(window).load(function () {
-    alert("ssssss");
-    alert(localStorage.getItem("selectedAd"));
-});
+// $(window).load(function () {
+//     alert("ssssss");
+//     alert(localStorage.getItem("selectedAd"));
+// });
+alert("fff");
