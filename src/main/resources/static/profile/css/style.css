@@ -3188,8 +3188,8 @@
 }
  .list-enqu-btn ul li a:hover {
      color: #fff;
-     background-color: #172437;
-     border: 1px solid #172233;
+     background-color: #f9a630;
+     border: 1px solid #f9a630;
 }
  .list-enqu-btn ul li a:hover i {
      margin-right: 10px;
@@ -3198,8 +3198,8 @@
      margin-right: 5px;
 }
  .list-enqu-btn ul li:last-child a {
-     background: #F44336;
-     border: 1px solid #dc2e21;
+     background: #f9a630;
+     border: 1px solid #f9a630;
      color: #fff;
 }
 /*-------------------------------------------------------*/
@@ -3701,7 +3701,7 @@
  .pg-list-1:before {
      content: '';
      position: absolute;
-     background: linear-gradient(to top, rgb(21, 31, 50) 14%, rgba(0, 0, 0, 0.14) 66%);
+     background: linear-gradient(to top, rgba(12, 12, 40, 0.88) 14%, rgba(0, 0, 0, 0.14) 66%);
      top: 0px;
      bottom: 0px;
      left: 0px;
@@ -3763,7 +3763,7 @@
  .pg-list-1-right-p1 ul li a {
      background: #ffffff;
      border: 1px solid #ffffff;
-     color: #162336;
+     color: #f9a630;
      padding: 12px 12px;
      text-overflow: ellipsis;
      white-space: pre;
@@ -4251,7 +4251,7 @@
  .pglist-p-com-ti-right {
 }
  .pglist-p-com-ti-right h3 {
-     background: #20334c;
+     background: #f9a630;
      color: #fff;
      font-size: 15px;
 }
@@ -5202,8 +5202,8 @@
  .full-btn {
      height: 45px;
      line-height: 45px;
-	 background: #f74d40;
-     background: linear-gradient(to top, #F44336, #fb5a4e);
+	 background: #f9a630;
+     background: linear-gradient(to top, #f9a630, #f9b319);
      outline: none;
      font-size: 16px;
      display: block !important;
@@ -6391,7 +6391,7 @@
      font-family: 'Quicksand', sans-serif;
      font-weight: 700;
      font-size: 28px;
-     color: #F44336;
+     color: #f9a630;
 }
  .invoice-print {
      padding: 50px;
