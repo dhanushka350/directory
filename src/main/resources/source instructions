@@ -1,0 +1,14 @@
+./*
+if mail service throwing some security errors or message like there is an trust anchor error or something like that
+
+-- Update your certificate store
+sudo update-ca-certificates -f
+
+if that not work try this
+
+--  install ca-certificates-java package again
+sudo apt-get install ca-certificates-java
+
+
+-- for remove
+sudo dpkg --purge --force-depends ca-certificates-java

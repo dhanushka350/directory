@@ -1,6 +1,8 @@
 package com.wedding.directory.controller;
 
+import com.wedding.directory.mail.EmailService;
 import com.wedding.directory.modal.User;
+import com.wedding.directory.payload.EmailContent;
 import com.wedding.directory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +21,8 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmailService emailService;
 
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
@@ -57,6 +61,7 @@ public class LoginController {
             modelAndView.setViewName("registration.html");
         } else {
             userService.saveUser(user);
+            sendRegistrationMailToAdmins(user.getEmail());
             modelAndView.setViewName("registration-success.html");
 
         }
@@ -70,5 +75,13 @@ public class LoginController {
         return modelAndView;
     }
 
-
+    public void sendRegistrationMailToAdmins(String vendor) {
+        EmailContent content = new EmailContent();
+        content.setFrom("ZEEBO SYSTEM");
+//        dilananushka123@gmail.com
+        content.setTo("dhanushka@akvasoft.com");
+        content.setSubject("Account Activation Alert!");
+        content.setMessage(vendor + "  Registered Just Now.. \n You have to activate this account manually.. \n ZEEBO SYSTEM");
+        emailService.sendEmail(content);
+    }
 }
