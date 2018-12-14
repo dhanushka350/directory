@@ -3,6 +3,7 @@ package com.wedding.directory.controller.rest;
 import com.wedding.directory.payload.ADResponse;
 import com.wedding.directory.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,16 +22,23 @@ public class FrontPageAdvertiesmentController {
     }
 
     @RequestMapping(value = "/getAllCities", method = RequestMethod.GET)
-    public List<String>getAllCity(){
+    public List<String> getAllCity() {
         return service.getAllCity();
     }
+
     @RequestMapping(value = "/getAllVendorCat", method = RequestMethod.GET)
-    public List<String>getAllVenoCat(){
+    public List<String> getAllVenoCat() {
         return service.getAllVenoCat();
     }
+
     @RequestMapping(value = "/getTop", method = RequestMethod.GET)
     public List<ADResponse> getTopRatedAdvertiesments() {
         return service.getTopRatedAdvertiesments();
+    }
+
+    @RequestMapping(value = "/getTopByCity/{city}/{vend}", method = RequestMethod.GET)
+    public List<ADResponse> getTopRatedAdvertiesmentsByCity(@PathVariable String city, @PathVariable String vend) {
+        return service.getTopRatedAdvertiesments(city,vend);
     }
 }
 
