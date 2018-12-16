@@ -223,6 +223,9 @@
 <script>
     var name = localStorage.getItem('VENDOR');
 
+    if(name.length < 2){
+        location.replace("")
+    }
     function profileImage() {
         $.ajax({
             url: "/admin/view_profile",
