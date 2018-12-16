@@ -38,7 +38,12 @@ public class FrontPageAdvertiesmentController {
 
     @RequestMapping(value = "/getTopByCity/{city}/{vend}", method = RequestMethod.GET)
     public List<ADResponse> getTopRatedAdvertiesmentsByCity(@PathVariable String city, @PathVariable String vend) {
-        return service.getTopRatedAdvertiesments(city,vend);
+        return service.getTopRatedAdvertiesments(city, vend);
+    }
+
+    @RequestMapping(value = "/getOne/{addID}", method = RequestMethod.GET)
+    public ADResponse getOneAdvertiesment(@PathVariable String addID) {
+        return service.getOneAdvertiesment(addID);
     }
 }
 

@@ -30,24 +30,24 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 
-<body onload="iiii();">
+<body onload="loadData();">
 <!--TOP SEARCH SECTION-->
 <div th:replace="fragments/header :: header"/>
 <!--LISTING DETAILS-->
-<section class="pg-list-1" style="">
+<section id="img-main" class="pg-list-1" style="">
     <div class="container">
         <div class="row">
-            <div class="pg-list-1-left"><a href="#"><h3>Taj Luxury Hotel & Resorts</h3></a>
+            <div class="pg-list-1-left"><a href="#"><h3 id="txt-name"></h3></a>
                 <div class="list-rat-ch"><span>5.0</span> <i class="fa fa-star" aria-hidden="true"></i> <i
                         class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i
                         class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
-                <h4>Express Avenue Mall, Los Angeles</h4>
-                <p><b>Address:</b> 28800 Orchard Lake Road, Suite 180 Farmington Hills, Los Angeles, USA.</p>
+                <h4 id="txt-address"></h4>
+                <p id="txt-open"></p>
                 <div class="list-number pag-p1-phone">
                     <ul>
-                        <li><i class="fa fa-phone" aria-hidden="true"></i> +01 1245 2541</li>
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i> localdir@webdir.com</li>
-                        <li><i class="fa fa-user" aria-hidden="true"></i> johny depp</li>
+                        <li id="txt-cont"><i class="fa fa-phone" aria-hidden="true"></i> +01 1245 2541</li>
+                        <li id="txt-email"><i class="fa fa-envelope" aria-hidden="true"></i> localdir@webdir.com</li>
+                        <li id="txt-owner"><i class="fa fa-user" aria-hidden="true"></i> johny depp</li>
                     </ul>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     <!--LISTING DETAILS: LEFT PART 1-->
                     <div class="pglist-p1 pglist-bg pglist-p-com" id="ld-abour">
                         <div class="pglist-p-com-ti">
-                            <h3><span>About</span> Taj Luxury</h3></div>
+                            <h3 id="txt-compname"><span>About</span></h3></div>
                         <div class="list-pg-inn-sp">
                             <div class="share-btn">
                                 <ul>
@@ -82,16 +82,8 @@
                                     <li><a href="#"><i class="fa fa-google-plus gp1"></i> Share On Google Plus</a></li>
                                 </ul>
                             </div>
-                            <p>Taj Luxury Hotels & Resorts presents award winning luxury hotels and resorts in India,
-                                Indonesia, Mauritius, Egypt and Saudi Arabia.It is a long established fact that a reader
-                                will be distracted by the readable content of a page when looking at its layout. The
-                                point of using Lorem Ipsum is that it has a more-or-less normal distribution </p>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                suffered alteration in some form, by injected humour, or randomised words which don't
-                                look even slightly believable. If you are going to use a passage of Lorem Ipsum, you
-                                need to be sure there isn't anything embarrassing hidden in the middle of text. All the
-                                Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
-                                making this the first true generator on the Internet.</p>
+                            <p id="txt-desc"></p>
+
                         </div>
                     </div>
                     <!--END LISTING DETAILS: LEFT PART 1-->
@@ -100,46 +92,50 @@
                         <div class="pglist-p-com-ti">
                             <h3><span>Services</span> Offered</h3></div>
                         <div class="list-pg-inn-sp">
-                            <p>Taj Luxury Hotels & Resorts provide 24-hour Business Centre, Clinic, Internet Access
-                                Centre, Babysitting, Butler Service in Villas and Seaview Suite, House Doctor on Call,
-                                Airport Butler Service, Lobby Lounge </p>
+                            <p id="txt-package-name"></p>
                             <div class="row pg-list-ser">
                                 <ul>
                                     <li class="col-md-4">
-                                        <div class="pg-list-ser-p1"><img src="/profile/images/services/ser1.jpg"
-                                                                         alt=""/></div>
+                                        <div id="pack-img-1" class="pg-list-ser-p1"><img
+                                                src="/profile/images/services/ser1.jpg"
+                                                alt=""/></div>
                                         <div class="pg-list-ser-p2">
-                                            <h4>Restaurant and Bar</h4></div>
+                                            <h4 id="txt-pac-1"></h4></div>
                                     </li>
                                     <li class="col-md-4">
-                                        <div class="pg-list-ser-p1"><img src="/profile/images/services/ser2.jpg"
-                                                                         alt=""/></div>
+                                        <div id="pack-img-2" class="pg-list-ser-p1"><img
+                                                src="/profile/images/services/ser2.jpg"
+                                                alt=""/></div>
                                         <div class="pg-list-ser-p2">
-                                            <h4>Room Booking</h4></div>
+                                            <h4 id="txt-pac-2"></h4></div>
                                     </li>
                                     <li class="col-md-4">
-                                        <div class="pg-list-ser-p1"><img src="/profile/images/services/ser3.jpg"
-                                                                         alt=""/></div>
+                                        <div id="pack-img-3" class="pg-list-ser-p1"><img
+                                                src="/profile/images/services/ser3.jpg"
+                                                alt=""/></div>
                                         <div class="pg-list-ser-p2">
-                                            <h4>Corporate Events</h4></div>
+                                            <h4 id="txt-pac-3"></h4></div>
                                     </li>
                                     <li class="col-md-4">
-                                        <div class="pg-list-ser-p1"><img src="/profile/images/services/ser4.jpg"
-                                                                         alt=""/></div>
+                                        <div id="pack-img-4" class="pg-list-ser-p1"><img
+                                                src="/profile/images/services/ser4.jpg"
+                                                alt=""/></div>
                                         <div class="pg-list-ser-p2">
-                                            <h4>Wedding Hall</h4></div>
+                                            <h4 id="txt-pac-4"></h4></div>
                                     </li>
                                     <li class="col-md-4">
-                                        <div class="pg-list-ser-p1"><img src="/profile/images/services/ser5.jpg"
-                                                                         alt=""/></div>
+                                        <div id="pack-img-5" class="pg-list-ser-p1"><img
+                                                src="/profile/images/services/ser5.jpg"
+                                                alt=""/></div>
                                         <div class="pg-list-ser-p2">
-                                            <h4>Travel & Transport</h4></div>
+                                            <h4 id="txt-pac-5"></h4></div>
                                     </li>
                                     <li class="col-md-4">
-                                        <div class="pg-list-ser-p1"><img src="/profile/images/services/ser6.jpg"
-                                                                         alt=""/></div>
+                                        <div id="pack-img-6" class="pg-list-ser-p1"><img
+                                                src="/profile/images/services/ser6.jpg"
+                                                alt=""/></div>
                                         <div class="pg-list-ser-p2">
-                                            <h4>All Amenities</h4></div>
+                                            <h4 id="txt-pac-6"></h4></div>
                                     </li>
                                 </ul>
                             </div>
@@ -161,11 +157,15 @@
                                 </ol>
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
-                                    <div class="item active"><img src="/profile/images/slider/1.jpg" alt="Los Angeles">
+                                    <div id="slider-img-1" class="item active"><img src="/profile/images/slider/1.jpg"
+                                                                                    alt="Los Angeles">
                                     </div>
-                                    <div class="item"><img src="/profile/images/slider/2.jpg" alt="Chicago"></div>
-                                    <div class="item"><img src="/profile/images/slider/3.jpg" alt="New York"></div>
-                                    <div class="item"><img src="/profile/images/slider/4.jpg" alt="New York"></div>
+                                    <div id="slider-img-2" class="item"><img src="/profile/images/slider/2.jpg"
+                                                                             alt="Chicago"></div>
+                                    <div id="slider-img-3" class="item"><img src="/profile/images/slider/3.jpg"
+                                                                             alt="New York"></div>
+                                    <div id="slider-img-4" class="item"><img src="/profile/images/slider/4.jpg"
+                                                                             alt="New York"></div>
                                 </div>
                                 <!-- Left and right controls -->
                                 <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i
@@ -649,10 +649,11 @@
                     <!--END LISTING DETAILS: LEFT PART 7-->
                     <!--LISTING DETAILS: LEFT PART 7-->
                     <div class="pglist-p3 pglist-bg pglist-p-com">
-                        <div class="pg-list-user-pro"><img src="/profile/images/users/8.png" alt=""></div>
+                        <div id="image-comp" class="pg-list-user-pro"><img src="" alt="">
+                        </div>
                         <div class="list-pg-inn-sp">
                             <div class="list-pg-upro">
-                                <h5>Kevin Jack</h5>
+                                <h5 id="name-txt">Kevin Jack</h5>
                                 <p>Member since July 2017</p> <a
                                     class="waves-effect waves-light btn-large full-btn list-pg-btn" href="#!">Contact
                                 User</a></div>

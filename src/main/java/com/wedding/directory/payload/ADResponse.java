@@ -55,6 +55,10 @@ public class ADResponse {
 
     private String packageImage4;
 
+    private String packageImage5;
+
+    private String packageImage6;
+
     private String packageName1;
 
     private String packageName2;
@@ -66,6 +70,8 @@ public class ADResponse {
     private String packageName5;
 
     private String packageName6;
+
+    private Venodr venodr;
 
     public String getPackageName5() {
         return packageName5;
@@ -305,5 +311,29 @@ public class ADResponse {
 
     public void setPackageImage4(String packageImage4) {
         this.packageImage4 = packageImage4;
+    }
+
+    public Venodr getVenodr() {
+        return venodr;
+    }
+
+    public void setVenodr(Venodr venodr) {
+        this.venodr = venodr;
+    }
+
+    public String getPackageImage5() {
+        return packageImage5;
+    }
+
+    public void setPackageImage5(String packageImage5) {
+        this.packageImage5 = packageImage5;
+    }
+
+    public String getPackageImage6() {
+        return packageImage6;
+    }
+
+    public void setPackageImage6(String packageImage6) {
+        this.packageImage6 = packageImage6;
     }
 }
