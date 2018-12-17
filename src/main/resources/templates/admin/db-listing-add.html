@@ -353,7 +353,9 @@
 <script src="/management/ADD_LISTING.js"></script>
 <script>
     var name = localStorage.getItem('VENDOR');
-
+    if (name === 'null') {
+        location.replace("/login");
+    }
     function profileImage() {
         $.ajax({
             url: "/admin/view_profile",

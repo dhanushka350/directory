@@ -222,10 +222,10 @@
 <script src="/management/MY_PROFILE.js"></script>
 <script>
     var name = localStorage.getItem('VENDOR');
-
-    if(name.length < 2){
-        location.replace("")
+    if (name === 'null') {
+        location.replace("/login");
     }
+
     function profileImage() {
         $.ajax({
             url: "/admin/view_profile",
