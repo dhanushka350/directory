@@ -1,9 +1,9 @@
 function loadData() {
     var selctedAd = localStorage.getItem("selectedAd");
-
     getDataFromBackend(selctedAd);
 }
 
+let userid = null;
 
 function getDataFromBackend(selctedAd) {
     $.ajax({
@@ -45,7 +45,35 @@ function getDataFromBackend(selctedAd) {
 
             document.getElementById("image-comp").innerHTML = "<img style='width: 80px;height: 80px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
             document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
-            
+            userid = data.venodr.id;
+        }
+    });
+}
+
+function saveRatings() {
+    var e = {};
+    e["fullName"] = $('#full_name').val();
+    e["mobile"] = $('#mobile').val();
+    e["email"] = $('#email').val();
+    e["city"] = $('#city').val();
+    e["review"] = $('#review').val();
+    e["venodr"] = {
+        "id": userid
+    }
+    var d = JSON.stringify(e);
+    $.ajax({
+        url: "/ratings/save",
+        dataType: 'json',
+        contentType: "application/json",
+        type: 'POST',
+        data: d,
+        success: function (data, textStatus, jqXHR) {
+            console.log("data" + data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+
+        },
+        beforeSend: function (xhr) {
         }
     });
 }
