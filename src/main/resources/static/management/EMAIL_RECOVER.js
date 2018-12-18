@@ -18,7 +18,6 @@ var EMAIL_RECOVER = {
                 document.getElementById("message").innerText = data;
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                document.getElementById("message").innerText = jqXHR;
             },
         });
 
