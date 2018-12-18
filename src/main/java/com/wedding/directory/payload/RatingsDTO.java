@@ -16,7 +16,7 @@ public class RatingsDTO {
 
     private double ratings;
 
-    private Venodr venodr;
+    private int adID;
 
     public RatingsDTO() {
     }
@@ -77,11 +77,11 @@ public class RatingsDTO {
         this.ratings = ratings;
     }
 
-    public Venodr getVenodr() {
-        return venodr;
+    public int getAdID() {
+        return adID;
     }
 
-    public void setVenodr(Venodr venodr) {
-        this.venodr = venodr;
+    public void setAdID(int adID) {
+        this.adID = adID;
     }
 }

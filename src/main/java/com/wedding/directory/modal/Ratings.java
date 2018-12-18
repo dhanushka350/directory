@@ -1,6 +1,7 @@
 package com.wedding.directory.modal;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.wedding.directory.modal.advertisement.ADProfile;
 
 import javax.persistence.*;
 
@@ -33,8 +34,8 @@ public class Ratings {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vendor")
-    private User vendor;
+    @JoinColumn(name = "advertisement")
+    private ADProfile adProfile;
 
     public Ratings() {
     }
@@ -95,11 +96,11 @@ public class Ratings {
         this.ratings = ratings;
     }
 
-    public User getVendor() {
-        return vendor;
+    public ADProfile getAdProfile() {
+        return adProfile;
     }
 
-    public void setVendor(User vendor) {
-        this.vendor = vendor;
+    public void setAdProfile(ADProfile adProfile) {
+        this.adProfile = adProfile;
     }
 }

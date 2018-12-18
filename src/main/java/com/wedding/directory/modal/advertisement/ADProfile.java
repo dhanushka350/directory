@@ -5,6 +5,7 @@ import com.wedding.directory.modal.User;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "advertisement")
@@ -104,6 +105,16 @@ public class ADProfile {
 
     @Column(name = "package_Name_6")
     private String packageName6;
+
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @Column(name = "expired_date")
+    private Date expiredDate;
+
+    @Column(name = "ad_type")
+    private String adType;
+
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
@@ -364,5 +375,29 @@ public class ADProfile {
 
     public void setVendor(User vendor) {
         this.vendor = vendor;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+
+    public String getAdType() {
+        return adType;
+    }
+
+    public void setAdType(String adType) {
+        this.adType = adType;
     }
 }
