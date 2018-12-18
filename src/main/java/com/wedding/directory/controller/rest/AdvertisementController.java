@@ -3,6 +3,7 @@ package com.wedding.directory.controller.rest;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.payload.ADResponse;
+import com.wedding.directory.payload.AllAdvertisements;
 import com.wedding.directory.service.AdvertisementService;
 import com.wedding.directory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,12 @@ public class AdvertisementController {
         System.out.println(user + "===============================================");
         return adProfile;
 
+    }
+
+    @RequestMapping(value = "/get/all/advertisement", method = RequestMethod.POST)
+    @ResponseBody
+    public List<AllAdvertisements> getAllAdsByVendor(@RequestBody String user) {
+        return service.getAllAdsByVendor(user);
     }
 
 }

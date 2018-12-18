@@ -3,6 +3,7 @@ package com.wedding.directory.service;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.payload.ADResponse;
+import com.wedding.directory.payload.AllAdvertisements;
 import com.wedding.directory.payload.Venodr;
 import com.wedding.directory.repository.AdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -197,5 +198,23 @@ public class AdvertisementService {
             adResponse.setVenodr(venodr);
         }
         return adResponse;
+    }
+
+    public List<AllAdvertisements> getAllAdsByVendor(String vendor) {
+        List<AllAdvertisements> list = new ArrayList<>();
+        AllAdvertisements advertisement = null;
+        User user = userService.findUserModalByEmail(vendor);
+        for (ADProfile allByVendorEqual : repository.findAllByVendorEquals(user)) {
+            advertisement = new AllAdvertisements();
+            advertisement.setId(allByVendorEqual.getId());
+            advertisement.setAd_status("online");
+            advertisement.setCreated_date("2018/09/09");
+            advertisement.setExpire_date("2018/12/12");
+            advertisement.setPayment_status("paid");
+            advertisement.setTitle(allByVendorEqual.getTitle());
+            advertisement.setType("free");
+            list.add(advertisement);
+        }
+        return list;
     }
 }
