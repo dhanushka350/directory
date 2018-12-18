@@ -1,11 +1,15 @@
 package com.wedding.directory.modal.advertisement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wedding.directory.modal.Ratings;
 import com.wedding.directory.modal.User;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "advertisement")
@@ -120,6 +124,11 @@ public class ADProfile {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor")
     private User vendor;
+
+    // one ad can have many ratings...
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adProfile", fetch = FetchType.LAZY)
+    private List<Ratings> rating = new ArrayList<>();
 
     public int getId() {
         return id;

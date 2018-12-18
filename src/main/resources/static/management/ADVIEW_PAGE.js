@@ -1,7 +1,16 @@
+var selctedAd;
+
 function loadData() {
-    var selctedAd = localStorage.getItem("selectedAd");
+    selctedAd = localStorage.getItem("selectedAd");
     getDataFromBackend(selctedAd);
 }
+
+
+$('#rating_btn').click(function (e) {
+    e.preventDefault();
+    saveRatings();
+});
+
 
 let userid = null;
 
@@ -52,14 +61,6 @@ function getDataFromBackend(selctedAd) {
 
 function saveRatings() {
 
-    console.log("working");
-    console.log(document.getElementById("full_name").value);
-    console.log(document.getElementById("mobile_txt").value);
-    console.log(document.getElementById("email_txt").value);
-    console.log(document.getElementById("city_txt").value);
-    console.log(document.getElementById("review_txt").value);
-
-
     var e = {};
     e["fullName"] = document.getElementById("full_name").value;
     e["mobile"] = document.getElementById("mobile_txt").value;
@@ -67,18 +68,27 @@ function saveRatings() {
     e["city"] = document.getElementById("city_txt").value;
     e["review"] = document.getElementById("review_txt").value;
     e["adID"] = userid;
+    e["advertisement"] = selctedAd;
     var d = JSON.stringify(e);
     $.ajax({
         url: "/ratings/save",
-        dataType: 'json',
+        dataType: 'text',
         contentType: "application/json",
         type: 'POST',
         data: d,
         success: function (data, textStatus, jqXHR) {
-            console.log("data" + data);
+
+            if ("SUCCESS" === data) {
+                swal(data + "!", "Thank you for your review.");
+            } else if ("FAILED" === data) {
+                swal(data + "!", "Please try again later.");
+            } else {
+                swal("Oops!", data);
+            }
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            swal("Oops!", "we didn't find your details.", "error");
+
         },
         beforeSend: function (xhr) {
         }

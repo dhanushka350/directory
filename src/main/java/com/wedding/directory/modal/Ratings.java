@@ -31,7 +31,7 @@ public class Ratings {
     @Column(name = "rating")
     private double ratings;
 
-
+// one rating can have one ad
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advertisement")

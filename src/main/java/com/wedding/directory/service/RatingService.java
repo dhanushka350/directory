@@ -4,19 +4,29 @@ import com.wedding.directory.modal.Ratings;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.payload.RatingsDTO;
+import com.wedding.directory.repository.AdvertisementRepository;
 import com.wedding.directory.repository.RatingsRepocitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RatingService {
     @Autowired
     RatingsRepocitory ratingsRepocitory;
+    @Autowired
+    private AdvertisementRepository repository;
 
     public String saveRatings(RatingsDTO ratings) {
+       
+        ADProfile profile = repository.getById(ratings.getAdvertisement());
+
+        if (profile == null) {
+            return "CAN NOT LOCATE ADVERTISEMENT.. \n REFRESH YOUR BROWSER AND TRY AGAIN.";
+        }
 
         Ratings rating = new Ratings();
         rating.setEmail(ratings.getEmail());
@@ -25,12 +35,7 @@ public class RatingService {
         rating.setMobile(ratings.getMobile());
         rating.setRatings(ratings.getRatings());
         rating.setReview(ratings.getReview());
-
-        ADProfile adProfile = new ADProfile();
-        adProfile.setId(ratings.getAdID());
-        rating.setAdProfile(adProfile);
-
-
+        rating.setAdProfile(profile);
         Ratings save = ratingsRepocitory.save(rating);
         if (save != null) {
             return "SUCCESS";
