@@ -4,6 +4,7 @@ function loadData() {
 }
 
 let userid = null;
+let ratings = 0;
 
 function getDataFromBackend(selctedAd) {
     $.ajax({
@@ -50,6 +51,11 @@ function getDataFromBackend(selctedAd) {
     });
 }
 
+$('#rate input:radio').on('change', function () {
+    var value = $(this).val();
+    ratings = value;
+});
+
 function saveRatings() {
 
     console.log("working");
@@ -65,6 +71,7 @@ function saveRatings() {
     e["mobile"] = document.getElementById("mobile_txt").value;
     e["email"] = document.getElementById("email_txt").value;
     e["city"] = document.getElementById("city_txt").value;
+    e["ratings"] = ratings;
     e["review"] = document.getElementById("review_txt").value;
     e["adID"] = userid;
     var d = JSON.stringify(e);
