@@ -43,6 +43,7 @@ public class FrontPageAdvertiesmentController {
 
     @RequestMapping(value = "/getOne/{addID}", method = RequestMethod.GET)
     public ADResponse getOneAdvertiesment(@PathVariable String addID) {
+        System.out.println(addID+"//////////");
         return service.getOneAdvertiesment(addID);
     }
 }

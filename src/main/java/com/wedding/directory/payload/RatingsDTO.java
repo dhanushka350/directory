@@ -6,6 +6,8 @@ public class RatingsDTO {
 
     private String fullName;
 
+    private int advertisement;
+
     private String email;
 
     private String mobile;
@@ -17,6 +19,15 @@ public class RatingsDTO {
     private double ratings;
 
     private int adID;
+
+
+    public int getAdvertisement() {
+        return advertisement;
+    }
+
+    public void setAdvertisement(int advertisement) {
+        this.advertisement = advertisement;
+    }
 
     public RatingsDTO() {
     }

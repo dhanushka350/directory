@@ -12,6 +12,8 @@ import java.util.List;
 public interface AdvertisementRepository extends JpaRepository<ADProfile, Integer> {
     ADProfile findTopByVendor(User user);
 
+    ADProfile getById(int id);
+
     @Query(value = "select * from advertisement LIMIT 17; ", nativeQuery = true)
     List<ADProfile> getLmitedData();
 
