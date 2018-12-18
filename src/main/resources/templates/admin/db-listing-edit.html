@@ -831,7 +831,9 @@ There are many variations of passages of Lorem Ipsum available, but the majority
 	<script src="/management/js/custom.js"></script>
 	<script>
         var name = localStorage.getItem('VENDOR');
-
+        if (name === 'null') {
+            location.replace("/login");
+        }
         function profileImage() {
             $.ajax({
                 url: "/admin/view_profile",
