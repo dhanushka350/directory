@@ -69,7 +69,7 @@ function setFrontPageAdv() {
                     "                </div>"
                 ));
             }
-            $('#top-ads\n').append($(" <div class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
+            $('#top-ads\n').append($(" <div onclick='viewMore();' class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
                 "                    <div class=\"grid\">\n" +
                 "                        <figure class=\"effect-bubba\"><img src=\"images/vendor-6.jpg\" alt=\"wedding venue\"\n" +
                 "                                                          class=\"img-responsive\">\n" +
@@ -126,7 +126,7 @@ function search() {
                         "                </div>"
                     ));
                 }
-                $('#top-ads\n').append($(" <div class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
+                $('#top-ads\n').append($(" <div onclick='viewMore();' class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
                     "                    <div class=\"grid\">\n" +
                     "                        <figure class=\"effect-bubba\"><img src=\"images/vendor-6.jpg\" alt=\"wedding venue\"\n" +
                     "                                                          class=\"img-responsive\">\n" +
@@ -142,4 +142,10 @@ function search() {
         }
 
     });
+}
+
+function viewMore() {
+    localStorage.setItem("selectedCity", $('#cmb-city').find(":selected").text());
+    localStorage.setItem("selectedCate", $('#cmb-cate').find(":selected").text());
+    window.open("http://localhost:7575/home/listing/vendors", "_self");
 }

@@ -138,7 +138,9 @@ public class AdvertisementService {
     }
 
     public List<ADResponse> getTopRatedAdvertiesments(String city, String vend) {
-        if (vend.equals("Select Vendor Category")) {
+        if (vend.equals("Select Vendor Category") && city.equals("Select City")) {
+            return setAdResponse(repository.findAll());
+        } else if (vend.equals("Select Vendor Category")) {
             return setAdResponse(repository.getLmitedDataBycity(city));
         } else if (city.equals("Select City")) {
             return setAdResponse(repository.getLmitedDataByVend(vend));
@@ -216,5 +218,30 @@ public class AdvertisementService {
             list.add(advertisement);
         }
         return list;
+    }
+
+    public List<ADResponse> getAllAdvertiesmentsByCityAndCat(String city, String vend) {
+        if (vend.equals("Select Vendor Category") && city.equals("Select City")) {
+            System.out.println("===========================");
+            System.out.println(1);
+            System.out.println("===========================");
+            return setAdResponse(repository.findAll());
+        } else if (vend.equals("Select Vendor Category")) {
+            System.out.println("===========================");
+            System.out.println(2);
+            System.out.println("===========================");
+            return setAdResponse(repository.getDataBycity(city));
+        } else if (city.equals("Select City")) {
+            System.out.println("===========================");
+            System.out.println(3);
+            System.out.println(vend);
+            System.out.println("===========================");
+            return setAdResponse(repository.getDataByVend(vend));
+        } else {
+            System.out.println("===========================");
+            System.out.println(4);
+            System.out.println("===========================");
+            return setAdResponse(repository.getData(vend, city));
+        }
     }
 }
