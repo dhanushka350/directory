@@ -144,7 +144,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <select class="form-control" id="type">
+                                            <select class="form-control" id="category">
                                                 <option disabled="disabled">Choose option</option>
                                                 <option>Cake</option>
                                                 <option>DJ</option>
@@ -313,7 +313,17 @@
                                                    id="packageName6">
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Advertisement
+                                            Type</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <select class="form-control" id="type">
+                                                <option>Choose Advertisement Type</option>
+                                                <option value="FREE">FREE - 1 month</option>
+                                                <option value="PREMIUM">PREMIUM - 6 month</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
@@ -388,6 +398,7 @@
     if (name === 'null') {
         location.replace("/login");
     }
+
     function profileImage() {
         $.ajax({
             url: "/admin/view_profile",
@@ -402,7 +413,7 @@
                 }
 
                 document.getElementById("welcome").innerText = data.name;
-                document.getElementById("test").innerText = "Hey "+data.name + " please test this page and give us a feedback";
+                document.getElementById("test").innerText = "Hey " + data.name + " please test this page and give us a feedback";
 
             },
             error: function (jqXHR, textStatus, errorThrown) {

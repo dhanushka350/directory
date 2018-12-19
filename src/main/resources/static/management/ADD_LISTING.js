@@ -2,9 +2,11 @@
 //     var name = localStorage.getItem('VENDOR');
 //     VENDOR.getDetails(name);
 // });
-$('#save').click(function (n) {
+
+$('#save').click(function (e) {
+    e.preventDefault();
     AD.saveAd();
-    n.preventDefault();
+
 });
 var VENDOR = {
     getDetails: function (name) {
@@ -44,9 +46,9 @@ var AD = {
         e["type"] = $('#type').find(":selected").text();
         e["city"] = $('#city').find(":selected").text();
         e["category"] = $('#category').find(":selected").text();
-        e["openingDates"] = $('#opening_days').find(":selected").text();
-        e["openingTime"] = $('#opening_time').find(":selected").text();
-        e["closingTime"] = $('#closing_time').find(":selected").text();
+        e["openingDates"] = $('#opening_days').val();
+        e["openingTime"] = $('#opening_time').val();
+        e["closingTime"] = $('#closing_time').val();
         e["description"] = $('#desc').val();
         e["facebook"] = $('#facebook').val();
         e["twitter"] = $('#twitter').val();
@@ -78,7 +80,7 @@ var AD = {
             type: 'POST',
             data: d,
             success: function (data, textStatus, jqXHR) {
-                swal("Step one completed!", "one more to go. \n waiting for redirection.", "success");
+                swal("Step one completed!", "please wait...", "success");
                 setTimeout(function () {
                     window.location.replace("/home/fileStorage/ads");
                 }, 5000);
@@ -89,7 +91,7 @@ var AD = {
                 console.log(textStatus);
                 console.log("R: " + jqXHR.status);
                 console.log("R: " + jqXHR.responseText);
-                swal("Oops!", "can not complete step.. \n please try again later.", "error");
+                swal("Oops!", "please try again later.", "error");
 
             },
             beforeSend: function (xhr) {
