@@ -1,4 +1,4 @@
-package com.wedding.directory.modal;
+package com.wedding.directory.modal.advertisement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wedding.directory.modal.advertisement.ADProfile;

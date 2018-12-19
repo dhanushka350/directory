@@ -1,7 +1,6 @@
 package com.wedding.directory.service;
 
-import com.wedding.directory.modal.Ratings;
-import com.wedding.directory.modal.User;
+import com.wedding.directory.modal.advertisement.Ratings;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.payload.RatingsDTO;
 import com.wedding.directory.repository.AdvertisementRepository;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RatingService {
@@ -21,7 +19,7 @@ public class RatingService {
     private AdvertisementRepository repository;
 
     public String saveRatings(RatingsDTO ratings) {
-       
+
         ADProfile profile = repository.getById(ratings.getAdvertisement());
 
         if (profile == null) {

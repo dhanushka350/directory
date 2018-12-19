@@ -1,7 +1,6 @@
 package com.wedding.directory.repository;
 
-import com.wedding.directory.modal.Ratings;
-import com.wedding.directory.payload.RatingsDTO;
+import com.wedding.directory.modal.advertisement.Ratings;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

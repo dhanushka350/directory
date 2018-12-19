@@ -2,9 +2,7 @@ package com.wedding.directory.modal.advertisement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.wedding.directory.modal.Ratings;
 import com.wedding.directory.modal.User;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -111,14 +109,10 @@ public class ADProfile {
     private String packageName6;
 
     @Column(name = "created_date")
-    private Date createdDate;
+    private String createdDate;
 
     @Column(name = "expired_date")
-    private Date expiredDate;
-
-    @Column(name = "ad_type")
-    private String adType;
-
+    private String expiredDate;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
@@ -386,27 +380,20 @@ public class ADProfile {
         this.vendor = vendor;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getExpiredDate() {
+    public String getExpiredDate() {
         return expiredDate;
     }
 
-    public void setExpiredDate(Date expiredDate) {
+    public void setExpiredDate(String expiredDate) {
         this.expiredDate = expiredDate;
     }
 
-    public String getAdType() {
-        return adType;
-    }
-
-    public void setAdType(String adType) {
-        this.adType = adType;
-    }
 }

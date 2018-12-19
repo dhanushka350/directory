@@ -9,7 +9,11 @@ import com.wedding.directory.repository.AdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +26,8 @@ public class AdvertisementService {
     private UserService userService;
 
     public String addListing(ADResponse adResponse) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
 
         User user = userService.findUserModalByEmail(adResponse.getVendor());
         ADProfile response = repository.findTopByVendor(user);
@@ -49,12 +55,39 @@ public class AdvertisementService {
         response.setPackageName5(adResponse.getPackageName5());
         response.setPackageName6(adResponse.getPackageName6());
         response.setVendor(user);
+        response.setCreatedDate(getDate());
+        response.setExpiredDate(getExpireDate(adResponse.getType()));
         ADProfile save = repository.save(response);
         if (save != null) {
             return "SUCCESS";
         } else {
             return "FAILED";
         }
+    }
+
+    private String getDate() {
+        Calendar now = Calendar.getInstance();
+        return "" + (now.get(Calendar.MONTH) + 1)
+                + "-"
+                + now.get(Calendar.DATE)
+                + "-"
+                + now.get(Calendar.YEAR);
+    }
+
+    private String getExpireDate(String type) {
+        Calendar now = Calendar.getInstance();
+        if ("FREE".equals(type)) {
+            now.add(Calendar.MONTH, 1);
+        } else if ("PREMIUM".equals(type)) {
+            now.add(Calendar.MONTH, 6);
+        }
+
+        return "" + (now.get(Calendar.MONTH) + 1)
+                + "-"
+                + now.get(Calendar.DATE)
+                + "-"
+                + now.get(Calendar.YEAR);
+
     }
 
     public String updateAdImages(ADProfile profile) {
@@ -208,11 +241,11 @@ public class AdvertisementService {
             advertisement = new AllAdvertisements();
             advertisement.setId(allByVendorEqual.getId());
             advertisement.setAd_status("online");
-            advertisement.setCreated_date("2018/09/09");
-            advertisement.setExpire_date("2018/12/12");
+            advertisement.setCreated_date(allByVendorEqual.getCreatedDate());
+            advertisement.setExpire_date(allByVendorEqual.getExpiredDate());
             advertisement.setPayment_status("paid");
             advertisement.setTitle(allByVendorEqual.getTitle());
-            advertisement.setType("free");
+            advertisement.setType(allByVendorEqual.getType());
             list.add(advertisement);
         }
         return list;
