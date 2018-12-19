@@ -113,4 +113,11 @@ public class VendorController {
         modelAndView.setViewName("admin/db-setting");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/db/packages", method = RequestMethod.GET)
+    public ModelAndView packages() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/db-package-add");
+        return modelAndView;
+    }
 }

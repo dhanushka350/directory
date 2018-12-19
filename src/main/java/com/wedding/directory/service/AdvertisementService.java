@@ -56,7 +56,7 @@ public class AdvertisementService {
         response.setPackageName6(adResponse.getPackageName6());
         response.setVendor(user);
         response.setCreatedDate(getDate());
-        response.setExpiredDate(getExpireDate(adResponse.getType()));
+        response.setExpiredDate(getExpireDate(response.getCreatedDate()));
         ADProfile save = repository.save(response);
         if (save != null) {
             return "SUCCESS";
@@ -74,20 +74,13 @@ public class AdvertisementService {
                 + now.get(Calendar.YEAR);
     }
 
-    private String getExpireDate(String type) {
-        Calendar now = Calendar.getInstance();
-        if ("FREE".equals(type)) {
-            now.add(Calendar.MONTH, 1);
-        } else if ("PREMIUM".equals(type)) {
-            now.add(Calendar.MONTH, 6);
-        }
+    private String getExpireDate(String cdate) {
 
-        return "" + (now.get(Calendar.MONTH) + 1)
-                + "-"
-                + now.get(Calendar.DATE)
-                + "-"
-                + now.get(Calendar.YEAR);
-
+        int year = Integer.parseInt(cdate.split("-")[2]);
+        int month = Integer.parseInt(cdate.split("-")[1]);
+        int day = Integer.parseInt(cdate.split("-")[0]);
+        year++;
+        return day + "-" + month + "-" + year;
     }
 
     public String updateAdImages(ADProfile profile) {
