@@ -50,6 +50,10 @@
             z-index: 9999;
             background: url(/images/simple-pre-loader/images/loader-128x/Preloader_2.gif) center no-repeat #fff;
         }
+
+        .History {
+            margin-top: 0px!important;
+        }
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
@@ -362,7 +366,7 @@
                                         them. Here are a few tips to write a good review:</p>
                                     <div class="row">
                                         <div class="col s12">
-                                            <fieldset class="rating">
+                                            <fieldset id="rate" class="rating">
                                                 <input type="radio" id="star5" name="rating" value="5"/>
                                                 <label class="full" for="star5" title="Awesome - 5 stars"></label>
                                                 <input type="radio" id="star4half" name="rating" value="4 and a half"/>

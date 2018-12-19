@@ -63,10 +63,10 @@ function getDataFromBackend(selctedAd) {
 $('#rate input:radio').on('change', function () {
     var value = $(this).val();
     ratings = value;
+
 });
 
 function saveRatings() {
-
     var e = {};
     e["fullName"] = document.getElementById("full_name").value;
     e["mobile"] = document.getElementById("mobile_txt").value;
