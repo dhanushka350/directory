@@ -2,10 +2,11 @@ package com.wedding.directory.service;
 
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
-import com.wedding.directory.payload.ADResponse;
-import com.wedding.directory.payload.AllAdvertisements;
-import com.wedding.directory.payload.Venodr;
+import com.wedding.directory.modal.advertisement.Packages;
+import com.wedding.directory.payload.*;
+import com.wedding.directory.payload.Package;
 import com.wedding.directory.repository.AdvertisementRepository;
+import com.wedding.directory.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ public class AdvertisementService {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PackageRepository packageRepository;
 
     public String addListing(ADResponse adResponse) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -48,12 +51,6 @@ public class AdvertisementService {
         response.setType(adResponse.getType());
         response.setTwitter(adResponse.getTwitter());
         response.setTitle(adResponse.getTitle());
-        response.setPackageName1(adResponse.getPackageName1());
-        response.setPackageName2(adResponse.getPackageName2());
-        response.setPackageName3(adResponse.getPackageName3());
-        response.setPackageName4(adResponse.getPackageName4());
-        response.setPackageName5(adResponse.getPackageName5());
-        response.setPackageName6(adResponse.getPackageName6());
         response.setVendor(user);
         response.setCreatedDate(getDate());
         response.setExpiredDate(getExpireDate(response.getCreatedDate()));
@@ -142,22 +139,23 @@ public class AdvertisementService {
             adResponse.setProfessionals(adProfile.getProfessionals());
             adResponse.setMap(adProfile.getMap());
             adResponse.setView(adProfile.getView());
+
             adResponse.setCoverImage1(adProfile.getCoverImage1());
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
 
-            adResponse.setPackageImage1(adProfile.getPackageImage1());
-            adResponse.setPackageImage2(adProfile.getPackageImage2());
-            adResponse.setPackageImage3(adProfile.getPackageImage3());
-            adResponse.setPackageImage4(adProfile.getPackageImage4());
+            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
+            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
+            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
+            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
 
-            adResponse.setPackageName1(adProfile.getPackageName1());
-            adResponse.setPackageName2(adProfile.getPackageName2());
-            adResponse.setPackageName3(adProfile.getPackageName3());
-            adResponse.setPackageName4(adProfile.getPackageName4());
-            adResponse.setPackageName5(adProfile.getPackageName5());
-            adResponse.setPackageName6(adProfile.getPackageName6());
+            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
+            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
+            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
+            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
+            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
+            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
             adResponses.add(adResponse);
         }
         return adResponses;
@@ -200,19 +198,20 @@ public class AdvertisementService {
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
 
-            adResponse.setPackageImage1(adProfile.getPackageImage1());
-            adResponse.setPackageImage2(adProfile.getPackageImage2());
-            adResponse.setPackageImage3(adProfile.getPackageImage3());
-            adResponse.setPackageImage4(adProfile.getPackageImage4());
-            adResponse.setPackageImage5(adProfile.getPackageImage5());
-            adResponse.setPackageImage6(adProfile.getPackageImage6());
+            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
+            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
+            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
+            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
+            adResponse.setPackageImage5(adProfile.getPackages().getPackageImage5());
+            adResponse.setPackageImage6(adProfile.getPackages().getPackageImage6());
 
-            adResponse.setPackageName1(adProfile.getPackageName1());
-            adResponse.setPackageName2(adProfile.getPackageName2());
-            adResponse.setPackageName3(adProfile.getPackageName3());
-            adResponse.setPackageName4(adProfile.getPackageName4());
-            adResponse.setPackageName5(adProfile.getPackageName5());
-            adResponse.setPackageName6(adProfile.getPackageName6());
+            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
+            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
+            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
+            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
+            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
+            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
+
             Venodr venodr = new Venodr();
             venodr.setId(adProfile.getVendor().getId());
             venodr.setEmail(adProfile.getVendor().getEmail());
@@ -269,5 +268,52 @@ public class AdvertisementService {
             System.out.println("===========================");
             return setAdResponse(repository.getData(vend, city));
         }
+    }
+
+    public Payload setPackages(Package aPackage) {
+        Payload payload = new Payload();
+        Packages packages = repository.getById(aPackage.getAdID()).getPackages();
+        if (packages == null) {
+            packages = new Packages();
+            packages.setAdProfile(repository.getById(aPackage.getAdID()));
+        }
+
+        packages.setPackageDes1(aPackage.getPackageDes1());
+        packages.setPackageDes2(aPackage.getPackageDes2());
+        packages.setPackageDes3(aPackage.getPackageDes3());
+        packages.setPackageDes4(aPackage.getPackageDes4());
+        packages.setPackageDes5(aPackage.getPackageDes5());
+        packages.setPackageDes6(aPackage.getPackageDes6());
+
+        packages.setPackageImage1(aPackage.getPackageImage1());
+        packages.setPackageImage2(aPackage.getPackageImage2());
+        packages.setPackageImage3(aPackage.getPackageImage3());
+        packages.setPackageImage4(aPackage.getPackageImage4());
+        packages.setPackageImage5(aPackage.getPackageImage5());
+        packages.setPackageImage6(aPackage.getPackageImage6());
+
+        packages.setPackageName1(aPackage.getPackageName1());
+        packages.setPackageName2(aPackage.getPackageName2());
+        packages.setPackageName3(aPackage.getPackageName3());
+        packages.setPackageName4(aPackage.getPackageName4());
+        packages.setPackageName5(aPackage.getPackageName5());
+        packages.setPackageName6(aPackage.getPackageName6());
+
+        packages.setPackagePrice1(aPackage.getPackagePrice1());
+        packages.setPackagePrice2(aPackage.getPackagePrice2());
+        packages.setPackagePrice3(aPackage.getPackagePrice3());
+        packages.setPackagePrice4(aPackage.getPackagePrice4());
+        packages.setPackagePrice5(aPackage.getPackagePrice5());
+        packages.setPackagePrice6(aPackage.getPackagePrice6());
+
+        Packages save = packageRepository.save(packages);
+        if (save != null) {
+            payload.setStatus(true);
+            payload.setMessage("Successful.");
+        } else {
+            payload.setMessage("Failed..");
+            payload.setStatus(false);
+        }
+        return payload;
     }
 }

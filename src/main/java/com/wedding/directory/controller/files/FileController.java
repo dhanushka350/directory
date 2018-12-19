@@ -83,17 +83,17 @@ public class FileController {
         } else if (count == 4) {
             adProfile.setCoverImage4(uriString);
         } else if (count == 5) {
-            adProfile.setPackageImage1(uriString);
+            adProfile.getPackages().setPackageImage1(uriString);
         } else if (count == 6) {
-            adProfile.setPackageImage2(uriString);
+            adProfile.getPackages().setPackageImage2(uriString);
         } else if (count == 7) {
-            adProfile.setPackageImage3(uriString);
+            adProfile.getPackages().setPackageImage3(uriString);
         } else if (count == 8) {
-            adProfile.setPackageImage4(uriString);
+            adProfile.getPackages().setPackageImage4(uriString);
         } else if (count == 9) {
-            adProfile.setPackageImage5(uriString);
+            adProfile.getPackages().setPackageImage5(uriString);
         } else if (count == 10) {
-            adProfile.setPackageImage6(uriString);
+            adProfile.getPackages().setPackageImage6(uriString);
         }
         return adProfile;
     }
