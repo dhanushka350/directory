@@ -26,11 +26,20 @@ public interface AdvertisementRepository extends JpaRepository<ADProfile, Intege
     @Query(value = "select * from advertisement where city =?1 LIMIT 17;", nativeQuery = true)
     List<ADProfile> getLmitedDataBycity(String city);
 
+    @Query(value = "select * from advertisement where city =?1", nativeQuery = true)
+    List<ADProfile> getDataBycity(String city);
+
     @Query(value = "select * from advertisement where category =?1 LIMIT 17;", nativeQuery = true)
     List<ADProfile> getLmitedDataByVend(String vend);
 
+    @Query(value = "select * from advertisement where category =?1", nativeQuery = true)
+    List<ADProfile> getDataByVend(String vend);
+
     @Query(value = "select * from advertisement where category =?1  and city=?2 LIMIT 17; ", nativeQuery = true)
     List<ADProfile> getLmitedData(String vend, String city);
+
+    @Query(value = "select * from advertisement where category =?1  and city=?2 ; ", nativeQuery = true)
+    List<ADProfile> getData(String vend, String city);
 
     List<ADProfile> findAllByVendorEquals(User user);
 }

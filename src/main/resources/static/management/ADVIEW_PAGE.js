@@ -13,6 +13,7 @@ $('#rating_btn').click(function (e) {
 
 
 let userid = null;
+let ratings = 0;
 
 function getDataFromBackend(selctedAd) {
     $.ajax({
@@ -59,13 +60,19 @@ function getDataFromBackend(selctedAd) {
     });
 }
 
-function saveRatings() {
+$('#rate input:radio').on('change', function () {
+    var value = $(this).val();
+    ratings = value;
 
+});
+
+function saveRatings() {
     var e = {};
     e["fullName"] = document.getElementById("full_name").value;
     e["mobile"] = document.getElementById("mobile_txt").value;
     e["email"] = document.getElementById("email_txt").value;
     e["city"] = document.getElementById("city_txt").value;
+    e["ratings"] = ratings;
     e["review"] = document.getElementById("review_txt").value;
     e["adID"] = userid;
     e["advertisement"] = selctedAd;
