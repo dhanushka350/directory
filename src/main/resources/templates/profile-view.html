@@ -52,7 +52,7 @@
         }
 
         .History {
-            margin-top: 0px!important;
+            margin-top: 0px !important;
         }
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -79,7 +79,9 @@
                         class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i
                         class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
                 <h4 id="txt-address"></h4>
+                <p id="txt-days"></p>
                 <p id="txt-open"></p>
+                <p id="txt-close"></p>
                 <div class="list-number pag-p1-phone">
                     <ul>
                         <li id="txt-cont"><i class="fa fa-phone" aria-hidden="true"></i> +01 1245 2541</li>
@@ -553,76 +555,68 @@
                         <div class="list-pg-inn-sp">
                             <div class="list-pg-oth-info">
                                 <ul>
-                                    <li>Today Shop <span class="green-bg">open</span></li>
-                                    <li>Experience <span>16</span></li>
-                                    <li>Parking <span>yes</span></li>
-                                    <li>Smoking <span>yes</span></li>
-                                    <li>Pool Table <span>yes</span></li>
-                                    <li>Take Out <span>yes</span></li>
-                                    <li>Good for Groups <span>yes</span></li>
-                                    <li>Accepts All Cards <span>yes</span></li>
-                                    <li>Open Time <span>09:00am</span></li>
-                                    <li>Close Time <span>10:00pm</span></li>
+                                    <li >Open Time <span id="open_time">09:00am</span></li>
+                                    <li>Close Time <span id="close_time">10:00pm</span></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <!--END LISTING DETAILS: LEFT PART 9-->
                     <!--LISTING DETAILS: LEFT PART 10-->
-                    <div class="list-mig-like">
+                    <div id="top_three" class="list-mig-like">
                         <div class="list-ri-spec-tit">
                             <h3><span>You might</span> like this</h3></div>
-                        <a href="#!">
-                            <div class="list-mig-like-com">
-                                <div class="list-mig-lc-img"><img src="/profile/images/listing/1.jpg" alt=""/> <span
-                                        class="home-list-pop-rat list-mi-pr">$720</span></div>
-                                <div class="list-mig-lc-con">
-                                    <div class="list-rat-ch list-room-rati"><span>4.0</span> <i class="fa fa-star"
-                                                                                                aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"
-                                                                                         aria-hidden="true"></i> <i
-                                                class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o"
-                                                                                              aria-hidden="true"></i>
-                                    </div>
-                                    <h5>Holiday Inn Express</h5>
-                                    <p>Illinois City,</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#!">
-                            <div class="list-mig-like-com">
-                                <div class="list-mig-lc-img"><img src="/profile/images/listing/2.jpg" alt=""/> <span
-                                        class="home-list-pop-rat list-mi-pr">$420</span></div>
-                                <div class="list-mig-lc-con">
-                                    <div class="list-rat-ch list-room-rati"><span>3.0</span> <i class="fa fa-star"
-                                                                                                aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"
-                                                                                         aria-hidden="true"></i> <i
-                                                class="fa fa-star-o" aria-hidden="true"></i> <i class="fa fa-star-o"
-                                                                                                aria-hidden="true"></i>
-                                    </div>
-                                    <h5>InterContinental</h5>
-                                    <p>Illinois City,</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#!">
-                            <div class="list-mig-like-com">
-                                <div class="list-mig-lc-img"><img src="/profile/images/listing/3.jpg" alt=""/> <span
-                                        class="home-list-pop-rat list-mi-pr">$380</span></div>
-                                <div class="list-mig-lc-con">
-                                    <div class="list-rat-ch list-room-rati"><span>5.0</span> <i class="fa fa-star"
-                                                                                                aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"
-                                                                                         aria-hidden="true"></i> <i
-                                                class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"
-                                                                                              aria-hidden="true"></i>
-                                    </div>
-                                    <h5>Staybridger Suites</h5>
-                                    <p>Illinois City,</p>
-                                </div>
-                            </div>
-                        </a>
+                        <!--<a href="#!">-->
+                            <!--<div class="list-mig-like-com">-->
+                                <!--<div class="list-mig-lc-img"><img src="/profile/images/listing/1.jpg" alt=""/> <span-->
+                                        <!--class="home-list-pop-rat list-mi-pr">$720</span></div>-->
+                                <!--<div class="list-mig-lc-con">-->
+                                    <!--<div class="list-rat-ch list-room-rati"><span>4.0</span> <i class="fa fa-star"-->
+                                                                                                <!--aria-hidden="true"></i>-->
+                                        <!--<i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
+                                                                                         <!--aria-hidden="true"></i> <i-->
+                                                <!--class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o"-->
+                                                                                              <!--aria-hidden="true"></i>-->
+                                    <!--</div>-->
+                                    <!--<h5>Holiday Inn Express</h5>-->
+                                    <!--<p>Illinois City,</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--<a href="#!">-->
+                            <!--<div class="list-mig-like-com">-->
+                                <!--<div class="list-mig-lc-img"><img src="/profile/images/listing/2.jpg" alt=""/> <span-->
+                                        <!--class="home-list-pop-rat list-mi-pr">$420</span></div>-->
+                                <!--<div class="list-mig-lc-con">-->
+                                    <!--<div class="list-rat-ch list-room-rati"><span>3.0</span> <i class="fa fa-star"-->
+                                                                                                <!--aria-hidden="true"></i>-->
+                                        <!--<i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
+                                                                                         <!--aria-hidden="true"></i> <i-->
+                                                <!--class="fa fa-star-o" aria-hidden="true"></i> <i class="fa fa-star-o"-->
+                                                                                                <!--aria-hidden="true"></i>-->
+                                    <!--</div>-->
+                                    <!--<h5>InterContinental</h5>-->
+                                    <!--<p>Illinois City,</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--<a href="#!">-->
+                            <!--<div class="list-mig-like-com">-->
+                                <!--<div class="list-mig-lc-img"><img src="/profile/images/listing/3.jpg" alt=""/> <span-->
+                                        <!--class="home-list-pop-rat list-mi-pr">$380</span></div>-->
+                                <!--<div class="list-mig-lc-con">-->
+                                    <!--<div class="list-rat-ch list-room-rati"><span>5.0</span> <i class="fa fa-star"-->
+                                                                                                <!--aria-hidden="true"></i>-->
+                                        <!--<i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
+                                                                                         <!--aria-hidden="true"></i> <i-->
+                                                <!--class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
+                                                                                              <!--aria-hidden="true"></i>-->
+                                    <!--</div>-->
+                                    <!--<h5>Staybridger Suites</h5>-->
+                                    <!--<p>Illinois City,</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
                     </div>
                     <!--END LISTING DETAILS: LEFT PART 10-->
                 </div>

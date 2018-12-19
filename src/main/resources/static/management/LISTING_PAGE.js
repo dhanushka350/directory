@@ -2,6 +2,8 @@ $(window).load(function () {
     var city = localStorage.getItem("selectedCity");
     var cate = localStorage.getItem("selectedCate");
     search(city, cate);
+    getCity();
+    getVendorCat();
 });
 
 
@@ -17,7 +19,7 @@ function search(city, cate) {
             if (data.length === 0) {
                 alert("no result found");
             } else {
-                console.log(data)
+                document.getElementById("count_txt").innerHTML = data.length + " Results";
                 for (var i = 0; i < data.length; i++) {
                     $('#allAds\n').append($(" <div onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\">\n" +
                         "                        <!-- venue box start-->\n" +
@@ -36,7 +38,7 @@ function search(city, cate) {
                         "                                    </p>\n" +
                         "                                <div class=\"rating \"><i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i\n" +
                         "                                        class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star-o\"></i>\n" +
-                        "                                    <span class=\"rating-count\">(22)</span></div>\n" +
+                        "                                    <span class=\"rating-count\"></span></div>\n" +
                         "                            </div>\n" +
                         "                            <!-- /.caption -->\n" +
                         "                            <div class=\"vendor-price\">\n" +
@@ -57,3 +59,51 @@ function itemView(param) {
     localStorage.setItem("selectedAd", param);
     window.open("http://localhost:7575/home/profileview", "_self");
 }
+
+function getCity() {
+    $.ajax({
+        url: "/advertisement/getAllCities",
+        dataType: 'json',
+        contentType: "application/json",
+        type: 'GET',
+        success: function (data, textStatus, jqXHR) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                $('#city-cmb').append($('<option>', {
+                    value: data[i],
+                    text: data[i]
+                }));
+            }
+        },
+    });
+}
+
+function getVendorCat() {
+    $.ajax({
+        url: "/advertisement/getAllVendorCat",
+        dataType: 'json',
+        contentType: "application/json",
+        type: 'GET',
+        success: function (data, textStatus, jqXHR) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                $('#catType').append($('<option>', {
+                    value: data[i],
+                    text: data[i]
+                }));
+            }
+        },
+    });
+}
+
+
+function searchByFilters() {
+
+    var selectedType = $('#catType').find(":selected").text();
+    var selectedCity = $('#city-cmb').find(":selected").text();
+
+    search(selectedCity, selectedType);
+}
+

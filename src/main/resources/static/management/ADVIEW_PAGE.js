@@ -22,12 +22,15 @@ function getDataFromBackend(selctedAd) {
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
+            $("#img-main").css("background-image", "url(" + data.coverImage1 + ")");
+            $("#image-comp").css("background-image", "url(" + data.coverImage1 + ")");
+            console.log(data);
             document.getElementById("txt-name").innerHTML = data.title;
             document.getElementById("txt-address").innerHTML = "<b>Address:</b>" + data.venodr.address;
             document.getElementById("txt-cont").innerHTML = "<i class=\"fa fa-phone\" aria-hidden=\"true\"></i>" + data.venodr.phone;
             document.getElementById("txt-email").innerHTML = "<i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>" + data.venodr.email;
             document.getElementById("txt-owner").innerHTML = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i>" + data.venodr.name + " " + data.venodr.lastName;
-            document.getElementById("txt-compname").innerHTML = "<span>About</span>" + data.title;
+            document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
             document.getElementById("txt-desc").innerHTML = data.description;
             document.getElementById("txt-package-name").innerHTML = data.packageName1 + " , " + data.packageName2 + " , " + data.packageName3 + " , " + data.packageName4 + " , " + data.packageName5 + " , " + data.packageName6 + " , ";
 
@@ -50,12 +53,18 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("slider-img-3").innerHTML = "<img src=" + data.coverImage3 + " alt=''> ";
             document.getElementById("slider-img-4").innerHTML = "<img src=" + data.coverImage4 + " alt=''> ";
 
-            document.getElementById("txt-open").innerHTML = "Opening days : " + data.openingDates + "Opening Time : " + data.openingTime + "Closing Time : " + data.closingTime;
+            document.getElementById("txt-days").innerHTML = "Opening days : " + data.openingDates;
+            document.getElementById("txt-open").innerHTML = "Opening Time : " + data.openingTime;
+            document.getElementById("txt-close").innerHTML = "Closing Time : " + data.closingTime;
+            document.getElementById("open_time").innerHTML = data.openingTime;
+            document.getElementById("close_time").innerHTML =  data.closingTime;
+
 
             document.getElementById("image-comp").innerHTML = "<img style='width: 80px;height: 80px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
             document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
             userid = data.venodr.id;
             setRatings(userid);
+            getTopRating(data.city, data.category);
         }
     });
 }
@@ -149,4 +158,44 @@ function setRatings(param) {
         }
 
     });
+}
+
+function getTopRating(city, catogry) {
+    $.ajax({
+        url: "/advertisement/getTopByCity/" + city + "/" + catogry,
+        dataType: 'json',
+        contentType: "application/json",
+        type: 'GET',
+        success: function (data, textStatus, jqXHR) {
+            $('#top_three\n').empty();
+            console.log(data);
+            if (data.length === 0) {
+                alert("no result found");
+            } else {
+                for (var i = 0; i < 3; i++) {
+
+                    $('#top_three').append($("<a href=\"#!\">\n" +
+                        "                            <div class=\"list-mig-like-com\">\n" +
+                        "                                <div class=\"list-mig-lc-img\"><img src=\'" + data[i].coverImage1 + "' alt=\"\"/> <span\n" +
+                        "                                        class=\"home-list-pop-rat list-mi-pr\">$720</span></div>\n" +
+                        "                                <div class=\"list-mig-lc-con\">\n" +
+                        "                                    <div class=\"list-rat-ch list-room-rati\"><span>4.0</span> <i class=\"fa fa-star\"\n" +
+                        "                                                                                                aria-hidden=\"true\"></i>\n" +
+                        "                                        <i class=\"fa fa-star\" aria-hidden=\"true\"></i> <i class=\"fa fa-star\"\n" +
+                        "                                                                                         aria-hidden=\"true\"></i> <i\n" +
+                        "                                                class=\"fa fa-star\" aria-hidden=\"true\"></i> <i class=\"fa fa-star-o\"\n" +
+                        "                                                                                              aria-hidden=\"true\"></i>\n" +
+                        "                                    </div>\n" +
+                        "                                    <h5>" + data[i].title + "</h5>\n" +
+                        "                                    <p>" + data[i].city + "</p>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </a>"
+                    ));
+                }
+            }
+        }
+
+    });
+
 }
