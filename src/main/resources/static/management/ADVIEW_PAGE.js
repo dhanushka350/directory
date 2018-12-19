@@ -57,12 +57,13 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("txt-open").innerHTML = "Opening Time : " + data.openingTime;
             document.getElementById("txt-close").innerHTML = "Closing Time : " + data.closingTime;
             document.getElementById("open_time").innerHTML = data.openingTime;
-            document.getElementById("close_time").innerHTML =  data.closingTime;
+            document.getElementById("close_time").innerHTML = data.closingTime;
+            document.getElementById("open_days").innerHTML = data.openingDates;
 
 
             document.getElementById("image-comp").innerHTML = "<img style='width: 80px;height: 80px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
             document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
-            userid = data.venodr.id;
+            userid = data.id;
             setRatings(userid);
             getTopRating(data.city, data.category);
         }
