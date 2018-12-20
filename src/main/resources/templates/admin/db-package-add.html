@@ -730,28 +730,58 @@
         var current_uploading = localStorage.getItem('CURRENT_UPLOADING_PACKAGE');
 
         if (current_uploading === "img1") {
-            $('#s1').attr('src', uri);
-            document.getElementsByClassName("close")[0].click();
+            if (uri.length > 5) {
+                $('#s1').attr('src', uri);
+                document.getElementsByClassName("close")[0].click();
+            } else {
+                $('#s1').attr('src', "/images/package/NoImageFound.jpg.png");
+                document.getElementsByClassName("close")[0].click();
+            }
 
         } else if (current_uploading === "img2") {
-            $('#s2').attr('src', uri);
-            document.getElementsByClassName("close")[0].click();
+            if (uri.length > 5) {
+                $('#s2').attr('src', uri);
+                document.getElementsByClassName("close")[0].click();
+            } else {
+                $('#s2').attr('src', "/images/package/NoImageFound.jpg.png");
+                document.getElementsByClassName("close")[0].click();
+            }
 
         } else if (current_uploading === "img3") {
-            $('#s3').attr('src', uri);
-            document.getElementsByClassName("close")[0].click();
+            if (uri.length > 5) {
+                $('#s3').attr('src', uri);
+                document.getElementsByClassName("close")[0].click();
+            } else {
+                $('#s3').attr('src', "/images/package/NoImageFound.jpg.png");
+                document.getElementsByClassName("close")[0].click();
+            }
 
         } else if (current_uploading === "img4") {
-            $('#s4').attr('src', uri);
-            document.getElementsByClassName("close")[0].click();
+            if (uri.length > 5) {
+                $('#s4').attr('src', uri);
+                document.getElementsByClassName("close")[0].click();
+            } else {
+                $('#s4').attr('src', "/images/package/NoImageFound.jpg.png");
+                document.getElementsByClassName("close")[0].click();
+            }
 
         } else if (current_uploading === "img5") {
-            $('#s5').attr('src', uri);
-            document.getElementsByClassName("close")[0].click();
+            if (uri.length > 5) {
+                $('#s5').attr('src', uri);
+                document.getElementsByClassName("close")[0].click();
+            } else {
+                $('#s5').attr('src', "/images/package/NoImageFound.jpg.png");
+                document.getElementsByClassName("close")[0].click();
+            }
 
         } else if (current_uploading === "img6") {
-            $('#s6').attr('src', uri);
-            document.getElementsByClassName("close")[0].click();
+            if (uri.length > 5) {
+                $('#s6').attr('src', uri);
+                document.getElementsByClassName("close")[0].click();
+            } else {
+                $('#s6').attr('src', "/images/package/NoImageFound.jpg.png");
+                document.getElementsByClassName("close")[0].click();
+            }
         }
 
     }
