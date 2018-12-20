@@ -56,20 +56,6 @@ var AD = {
         e["professionals"] = $('input[name=optionsRadios]:checked').val();
         e["map"] = $('#google').val();
         e["view"] = $('#view').val();
-        // e["coverImage1"] = $('#desc').val();
-        // e["coverImage2"] = $('#desc').val();
-        // e["coverImage3"] = $('#desc').val();
-        // e["coverImage4"] = $('#desc').val();
-        // e["packageImage1"] = $('#desc').val();
-        // e["packageImage2"] = $('#desc').val();
-        // e["packageImage3"] = $('#desc').val();
-        // e["packageImage4"] = $('#desc').val();
-        e["packageName1"] = $('#packageName1').val();
-        e["packageName2"] = $('#packageName2').val();
-        e["packageName3"] = $('#packageName3').val();
-        e["packageName4"] = $('#packageName4').val();
-        e["packageName5"] = $('#packageName5').val();
-        e["packageName6"] = $('#packageName6').val();
 
         var d = JSON.stringify(e);
 
@@ -80,11 +66,10 @@ var AD = {
             type: 'POST',
             data: d,
             success: function (data, textStatus, jqXHR) {
-                swal("Step one completed!", "please wait...", "success");
+                swal("Step one completed!", "Let's add some packages.", "success");
                 setTimeout(function () {
-                    window.location.replace("/home/fileStorage/ads");
-                }, 5000);
-
+                    window.location.replace("/admin/db/packages");
+                }, 500);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("error" + jqXHR + " - " + errorThrown);

@@ -148,7 +148,7 @@
     </script>
 </head>
 
-<body class="nav-md" onload="VENDOR.getDetails();profileImage()">
+<body class="nav-md" onload="profileImage(); PACKAGE.getAllAds();">
 <div class="se-pre-con"></div>
 <div class="container body">
     <div class="main_container">
@@ -168,13 +168,16 @@
                     </div>
 
                     <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Go!</button>
-                          </span>
-                            </div>
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <select class="form-control" id="cmb_ads">
+                                            <option>Select Advertisement</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -272,12 +272,16 @@ public class AdvertisementService {
 
     public Payload setPackages(Package aPackage) {
         Payload payload = new Payload();
-        Packages packages = repository.getById(aPackage.getAdID()).getPackages();
+        ADProfile byId = repository.getById(aPackage.getAdID());
+        if (byId == null) {
+            payload.setStatus(false);
+            payload.setMessage("can not found advertisement.");
+            return payload;
+        }
+        Packages packages = byId.getPackages();
         if (packages == null) {
             packages = new Packages();
-            packages.setAdProfile(repository.getById(aPackage.getAdID()));
         }
-
         packages.setPackageDes1(aPackage.getPackageDes1());
         packages.setPackageDes2(aPackage.getPackageDes2());
         packages.setPackageDes3(aPackage.getPackageDes3());
@@ -310,10 +314,51 @@ public class AdvertisementService {
         if (save != null) {
             payload.setStatus(true);
             payload.setMessage("Successful.");
+            byId.setPackages(packages);
+            repository.saveAndFlush(byId);
         } else {
             payload.setMessage("Failed..");
             payload.setStatus(false);
         }
         return payload;
+    }
+
+    public Package getPackageDetailsByAd(int ad) {
+        Package aPackage = new Package();
+        ADProfile id = repository.getById(ad);
+
+        if (id == null) {
+            return null;
+        }
+        aPackage.setAdID(id.getId());
+        aPackage.setPackageDes1(id.getPackages().getPackageDes1());
+        aPackage.setPackageDes2(id.getPackages().getPackageDes2());
+        aPackage.setPackageDes3(id.getPackages().getPackageDes3());
+        aPackage.setPackageDes4(id.getPackages().getPackageDes4());
+        aPackage.setPackageDes5(id.getPackages().getPackageDes5());
+        aPackage.setPackageDes6(id.getPackages().getPackageDes6());
+
+        aPackage.setPackageImage1(id.getPackages().getPackageImage1());
+        aPackage.setPackageImage2(id.getPackages().getPackageImage2());
+        aPackage.setPackageImage3(id.getPackages().getPackageImage3());
+        aPackage.setPackageImage4(id.getPackages().getPackageImage4());
+        aPackage.setPackageImage5(id.getPackages().getPackageImage5());
+        aPackage.setPackageImage6(id.getPackages().getPackageImage6());
+
+        aPackage.setPackageName1(id.getPackages().getPackageName1());
+        aPackage.setPackageName2(id.getPackages().getPackageName2());
+        aPackage.setPackageName3(id.getPackages().getPackageName3());
+        aPackage.setPackageName4(id.getPackages().getPackageName4());
+        aPackage.setPackageName5(id.getPackages().getPackageName5());
+        aPackage.setPackageName6(id.getPackages().getPackageName6());
+
+        aPackage.setPackagePrice1(id.getPackages().getPackagePrice1());
+        aPackage.setPackagePrice2(id.getPackages().getPackagePrice2());
+        aPackage.setPackagePrice3(id.getPackages().getPackagePrice3());
+        aPackage.setPackagePrice4(id.getPackages().getPackagePrice4());
+        aPackage.setPackagePrice5(id.getPackages().getPackagePrice5());
+        aPackage.setPackagePrice6(id.getPackages().getPackagePrice6());
+
+        return aPackage;
     }
 }
