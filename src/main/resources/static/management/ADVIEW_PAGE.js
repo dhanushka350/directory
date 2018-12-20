@@ -24,6 +24,7 @@ function getDataFromBackend(selctedAd) {
         success: function (data, textStatus, jqXHR) {
             $("#img-main").css("background-image", "url(" + data.coverImage1 + ")");
             $("#image-comp").css("background-image", "url(" + data.coverImage1 + ")");
+
             document.getElementById("txt-name").innerHTML = data.title;
             document.getElementById("txt-address").innerHTML = "<b>Address:</b>" + data.venodr.address;
             document.getElementById("txt-cont").innerHTML = "<i class=\"fa fa-phone\" aria-hidden=\"true\"></i>" + data.venodr.phone;
@@ -31,7 +32,7 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("txt-owner").innerHTML = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i>" + data.venodr.name + " " + data.venodr.lastName;
             document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
             document.getElementById("txt-desc").innerHTML = data.description;
-            document.getElementById("txt-package-name").innerHTML = data.packageName1 + " , " + data.packageName2 + " , " + data.packageName3 + " , " + data.packageName4 + " , " + data.packageName5 + " , " + data.packageName6 + " , ";
+
 
             document.getElementById("slider-img-1").innerHTML = "<img src=" + data.coverImage1 + " alt=''> ";
             document.getElementById("slider-img-2").innerHTML = "<img src=" + data.coverImage2 + " alt=''> ";
@@ -202,7 +203,6 @@ function getTopRating(city, catogry) {
 }
 
 function getPackgeDetails(id) {
-    alert(id);
     $.ajax({
         url: "/advertisement/view_packages/" + id,
         dataType: 'json',
@@ -210,19 +210,128 @@ function getPackgeDetails(id) {
         type: 'POST',
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            document.getElementById("pack-img-1").innerHTML = "<img src=" + data.packageImage1 + " alt= ''/> ";
-            document.getElementById("pack-img-2").innerHTML = "<img src=" + data.packageImage2 + " alt= ''/> ";
-            document.getElementById("pack-img-3").innerHTML = "<img src=" + data.packageImage3 + " alt= ''/> ";
-            document.getElementById("pack-img-4").innerHTML = "<img src=" + data.packageImage4 + " alt= ''/> ";
-            document.getElementById("pack-img-5").innerHTML = "<img src=" + data.packageImage5 + " alt= ''/> ";
-            document.getElementById("pack-img-6").innerHTML = "<img src=" + data.packageImage6 + " alt= ''/> ";
+            if (data.length === 0) {
+                document.getElementById("pack_img").innerHTML = "no packages found";
+            } else {
+                document.getElementById("pack_img").innerHTML = "<ul>\n" +
+                    "                                    <li class=\"col-md-4\">\n" +
+                    "                                        <div id=\"pack-img-1\" class=\"pg-list-ser-p1\"><img\n" +
+                    "                                                src=" + data.packageImage1 + " alt= ''/> " +
+                    "                                                alt=\"\"/></div>\n" +
+                    "                                        <div class=\"pg-list-ser-p2\">\n" +
+                    "                                            <h4 id=\"txt-pac-1\"></h4></div>\n" +
+                    "                                    </li>\n" +
+                    "                                    <li class=\"col-md-4\">\n" +
+                    "                                        <div id=\"pack-img-2\" class=\"pg-list-ser-p1\"><img\n" +
+                    "                                                src=" + data.packageImage2 + " alt= ''/> " +
+                    "                                                alt=\"\"/></div>\n" +
+                    "                                        <div class=\"pg-list-ser-p2\">\n" +
+                    "                                            <h4 id=\"txt-pac-2\"></h4></div>\n" +
+                    "                                    </li>\n" +
+                    "                                    <li class=\"col-md-4\">\n" +
+                    "                                        <div id=\"pack-img-3\" class=\"pg-list-ser-p1\"><img\n" +
+                    "                                                src=" + data.packageImage3 + " alt= ''/> " +
+                    "                                                alt=\"\"/></div>\n" +
+                    "                                        <div class=\"pg-list-ser-p2\">\n" +
+                    "                                            <h4 id=\"txt-pac-3\"></h4></div>\n" +
+                    "                                    </li>\n" +
+                    "                                    <li class=\"col-md-4\">\n" +
+                    "                                        <div id=\"pack-img-4\" class=\"pg-list-ser-p1\"><img\n" +
+                    "                                                src=" + data.packageImage4 + " alt= ''/> " +
+                    "                                                alt=\"\"/></div>\n" +
+                    "                                        <div class=\"pg-list-ser-p2\">\n" +
+                    "                                            <h4 id=\"txt-pac-4\"></h4></div>\n" +
+                    "                                    </li>\n" +
+                    "                                    <li class=\"col-md-4\">\n" +
+                    "                                        <div id=\"pack-img-5\" class=\"pg-list-ser-p1\"><img\n" +
+                    "                                                src=" + data.packageImage5 + " alt= ''/> " +
+                    "                                                alt=\"\"/></div>\n" +
+                    "                                        <div class=\"pg-list-ser-p2\">\n" +
+                    "                                            <h4 id=\"txt-pac-5\"></h4></div>\n" +
+                    "                                    </li>\n" +
+                    "                                    <li class=\"col-md-4\">\n" +
+                    "                                        <div id=\"pack-img-6\" class=\"pg-list-ser-p1\"><img\n" +
+                    "                                                src=" + data.packageImage6 + " alt= ''/> " +
+                    "                                                alt=\"\"/></div>\n" +
+                    "                                        <div class=\"pg-list-ser-p2\">\n" +
+                    "                                            <h4 id=\"txt-pac-6\"></h4></div>\n" +
+                    "                                    </li>\n" +
+                    "                                </ul>"
 
-            document.getElementById("txt-pac-1").innerHTML = data.packageName1;
-            document.getElementById("txt-pac-2").innerHTML = data.packageName2;
-            document.getElementById("txt-pac-3").innerHTML = data.packageName3;
-            document.getElementById("txt-pac-4").innerHTML = data.packageName4;
-            document.getElementById("txt-pac-5").innerHTML = data.packageName5;
-            document.getElementById("txt-pac-6").innerHTML = data.packageName6;
+                document.getElementById("txt-pac-1").innerHTML = data.packageName1;
+                document.getElementById("txt-pac-2").innerHTML = data.packageName2;
+                document.getElementById("txt-pac-3").innerHTML = data.packageName3;
+                document.getElementById("txt-pac-4").innerHTML = data.packageName4;
+                document.getElementById("txt-pac-5").innerHTML = data.packageName5;
+                document.getElementById("txt-pac-6").innerHTML = data.packageName6;
+
+                if (data.packageName1 != null) {
+                    document.getElementById("pack_1").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage1 + "' alt=\"\"></div>\n" +
+                        "                                <!--LISTINGS: CONTENT-->\n" +
+                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
+                        "                                    <a href=\"#!\">\n" +
+                        "                                        <h3>" + data.packageName1 + "</h3>\n" +
+                        "                                    </a>\n" +
+                        "                                    <h4>" + data.packageDes1 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice1+"</h4>\n" +
+                        "                                </div>";
+                }
+                if (data.packageName2 != null) {
+                    document.getElementById("pack_2").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage2 + "' alt=\"\"></div>\n" +
+                        "                                <!--LISTINGS: CONTENT-->\n" +
+                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
+                        "                                    <a href=\"#!\">\n" +
+                        "                                        <h3>" + data.packageName2 + "</h3>\n" +
+                        "                                    </a>\n" +
+                        "                                    <h4>" + data.packageDes2 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice2+"</h4>\n" +
+                        "                                </div>";
+                }
+                if (data.packageName3 != null) {
+                    document.getElementById("pack_3").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage3 + "' alt=\"\"></div>\n" +
+                        "                                <!--LISTINGS: CONTENT-->\n" +
+                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
+                        "                                    <a href=\"#!\">\n" +
+                        "                                        <h3>" + data.packageName3 + "</h3>\n" +
+                        "                                    </a>\n" +
+                        "                                    <h4>" + data.packageDes3 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice3+"</h4>\n" +
+                        "                                </div>";
+                }
+                if (data.packageName4 != null) {
+                    document.getElementById("pack_4").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage4 + "' alt=\"\"></div>\n" +
+                        "                                <!--LISTINGS: CONTENT-->\n" +
+                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
+                        "                                    <a href=\"#!\">\n" +
+                        "                                        <h3>" + data.packageName4 + "</h3>\n" +
+                        "                                    </a>\n" +
+                        "                                    <h4>" + data.packageDes4 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice4+"</h4>\n" +
+                        "                                </div>";
+                }
+                if (data.packageName5 != null) {
+                    document.getElementById("pack_5").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage5 + "' alt=\"\"></div>\n" +
+                        "                                <!--LISTINGS: CONTENT-->\n" +
+                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
+                        "                                    <a href=\"#!\">\n" +
+                        "                                        <h3>" + data.packageName5 + "</h3>\n" +
+                        "                                    </a>\n" +
+                        "                                    <h4>" + data.packageDes5 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice5+"</h4>\n" +
+                        "                                </div>";
+                }
+                if (data.packageName6 != null) {
+                    document.getElementById("pack_6").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage6 + "' alt=\"\"></div>\n" +
+                        "                                <!--LISTINGS: CONTENT-->\n" +
+                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
+                        "                                    <a href=\"#!\">\n" +
+                        "                                        <h3>" + data.packageName6 + "</h3>\n" +
+                        "                                    </a>\n" +
+                        "                                    <h4>" + data.packageDes6 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice6+"</h4>\n" +
+                        "                                </div>";
+                }
+            }
         }
     });
 }
