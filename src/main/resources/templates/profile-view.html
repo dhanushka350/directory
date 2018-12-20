@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="/css/owl.transitions.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <style>
         .no-js #loader {
             display: none;
@@ -424,8 +424,7 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <button
-                                                    class="waves-effect waves-light btn-large full-btn"
-                                                    onclick="saveRatings();">Submit
+                                                    class="waves-effect waves-light btn-large full-btn" id="btn_review">Submit
                                                 Review
                                             </button>
                                         </div>
@@ -441,37 +440,8 @@
                             <h3><span>User</span> Reviews</h3></div>
                         <div class="list-pg-inn-sp">
                             <div class="lp-ur-all">
-                                <div class="lp-ur-all-left">
-                                    <div class="lp-ur-all-left-1">
-                                        <div class="lp-ur-all-left-11">Excellent</div>
-                                        <div class="lp-ur-all-left-12">
-                                            <div class="lp-ur-all-left-13"></div>
-                                        </div>
-                                    </div>
-                                    <div class="lp-ur-all-left-1">
-                                        <div class="lp-ur-all-left-11">Good</div>
-                                        <div class="lp-ur-all-left-12">
-                                            <div class="lp-ur-all-left-13 lp-ur-all-left-Good"></div>
-                                        </div>
-                                    </div>
-                                    <div class="lp-ur-all-left-1">
-                                        <div class="lp-ur-all-left-11">Satisfactory</div>
-                                        <div class="lp-ur-all-left-12">
-                                            <div class="lp-ur-all-left-13 lp-ur-all-left-satis"></div>
-                                        </div>
-                                    </div>
-                                    <div class="lp-ur-all-left-1">
-                                        <div class="lp-ur-all-left-11">Below Average</div>
-                                        <div class="lp-ur-all-left-12">
-                                            <div class="lp-ur-all-left-13 lp-ur-all-left-below"></div>
-                                        </div>
-                                    </div>
-                                    <div class="lp-ur-all-left-1">
-                                        <div class="lp-ur-all-left-11">Below Average</div>
-                                        <div class="lp-ur-all-left-12">
-                                            <div class="lp-ur-all-left-13 lp-ur-all-left-poor"></div>
-                                        </div>
-                                    </div>
+                                <div class="lp-ur-all-left" id="review_status">
+
                                 </div>
                                 <div class="lp-ur-all-right">
                                     <h5>Overall Ratings</h5>
@@ -551,7 +521,7 @@
                     <!--LISTING DETAILS: LEFT PART 9-->
                     <div class="pglist-p3 pglist-bg pglist-p-com">
                         <div class="pglist-p-com-ti pglist-p-com-ti-right">
-                            <h3><span>Other</span> Informations</h3></div>
+                            <h3><span>Other</span> Information</h3></div>
                         <div class="list-pg-inn-sp">
                             <div class="list-pg-oth-info">
                                 <ul>
@@ -567,57 +537,6 @@
                     <div id="top_three" class="list-mig-like">
                         <div class="list-ri-spec-tit">
                             <h3><span>You might</span> like this</h3></div>
-                        <!--<a href="#!">-->
-                        <!--<div class="list-mig-like-com">-->
-                        <!--<div class="list-mig-lc-img"><img src="/profile/images/listing/1.jpg" alt=""/> <span-->
-                        <!--class="home-list-pop-rat list-mi-pr">$720</span></div>-->
-                        <!--<div class="list-mig-lc-con">-->
-                        <!--<div class="list-rat-ch list-room-rati"><span>4.0</span> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i>-->
-                        <!--<i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i> <i-->
-                        <!--class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o"-->
-                        <!--aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <!--<h5>Holiday Inn Express</h5>-->
-                        <!--<p>Illinois City,</p>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--<a href="#!">-->
-                        <!--<div class="list-mig-like-com">-->
-                        <!--<div class="list-mig-lc-img"><img src="/profile/images/listing/2.jpg" alt=""/> <span-->
-                        <!--class="home-list-pop-rat list-mi-pr">$420</span></div>-->
-                        <!--<div class="list-mig-lc-con">-->
-                        <!--<div class="list-rat-ch list-room-rati"><span>3.0</span> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i>-->
-                        <!--<i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i> <i-->
-                        <!--class="fa fa-star-o" aria-hidden="true"></i> <i class="fa fa-star-o"-->
-                        <!--aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <!--<h5>InterContinental</h5>-->
-                        <!--<p>Illinois City,</p>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--<a href="#!">-->
-                        <!--<div class="list-mig-like-com">-->
-                        <!--<div class="list-mig-lc-img"><img src="/profile/images/listing/3.jpg" alt=""/> <span-->
-                        <!--class="home-list-pop-rat list-mi-pr">$380</span></div>-->
-                        <!--<div class="list-mig-lc-con">-->
-                        <!--<div class="list-rat-ch list-room-rati"><span>5.0</span> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i>-->
-                        <!--<i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i> <i-->
-                        <!--class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star"-->
-                        <!--aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <!--<h5>Staybridger Suites</h5>-->
-                        <!--<p>Illinois City,</p>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</a>-->
                     </div>
                     <!--END LISTING DETAILS: LEFT PART 10-->
                 </div>

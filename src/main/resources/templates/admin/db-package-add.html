@@ -258,9 +258,9 @@
                                                         <div class="mask">
                                                             <p>Package 01</p>
                                                             <div class="tools tools-bottom">
-                                                                <a href="#"><i class="fa fa-link"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                                                <a href="#"><i class="fa fa-times"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -324,9 +324,9 @@
                                                         <div class="mask">
                                                             <p>Package 02</p>
                                                             <div class="tools tools-bottom">
-                                                                <a href="#"><i class="fa fa-link"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                                                <a href="#"><i class="fa fa-times"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -389,9 +389,9 @@
                                                         <div class="mask">
                                                             <p>Package 03</p>
                                                             <div class="tools tools-bottom">
-                                                                <a href="#"><i class="fa fa-link"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                                                <a href="#"><i class="fa fa-times"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -454,9 +454,9 @@
                                                         <div class="mask">
                                                             <p>Package 04</p>
                                                             <div class="tools tools-bottom">
-                                                                <a href="#"><i class="fa fa-link"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                                                <a href="#"><i class="fa fa-times"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -519,9 +519,9 @@
                                                         <div class="mask">
                                                             <p>Package 05</p>
                                                             <div class="tools tools-bottom">
-                                                                <a href="#"><i class="fa fa-link"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                                                <a href="#"><i class="fa fa-times"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -584,9 +584,9 @@
                                                         <div class="mask">
                                                             <p>Package 06</p>
                                                             <div class="tools tools-bottom">
-                                                                <a href="#"><i class="fa fa-link"></i></a>
-                                                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                                                <a href="#"><i class="fa fa-times"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
+                                                                <a href="#"><i class="fa fa-lock"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -613,10 +613,8 @@
                                     </form>
                                 </div>
                                 <br/>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -684,7 +682,7 @@
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
 
-<script src="/management/js/PACKAGES.js"></script>
+<script src="/management/PACKAGES.js"></script>
 <script>
     var name = localStorage.getItem('VENDOR');
     if (name === 'null') {
@@ -804,7 +802,6 @@
     }
 
     multipleUploadForm.addEventListener('submit', function (event) {
-        alert("pllpl");
         var files = multipleFileUploadInput.files;
         if (files.length === 0) {
             multipleFileUploadError.innerHTML = "Please select at least one file";

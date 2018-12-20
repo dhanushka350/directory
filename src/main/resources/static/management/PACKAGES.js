@@ -10,7 +10,6 @@ $('#save').click(function (e) {
 
 });
 $('#cmb_ads').on('change', function () {
-    alert(this.value);
     PACKAGE.getSelectedPackage(this.value);
 });
 var PACKAGE = {

@@ -6,9 +6,9 @@ function loadData() {
 }
 
 
-$('#rating_btn').click(function (e) {
-    e.preventDefault();
+$('#btn_review').click(function (e) {
     saveRatings();
+    e.preventDefault();
 });
 
 
@@ -102,7 +102,7 @@ function saveRatings() {
             } else {
                 swal("Oops!", data);
             }
-
+            location.reload(true);
         },
         error: function (jqXHR, textStatus, errorThrown) {
 
@@ -113,13 +113,14 @@ function saveRatings() {
 }
 
 function setRatings(param) {
+    var avg = 0;
     $.ajax({
         url: "/ratings/getAll/" + param,
         dataType: 'json',
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-            var avg = 0;
+
             for (var i = 0; i < data.length; i++) {
                 avg += data[i].ratings;
                 $('#review_div\n').append($("<li>\n" +
@@ -128,35 +129,48 @@ function setRatings(param) {
                     "                                            <h6>" + data[i].fullName + " <span>" + data[i].ratings + " <i class=\"fa fa-star\"\n" +
                     "                                                                           aria-hidden=\"true\"></i></span></h6> <span\n" +
                     "                                                class=\"lr-revi-date\">" + data[i].review + " </p>\n" +
-                    "                                            <ul>\n" +
-                    "                                                <li><a href=\"#!\"><span>Like</span><i class=\"fa fa-thumbs-o-up\"\n" +
-                    "                                                                                     aria-hidden=\"true\"></i></a></li>\n" +
-                    "                                                <li><a href=\"#!\"><span>Dis-Like</span><i class=\"fa fa-thumbs-o-down\"\n" +
-                    "                                                                                         aria-hidden=\"true\"></i></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                <li><a href=\"#!\"><span>Report</span> <i class=\"fa fa-flag-o\"\n" +
-                    "                                                                                        aria-hidden=\"true\"></i></a></li>\n" +
-                    "                                                <li><a href=\"#!\"><span>Comments</span> <i class=\"fa fa-commenting-o\"\n" +
-                    "                                                                                          aria-hidden=\"true\"></i></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                <li><a href=\"#!\"><span>Share Now</span> <i class=\"fa fa-facebook\"\n" +
-                    "                                                                                           aria-hidden=\"true\"></i></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                <li><a href=\"#!\"><i class=\"fa fa-google-plus\"\n" +
-                    "                                                                    aria-hidden=\"true\"></i></a></li>\n" +
-                    "                                                <li><a href=\"#!\"><i class=\"fa fa-twitter\" aria-hidden=\"true\"></i></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                <li><a href=\"#!\"><i class=\"fa fa-linkedin\" aria-hidden=\"true\"></i></a>\n" +
-                    "                                                </li>\n" +
-                    "                                                <li><a href=\"#!\"><i class=\"fa fa-youtube\" aria-hidden=\"true\"></i></a>\n" +
-                    "                                                </li>\n" +
-                    "                                            </ul>\n" +
                     "                                        </div>\n" +
                     "                                    </li>"
                 ));
             }
             document.getElementById("raings_count").innerHTML = "<span>" + avg / data.length + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + "reviews</p>";
+
+            if ((avg / data.length) < 5) {
+                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
+                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Below Average</div>\n" +
+                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
+                    "                                            <div class=\"lp-ur-all-left-13 lp-ur-all-left-below\"></div>\n" +
+                    "                                        </div>\n" +
+                    "                                    </div>"));
+
+            } else if ((avg / data.length) > 5 & (avg / data.length) < 10) {
+                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
+                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Satisfactory</div>\n" +
+                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
+                    "                                            <div class=\"lp-ur-all-left-13 lp-ur-all-left-satis\"></div>\n" +
+                    "                                        </div>\n" +
+                    "                                    </div>"));
+
+            } else if ((avg / data.length) > 10 & (avg / data.length) < 20) {
+                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
+                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Good</div>\n" +
+                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
+                    "                                            <div class=\"lp-ur-all-left-13 lp-ur-all-left-Good\"></div>\n" +
+                    "                                        </div>\n" +
+                    "                                    </div>"));
+
+            } else if ((avg / data.length) > 20) {
+                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
+                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Excellent</div>\n" +
+                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
+                    "                                            <div class=\"lp-ur-all-left-13\"></div>\n" +
+                    "                                        </div>\n" +
+                    "                                    </div>"));
+
+            }
+
         }
+        ,
 
     });
 }

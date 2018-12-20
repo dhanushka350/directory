@@ -237,7 +237,7 @@ public class AdvertisementService {
             advertisement.setAd_status("online");
             advertisement.setCreated_date(allByVendorEqual.getCreatedDate());
             advertisement.setExpire_date(allByVendorEqual.getExpiredDate());
-            advertisement.setPayment_status("paid");
+            advertisement.setPayment_status("free");
             advertisement.setTitle(allByVendorEqual.getTitle());
             advertisement.setType(allByVendorEqual.getType());
             list.add(advertisement);
