@@ -93,7 +93,6 @@ public class AdvertisementService {
         return repository.findTopByVendor(user);
     }
 
-
     public List<ADResponse> getAll() {
         return setAdResponse(repository.findAll());
     }
@@ -145,17 +144,17 @@ public class AdvertisementService {
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
 
-            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
-            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
-            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
-            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
-
-            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
-            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
-            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
-            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
-            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
-            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
+//            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
+//            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
+//            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
+//            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
+//
+//            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
+//            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
+//            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
+//            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
+//            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
+//            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
             adResponses.add(adResponse);
         }
         return adResponses;
@@ -198,19 +197,19 @@ public class AdvertisementService {
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
 
-            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
-            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
-            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
-            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
-            adResponse.setPackageImage5(adProfile.getPackages().getPackageImage5());
-            adResponse.setPackageImage6(adProfile.getPackages().getPackageImage6());
-
-            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
-            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
-            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
-            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
-            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
-            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
+//            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
+//            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
+//            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
+//            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
+//            adResponse.setPackageImage5(adProfile.getPackages().getPackageImage5());
+//            adResponse.setPackageImage6(adProfile.getPackages().getPackageImage6());
+//
+//            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
+//            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
+//            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
+//            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
+//            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
+//            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
 
             Venodr venodr = new Venodr();
             venodr.setId(adProfile.getVendor().getId());
