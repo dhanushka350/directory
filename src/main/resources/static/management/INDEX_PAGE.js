@@ -50,39 +50,42 @@ function setFrontPageAdv() {
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-
+            $('#top-ads\n').empty();
             for (var i = 0; i < data.length; i++) {
-
-                $('#top-ads\n').append($("<div id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\">\n" +
+                console.log(data.length + "dssssssssss");
+                if (data.length === 0) {
+                    alert("no res found")
+                    $('#top-ads').append($("<h1>No Results Found</h1>"));
+                } else {
+                    $('#top-ads\n').append($("<div id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\">\n" +
+                        "                    <div class=\"grid\">\n" +
+                        "                        <figure id=\"img-one\" class=\"effect-bubba\"><img src=" + data[i].coverImage1 + " alt=\"wedding venue\"\n" +
+                        "                                                          class=\"img-responsive\">\n" +
+                        "                            <figcaption>\n" +
+                        "                                <h2>" + data[i].title + "</h2>\n" +
+                        "                                <p>" + data[i].city + "</p>\n" +
+                        "                                <p class=\"rating\"><i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i\n" +
+                        "                                        class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star-o\"></i>\n" +
+                        "                                </p>\n" +
+                        "                            </figcaption>\n" +
+                        "                        </figure>\n" +
+                        "                    </div>\n" +
+                        "                </div>"
+                    ));
+                }
+                $('#top-ads\n').append($(" <div onclick='viewMore();' class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
                     "                    <div class=\"grid\">\n" +
-                    "                        <figure id=\"img-one\" class=\"effect-bubba\"><img src=" + data[i].coverImage1 + " alt=\"wedding venue\"\n" +
+                    "                        <figure class=\"effect-bubba\"><img src=\"images/vendor-6.jpg\" alt=\"wedding venue\"\n" +
                     "                                                          class=\"img-responsive\">\n" +
                     "                            <figcaption>\n" +
-                    "                                <h2>" + data[i].title + "</h2>\n" +
-                    "                                <p>" + data[i].city + "</p>\n" +
-                    "                                <p class=\"rating\"><i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i\n" +
-                    "                                        class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star-o\"></i>\n" +
-                    "                                </p>\n" +
+                    "                                <h2>All Vendors</h2>\n" +
+                    "                                <p>Browse All Vendors</p>\n" +
                     "                            </figcaption>\n" +
                     "                        </figure>\n" +
                     "                    </div>\n" +
-                    "                </div>"
-                ));
+                    "                </div>"));
             }
-            $('#top-ads\n').append($(" <div onclick='viewMore();' class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
-                "                    <div class=\"grid\">\n" +
-                "                        <figure class=\"effect-bubba\"><img src=\"images/vendor-6.jpg\" alt=\"wedding venue\"\n" +
-                "                                                          class=\"img-responsive\">\n" +
-                "                            <figcaption>\n" +
-                "                                <h2>All Vendors</h2>\n" +
-                "                                <p>Browse All Vendors</p>\n" +
-                "                            </figcaption>\n" +
-                "                        </figure>\n" +
-                "                    </div>\n" +
-                "                </div>"));
-
         }
-
     });
 }
 

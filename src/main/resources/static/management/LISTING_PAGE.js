@@ -8,7 +8,7 @@ $(window).load(function () {
 
 
 function search(city, cate) {
-    console.log(city + cate + "blah balh")
+
     $.ajax({
         url: "/advertisement/getAllads/" + city + "/" + cate,
         dataType: 'json',

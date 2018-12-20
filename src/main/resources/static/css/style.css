@@ -1468,6 +1468,8 @@ button .btn-default {
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
     opacity: .9;
+    width: 262px;
+    height: 176px;
 }
 
 .vendor-image a:hover img {
