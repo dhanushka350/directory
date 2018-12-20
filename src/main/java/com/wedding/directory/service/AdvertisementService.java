@@ -36,6 +36,7 @@ public class AdvertisementService {
         ADProfile response = repository.findTopByVendor(user);
         if (response == null) {
             response = new ADProfile();
+            response.setPackages(packageRepository.save(new Packages()));
         }
         response.setCategory(adResponse.getCategory());
         response.setCity(adResponse.getCity());
