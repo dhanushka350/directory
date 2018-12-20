@@ -179,7 +179,7 @@ function getTopRating(city, catogry) {
                     $('#top_three').append($("<a href=\"#!\">\n" +
                         "                            <div class=\"list-mig-like-com\">\n" +
                         "                                <div class=\"list-mig-lc-img\"><img src=\'" + data[i].coverImage1 + "' alt=\"\"/> <span\n" +
-                        "                                        class=\"home-list-pop-rat list-mi-pr\">$720</span></div>\n" +
+                        "                                        class=\"home-list-pop-rat list-mi-pr\"></span></div>\n" +
                         "                                <div class=\"list-mig-lc-con\">\n" +
                         "                                    <div class=\"list-rat-ch list-room-rati\"><span>4.0</span> <i class=\"fa fa-star\"\n" +
                         "                                                                                                aria-hidden=\"true\"></i>\n" +
