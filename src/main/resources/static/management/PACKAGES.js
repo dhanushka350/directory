@@ -53,7 +53,7 @@ var PACKAGE = {
 
             $.ajax({
                 url: '/admin/save_packages/step-2',
-                dataType: 'text',
+                dataType: 'json',
                 contentType: "application/json",
                 type: 'POST',
                 data: d,
