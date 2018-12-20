@@ -72,6 +72,70 @@
             border-radius: 20px;
         }
     </style>
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 500ms;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .overlay:target {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .popup {
+            margin: 70px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            width: 60%;
+            position: relative;
+            transition: all 5s ease-in-out;
+        }
+
+        .popup h2 {
+            margin-top: 0;
+            color: #333;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            transition: all 200ms;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .popup .close:hover {
+            color: #06D85F;
+        }
+
+        .popup .content {
+            max-height: 50%;
+            overflow: auto;
+        }
+
+        @media screen and (max-width: 700px) {
+            .box {
+                width: 70%;
+            }
+
+            .popup {
+                width: 70%;
+            }
+        }
+    </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
     <script src="/management/WIZARD.js"></script>
@@ -84,7 +148,7 @@
     </script>
 </head>
 
-<body class="nav-md" onload="VENDOR.getDetails();profileImage()">
+<body class="nav-md" onload="profileImage(); PACKAGE.getAllAds();">
 <div class="se-pre-con"></div>
 <div class="container body">
     <div class="main_container">
@@ -104,13 +168,16 @@
                     </div>
 
                     <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Go!</button>
-                          </span>
-                            </div>
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <select class="form-control" id="cmb_ads">
+                                            <option>Select Advertisement</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -198,7 +265,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="caption">
-                                                        <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                        <a href="#popup1" id="img1" class="img_up"
+                                                           style="font-weight: bold">Add
                                                             Image</a>
                                                     </div>
                                                 </div>
@@ -263,7 +331,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="caption">
-                                                        <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                        <a href="#popup1" id="img2" class="img_up"
+                                                           style="font-weight: bold">Add
                                                             Image</a>
                                                     </div>
                                                 </div>
@@ -327,7 +396,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="caption">
-                                                        <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                        <a href="#popup1" id="img3" class="img_up"
+                                                           style="font-weight: bold">Add
                                                             Image</a>
                                                     </div>
                                                 </div>
@@ -391,7 +461,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="caption">
-                                                        <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                        <a href="#popup1" id="img4" class="img_up"
+                                                           style="font-weight: bold">Add
                                                             Image</a>
                                                     </div>
                                                 </div>
@@ -455,7 +526,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="caption">
-                                                        <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                        <a href="#popup1" id="img5" class="img_up"
+                                                           style="font-weight: bold">Add
                                                             Image</a>
                                                     </div>
                                                 </div>
@@ -507,7 +579,7 @@
                                                 <div class="thumbnail">
                                                     <div class="image view view-first">
                                                         <img style="width: 100%; display: block;"
-                                                             src="/management/images/services/ser4.jpgbalan "
+                                                             src="/management/images/services/ser4.jpg"
                                                              alt="image" id="s6"/>
                                                         <div class="mask">
                                                             <p>Package 06</p>
@@ -519,7 +591,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="caption">
-                                                        <a href="home/fileStorage/ads/upload" style="font-weight: bold">Add
+                                                        <a href="#popup1" id="img6" class="img_up"
+                                                           style="font-weight: bold">Add
                                                             Image</a>
                                                     </div>
                                                 </div>
@@ -561,6 +634,20 @@
     </div>
 </div>
 
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <a class="close" href="#" id="finished">&times;</a>
+        <br/>
+        <div class="multiple-upload">
+            <h3>Quick Upload</h3>
+            <form id="multipleUploadForm" name="multipleUploadForm" style="width: 50%; height: 90%">
+                <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required/>
+                <br/>
+                <button type="button" onclick="multiple(this);" id="multi" class="primary submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- jQuery -->
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -596,7 +683,8 @@
 <script src="/vendors/starrr/dist/starrr.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
-<script src="/management/ADD_LISTING.js"></script>
+
+<script src="/management/js/PACKAGES.js"></script>
 <script>
     var name = localStorage.getItem('VENDOR');
     if (name === 'null') {
@@ -617,7 +705,7 @@
                 }
 
                 document.getElementById("welcome").innerText = data.name;
-                document.getElementById("test").innerText = "Hey " + data.name + " please test this page and give us a feedback";
+                document.getElementById("test").innerText = "Hey " + data.name + " please note - this page is under construction.";
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -628,6 +716,104 @@
             }
         });
     }
+</script>
+<script>
+    'use strict';
+
+    // var multipleUploadForm = document.querySelector('#multipleUploadForm');
+    var multipleUploadForm = document.querySelector('#multi');
+    var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
+    var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
+    var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess');
+    var user = localStorage.getItem('VENDOR');
+
+
+    function setLinkToPackage(uri) {
+        var current_uploading = localStorage.getItem('CURRENT_UPLOADING_PACKAGE');
+
+        if (current_uploading === "img1") {
+            $('#s1').attr('src', uri);
+            document.getElementsByClassName("close")[0].click();
+
+        } else if (current_uploading === "img2") {
+            $('#s2').attr('src', uri);
+            document.getElementsByClassName("close")[0].click();
+
+        } else if (current_uploading === "img3") {
+            $('#s3').attr('src', uri);
+            document.getElementsByClassName("close")[0].click();
+
+        } else if (current_uploading === "img4") {
+            $('#s4').attr('src', uri);
+            document.getElementsByClassName("close")[0].click();
+
+        } else if (current_uploading === "img5") {
+            $('#s5').attr('src', uri);
+            document.getElementsByClassName("close")[0].click();
+
+        } else if (current_uploading === "img6") {
+            $('#s6').attr('src', uri);
+            document.getElementsByClassName("close")[0].click();
+        }
+
+    }
+
+    function uploadMultipleFiles(files) {
+        var formData = new FormData();
+        formData.append("user", user);
+        for (var index = 0; index < files.length; index++) {
+            formData.append("files", files[index]);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/uploadMultipleFiles");
+
+        xhr.onload = function () {
+            console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+            if (xhr.status == 200) {
+                setLinkToPackage(response[0].fileDownloadUri);
+
+            } else {
+                swal("Some Error Occurred", response && response.message, "error");
+            }
+        }
+
+        xhr.send(formData);
+    }
+
+
+    singleUploadForm.addEventListener('submit', function (event) {
+        var files = singleFileUploadInput.files;
+        if (files.length === 0) {
+            singleFileUploadError.innerHTML = "Please select a file";
+            singleFileUploadError.style.display = "block";
+        }
+        uploadSingleFile(files[0]);
+        event.preventDefault();
+    }, true);
+
+    function multiple(n) {
+        var files = multipleFileUploadInput.files;
+        if (files.length === 0) {
+            multipleFileUploadError.innerHTML = "Please select at least one file";
+            multipleFileUploadError.style.display = "block";
+        }
+        uploadMultipleFiles(files);
+        n.preventDefault();
+    }
+
+    multipleUploadForm.addEventListener('submit', function (event) {
+        alert("pllpl");
+        var files = multipleFileUploadInput.files;
+        if (files.length === 0) {
+            multipleFileUploadError.innerHTML = "Please select at least one file";
+            multipleFileUploadError.style.display = "block";
+        }
+        uploadMultipleFiles(files);
+        event.preventDefault();
+    }, true);
+
 </script>
 </body>
 </html>

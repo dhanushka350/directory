@@ -3,6 +3,8 @@ package com.wedding.directory.modal.advertisement;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wedding.directory.modal.User;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -72,47 +74,16 @@ public class ADProfile {
     @Column(name = "cover_image_4")
     private String coverImage4;
 
-    @Column(name = "package_image_1")
-    private String packageImage1;
-
-    @Column(name = "package_image_2")
-    private String packageImage2;
-
-    @Column(name = "package_image_3")
-    private String packageImage3;
-
-    @Column(name = "package_image_4")
-    private String packageImage4;
-
-    @Column(name = "package_image_5")
-    private String packageImage5;
-
-    @Column(name = "package_image_6")
-    private String packageImage6;
-
-    @Column(name = "package_Name_1")
-    private String packageName1;
-
-    @Column(name = "package_Name_2")
-    private String packageName2;
-
-    @Column(name = "package_Name_3")
-    private String packageName3;
-
-    @Column(name = "package_Name_4")
-    private String packageName4;
-
-    @Column(name = "package_Name_5")
-    private String packageName5;
-
-    @Column(name = "package_Name_6")
-    private String packageName6;
-
     @Column(name = "created_date")
     private String createdDate;
 
     @Column(name = "expired_date")
     private String expiredDate;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "packages", nullable = false)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private Packages packages;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
@@ -276,102 +247,6 @@ public class ADProfile {
         this.coverImage4 = coverImage4;
     }
 
-    public String getPackageImage1() {
-        return packageImage1;
-    }
-
-    public void setPackageImage1(String packageImage1) {
-        this.packageImage1 = packageImage1;
-    }
-
-    public String getPackageImage2() {
-        return packageImage2;
-    }
-
-    public void setPackageImage2(String packageImage2) {
-        this.packageImage2 = packageImage2;
-    }
-
-    public String getPackageImage3() {
-        return packageImage3;
-    }
-
-    public void setPackageImage3(String packageImage3) {
-        this.packageImage3 = packageImage3;
-    }
-
-    public String getPackageImage4() {
-        return packageImage4;
-    }
-
-    public void setPackageImage4(String packageImage4) {
-        this.packageImage4 = packageImage4;
-    }
-
-    public String getPackageImage5() {
-        return packageImage5;
-    }
-
-    public void setPackageImage5(String packageImage5) {
-        this.packageImage5 = packageImage5;
-    }
-
-    public String getPackageImage6() {
-        return packageImage6;
-    }
-
-    public void setPackageImage6(String packageImage6) {
-        this.packageImage6 = packageImage6;
-    }
-
-    public String getPackageName1() {
-        return packageName1;
-    }
-
-    public void setPackageName1(String packageName1) {
-        this.packageName1 = packageName1;
-    }
-
-    public String getPackageName2() {
-        return packageName2;
-    }
-
-    public void setPackageName2(String packageName2) {
-        this.packageName2 = packageName2;
-    }
-
-    public String getPackageName3() {
-        return packageName3;
-    }
-
-    public void setPackageName3(String packageName3) {
-        this.packageName3 = packageName3;
-    }
-
-    public String getPackageName4() {
-        return packageName4;
-    }
-
-    public void setPackageName4(String packageName4) {
-        this.packageName4 = packageName4;
-    }
-
-    public String getPackageName5() {
-        return packageName5;
-    }
-
-    public void setPackageName5(String packageName5) {
-        this.packageName5 = packageName5;
-    }
-
-    public String getPackageName6() {
-        return packageName6;
-    }
-
-    public void setPackageName6(String packageName6) {
-        this.packageName6 = packageName6;
-    }
-
     public User getVendor() {
         return vendor;
     }
@@ -396,4 +271,19 @@ public class ADProfile {
         this.expiredDate = expiredDate;
     }
 
+    public Packages getPackages() {
+        return packages;
+    }
+
+    public void setPackages(Packages packages) {
+        this.packages = packages;
+    }
+
+    public List<Ratings> getRating() {
+        return rating;
+    }
+
+    public void setRating(List<Ratings> rating) {
+        this.rating = rating;
+    }
 }

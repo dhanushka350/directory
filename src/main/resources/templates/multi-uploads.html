@@ -216,6 +216,38 @@
         xhr.send(formData);
     }
 
+    function setLinkToPackage(uri) {
+        alert(uri);
+        var current_uploading = localStorage.getItem('CURRENT_UPLOADING_PACKAGE');
+        alert(current_uploading);
+        if (current_uploading === "img1") {
+            localStorage.removeItem('PACKIMG1');
+            localStorage.setItem('PACKIMG1', uri);
+
+        } else if (current_uploading === "img2") {
+            localStorage.removeItem('PACKIMG2');
+            localStorage.setItem('PACKIMG2', uri);
+
+        } else if (current_uploading === "img3") {
+            localStorage.removeItem('PACKIMG3');
+            localStorage.setItem('PACKIMG3', uri);
+
+        } else if (current_uploading === "img4") {
+            localStorage.removeItem('PACKIMG4');
+            localStorage.setItem('PACKIMG4', uri);
+
+        } else if (current_uploading === "img5") {
+            localStorage.removeItem('PACKIMG5');
+            localStorage.setItem('PACKIMG5', uri);
+
+        } else if (current_uploading === "img6") {
+            localStorage.removeItem('PACKIMG6');
+            localStorage.setItem('PACKIMG6', uri);
+        }
+        localStorage.removeItem('ISCHANGED');
+        localStorage.setItem('ISCHANGED', true);
+    }
+
     function uploadMultipleFiles(files) {
         var formData = new FormData();
         formData.append("user", user);
@@ -232,8 +264,9 @@
             if (xhr.status == 200) {
                 multipleFileUploadError.style.display = "none";
                 var content = "<p>All Files Uploaded Successfully</p>";
-                for (var i = 0; i < response.length; i++) {
+                for (var i = 0; i < 1; i++) {
                     content += "<p>DownloadUrl : <a href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
+                    setLinkToPackage(response[i].fileDownloadUri);
                 }
                 multipleFileUploadSuccess.innerHTML = content;
                 multipleFileUploadSuccess.style.display = "block";
@@ -258,7 +291,6 @@
     }, true);
 
     function multiple(n) {
-        alert("pllpl");
         var files = multipleFileUploadInput.files;
         if (files.length === 0) {
             multipleFileUploadError.innerHTML = "Please select at least one file";
