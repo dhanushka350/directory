@@ -1,12 +1,10 @@
 package com.wedding.directory.controller.rest;
 
 import com.wedding.directory.payload.ADResponse;
+import com.wedding.directory.payload.Package;
 import com.wedding.directory.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,6 +48,12 @@ public class FrontPageAdvertiesmentController {
     public ADResponse getOneAdvertiesment(@PathVariable String addID) {
         System.out.println(addID + "//////////");
         return service.getOneAdvertiesment(addID);
+    }
+
+    @RequestMapping(value = "/view_packages/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Package viewPackages(@PathVariable int id) {
+        return service.getPackageDetailsByAd(id);
     }
 }
 

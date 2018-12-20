@@ -58,7 +58,7 @@ function setFrontPageAdv() {
                     "                        <figure id=\"img-one\" class=\"effect-bubba\"><img src=" + data[i].coverImage1 + " alt=\"wedding venue\"\n" +
                     "                                                          class=\"img-responsive\">\n" +
                     "                            <figcaption>\n" +
-                    "                                <h2>" + data[i].title + "<h2>\n" +
+                    "                                <h2>" + data[i].title + "</h2>\n" +
                     "                                <p>" + data[i].city + "</p>\n" +
                     "                                <p class=\"rating\"><i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i\n" +
                     "                                        class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star-o\"></i>\n" +
@@ -115,7 +115,7 @@ function search() {
                         "                        <figure id=\"img-one\" class=\"effect-bubba\"><img src=" + data[i].coverImage1 + " alt=\"wedding venue\"\n" +
                         "                                                          class=\"img-responsive\">\n" +
                         "                            <figcaption>\n" +
-                        "                                <h2>" + data[i].title + "<h2>\n" +
+                        "                                <h2>" + data[i].title + "</h2>\n" +
                         "                                <p>" + data[i].city + "</p>\n" +
                         "                                <p class=\"rating\"><i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i\n" +
                         "                                        class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star-o\"></i>\n" +
@@ -149,3 +149,5 @@ function viewMore() {
     localStorage.setItem("selectedCate", $('#cmb-cate').find(":selected").text());
     window.open("http://localhost:7575/home/listing/vendors", "_self");
 }
+
+
