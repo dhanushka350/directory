@@ -55,6 +55,10 @@ public class AdvertisementService {
         response.setVendor(user);
         response.setCreatedDate(getDate());
         response.setExpiredDate(getExpireDate(response.getCreatedDate()));
+        response.setCoverImage1(adResponse.getCoverImage1());
+        response.setCoverImage2(adResponse.getCoverImage2());
+        response.setCoverImage3(adResponse.getCoverImage3());
+        response.setCoverImage4(adResponse.getCoverImage4());
         ADProfile save = repository.save(response);
         if (save != null) {
             return "SUCCESS";

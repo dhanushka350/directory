@@ -57,6 +57,11 @@ var AD = {
         e["map"] = $('#google').val();
         e["view"] = $('#view').val();
 
+        e["coverImage1"] = $('#sl1').val();
+        e["coverImage2"] = $('#sl2').val();
+        e["coverImage3"] = $('#sl3').val();
+        e["coverImage4"] = $('#sl4').val();
+
         var d = JSON.stringify(e);
 
         $.ajax({
@@ -69,7 +74,7 @@ var AD = {
                 swal("Step one completed!", "Let's add some packages.", "success");
                 setTimeout(function () {
                     window.location.replace("/admin/db/packages");
-                }, 500);
+                }, 1000);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("error" + jqXHR + " - " + errorThrown);
