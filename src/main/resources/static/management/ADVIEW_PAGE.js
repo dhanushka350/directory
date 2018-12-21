@@ -45,6 +45,7 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("open_time").innerHTML = data.openingTime;
             document.getElementById("close_time").innerHTML = data.closingTime;
             document.getElementById("open_days").innerHTML = data.openingDates;
+            document.getElementById("exp").innerHTML = data.experience
 
 
             document.getElementById("image-comp").innerHTML = "<img style='width: 80px;height: 80px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
