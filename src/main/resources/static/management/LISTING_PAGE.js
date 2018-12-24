@@ -8,7 +8,6 @@ $(window).load(function () {
 
 
 function search(city, cate) {
-
     $.ajax({
         url: "/advertisement/getAllads/" + city + "/" + cate,
         dataType: 'json',
@@ -17,7 +16,8 @@ function search(city, cate) {
         success: function (data, textStatus, jqXHR) {
             $('#allAds\n').empty();
             if (data.length === 0) {
-                alert("no result found");
+                document.getElementById("count_txt").innerHTML = data.length + " Results";
+                document.getElementById("addAds").innerHTML = "No Result Found";
             } else {
                 document.getElementById("count_txt").innerHTML = data.length + " Results";
                 for (var i = 0; i < data.length; i++) {
