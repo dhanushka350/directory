@@ -75,7 +75,7 @@ public class ADProfile {
     private String coverImage4;
 
     @Column(name = "created_date")
-    private String createdDate;
+    private String adCreatedDate;
 
     @Column(name = "expired_date")
     private String expiredDate;
@@ -256,11 +256,11 @@ public class ADProfile {
     }
 
     public String getCreatedDate() {
-        return createdDate;
+        return adCreatedDate;
     }
 
     public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+        this.adCreatedDate = createdDate;
     }
 
     public String getExpiredDate() {

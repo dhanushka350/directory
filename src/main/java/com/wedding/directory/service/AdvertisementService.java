@@ -55,10 +55,6 @@ public class AdvertisementService {
         response.setVendor(user);
         response.setCreatedDate(getDate());
         response.setExpiredDate(getExpireDate(response.getCreatedDate()));
-        response.setCoverImage1(adResponse.getCoverImage1());
-        response.setCoverImage2(adResponse.getCoverImage2());
-        response.setCoverImage3(adResponse.getCoverImage3());
-        response.setCoverImage4(adResponse.getCoverImage4());
         ADProfile save = repository.save(response);
         if (save != null) {
             return "SUCCESS";
@@ -139,18 +135,20 @@ public class AdvertisementService {
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
+            adResponse.setCreatedDate(adProfile.getCreatedDate());
 
-            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
-            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
-            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
-            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
 
-            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
-            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
-            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
-            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
-            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
-            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
+//            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
+//            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
+//            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
+//            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
+//
+//            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
+//            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
+//            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
+//            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
+//            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
+//            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
             adResponses.add(adResponse);
         }
         return adResponses;
@@ -169,6 +167,7 @@ public class AdvertisementService {
     }
 
     public ADResponse getOneAdvertiesment(String addID) {
+
         ADProfile adProfile = repository.getOne(Integer.parseInt(addID));
         ADResponse adResponse = new ADResponse();
         if (adProfile != null) {
@@ -192,20 +191,21 @@ public class AdvertisementService {
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
+            adResponse.setCreatedDate(adProfile.getCreatedDate());
 
-            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
-            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
-            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
-            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
-            adResponse.setPackageImage5(adProfile.getPackages().getPackageImage5());
-            adResponse.setPackageImage6(adProfile.getPackages().getPackageImage6());
-
-            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
-            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
-            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
-            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
-            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
-            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
+//            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
+//            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
+//            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
+//            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
+//            adResponse.setPackageImage5(adProfile.getPackages().getPackageImage5());
+//            adResponse.setPackageImage6(adProfile.getPackages().getPackageImage6());
+//
+//            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
+//            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
+//            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
+//            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
+//            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
+//            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
 
             Venodr venodr = new Venodr();
             venodr.setId(adProfile.getVendor().getId());
@@ -311,11 +311,9 @@ public class AdvertisementService {
             payload.setMessage("Successful.");
             byId.setPackages(packages);
             repository.saveAndFlush(byId);
-            System.err.println("PACKAGES SAVED");
         } else {
             payload.setMessage("Failed..");
             payload.setStatus(false);
-            System.err.println("PACKAGES SAVING FAILED");
         }
         return payload;
     }

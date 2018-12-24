@@ -51,12 +51,11 @@ function setFrontPageAdv() {
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
             $('#top-ads\n').empty();
-            for (var i = 0; i < data.length; i++) {
-                console.log(data.length + "dssssssssss");
-                if (data.length === 0) {
-                    alert("no res found")
-                    $('#top-ads').append($("<h1>No Results Found</h1>"));
-                } else {
+            if (data.length === 0) {
+                alert("no res found")
+                $('#top-ads').append($("<h1>No Results Found</h1>"));
+            } else {
+                for (var i = 0; i < data.length; i++) {
                     $('#top-ads\n').append($("<div id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\">\n" +
                         "                    <div class=\"grid\">\n" +
                         "                        <figure id=\"img-one\" class=\"effect-bubba\"><img src=" + data[i].coverImage1 + " alt=\"wedding venue\"\n" +
@@ -73,6 +72,7 @@ function setFrontPageAdv() {
                         "                </div>"
                     ));
                 }
+
                 $('#top-ads\n').append($(" <div onclick='viewMore();' class=\"col-md-4 vendor-box\" id=\"allCategory\">\n" +
                     "                    <div class=\"grid\">\n" +
                     "                        <figure class=\"effect-bubba\"><img src=\"images/vendor-6.jpg\" alt=\"wedding venue\"\n" +
