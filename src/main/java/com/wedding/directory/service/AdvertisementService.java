@@ -144,6 +144,8 @@ public class AdvertisementService {
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
+            adResponse.setCreatedDate(adProfile.getCreatedDate());
+
 
 //            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
 //            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
@@ -174,6 +176,7 @@ public class AdvertisementService {
     }
 
     public ADResponse getOneAdvertiesment(String addID) {
+
         ADProfile adProfile = repository.getOne(Integer.parseInt(addID));
         ADResponse adResponse = new ADResponse();
         if (adProfile != null) {
@@ -197,6 +200,7 @@ public class AdvertisementService {
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
+            adResponse.setCreatedDate(adProfile.getCreatedDate());
 
 //            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
 //            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());

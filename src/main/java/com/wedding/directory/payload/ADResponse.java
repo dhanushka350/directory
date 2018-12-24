@@ -70,7 +70,7 @@ public class ADResponse {
     private String packageName5;
 
     private String packageName6;
-
+    private String createdDate;
     private Venodr venodr;
 
     public String getPackageName5() {
@@ -323,6 +323,14 @@ public class ADResponse {
 
     public String getPackageImage5() {
         return packageImage5;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
     public void setPackageImage5(String packageImage5) {
