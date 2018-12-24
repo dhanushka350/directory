@@ -178,11 +178,11 @@ function getTopRating(city, catogry) {
             $('#top_three\n').empty();
             console.log(data);
             if (data.length === 0) {
-                alert("no result found");
+                $('#top_three').append($("<h1>No Result Found</h1>"));
             } else {
                 for (var i = 0; i < 3; i++) {
 
-                    $('#top_three').append($("<a href=\"#!\">\n" +
+                    $('#top_three').append($("<div onclick='itemView(" + data[i].id + ")' >\n" +
                         "                            <div class=\"list-mig-like-com\">\n" +
                         "                                <div class=\"list-mig-lc-img\"><img src=\'" + data[i].coverImage1 + "' alt=\"\"/> <span\n" +
                         "                                        class=\"home-list-pop-rat list-mi-pr\"></span></div>\n" +
@@ -198,7 +198,7 @@ function getTopRating(city, catogry) {
                         "                                    <p>" + data[i].city + "</p>\n" +
                         "                                </div>\n" +
                         "                            </div>\n" +
-                        "                        </a>"
+                        "                        </div>"
                     ));
                 }
             }
@@ -279,7 +279,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName1 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes1 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>"+data.packagePrice1+"</h4>\n" +
+                        "                                    <h4 style='color: red'>" + data.packagePrice1 + "</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName2 != null) {
@@ -290,7 +290,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName2 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes2 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>"+data.packagePrice2+"</h4>\n" +
+                        "                                    <h4 style='color: red'>" + data.packagePrice2 + "</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName3 != null) {
@@ -301,7 +301,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName3 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes3 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>"+data.packagePrice3+"</h4>\n" +
+                        "                                    <h4 style='color: red'>" + data.packagePrice3 + "</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName4 != null) {
@@ -312,7 +312,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName4 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes4 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>"+data.packagePrice4+"</h4>\n" +
+                        "                                    <h4 style='color: red'>" + data.packagePrice4 + "</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName5 != null) {
@@ -323,7 +323,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName5 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes5 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>"+data.packagePrice5+"</h4>\n" +
+                        "                                    <h4 style='color: red'>" + data.packagePrice5 + "</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName6 != null) {
@@ -334,10 +334,15 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName6 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes6 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>"+data.packagePrice6+"</h4>\n" +
+                        "                                    <h4 style='color: red'>" + data.packagePrice6 + "</h4>\n" +
                         "                                </div>";
                 }
             }
         }
     });
+}
+
+function itemView(param) {
+    localStorage.setItem("selectedAd", param);
+    window.open("/home/profileview", "_self");
 }
