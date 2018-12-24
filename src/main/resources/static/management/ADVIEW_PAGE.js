@@ -22,7 +22,6 @@ function getDataFromBackend(selctedAd) {
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-            console.log(data.coverImage1);
             $("#img-main").css("background-image", "url('" + data.coverImage1 + "')");
             $("#image-comp").css("background-image", "url('" + data.coverImage1 + "')");
 
@@ -164,8 +163,7 @@ function setRatings(param) {
 
             }
 
-        }
-        ,
+        },
 
     });
 }
