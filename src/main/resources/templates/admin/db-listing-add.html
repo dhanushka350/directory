@@ -410,10 +410,6 @@
                                                 Covers</a>
                                         </div>
                                     </div>
-                                    <input id="sl1" hidden="hidden" value=""/>
-                                    <input id="sl2" hidden="hidden" value=""/>
-                                    <input id="sl3" hidden="hidden" value=""/>
-                                    <input id="sl4" hidden="hidden" value=""/>
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
@@ -558,11 +554,15 @@
             console.log(xhr.responseText);
             var response = JSON.parse(xhr.responseText);
             if (xhr.status == 200) {
+                localStorage.removeItem('SL1');
+                localStorage.removeItem('SL2');
+                localStorage.removeItem('SL3');
+                localStorage.removeItem('SL4');
 
-                $('#sl1').val(response[0].fileDownloadUri);
-                $('#sl2').val(response[1].fileDownloadUri);
-                $('#sl3').val(response[2].fileDownloadUri);
-                $('#sl4').val(response[3].fileDownloadUri);
+                localStorage.setItem('SL1', response[0].fileDownloadUri);
+                localStorage.setItem('SL2', response[1].fileDownloadUri);
+                localStorage.setItem('SL3', response[2].fileDownloadUri);
+                localStorage.setItem('SL4', response[3].fileDownloadUri);
 
                 document.getElementsByClassName("close")[0].click();
             } else {
@@ -574,7 +574,7 @@
     }
 
     function multiple(n) {
-        $('#multi').attr('disabled','disabled');
+        $('#multi').attr('disabled', 'disabled');
         var files = multipleFileUploadInput.files;
         if (files.length === 0) {
             multipleFileUploadError.innerHTML = "Please select at least one file";

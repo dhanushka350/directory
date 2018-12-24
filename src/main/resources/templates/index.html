@@ -62,14 +62,13 @@
                         <form>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <select id="cmb-city" class="form-control">
-                                        <option>Select City</option>
-
+                                    <select id="cmb-cate" class="form-control">
+                                        <option>Select Vendor Category</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <select id="cmb-cate" class="form-control">
-                                        <option>Select Vendor Category</option>
+                                    <select id="cmb-city" class="form-control">
+                                        <option>Select City</option>
                                     </select>
                                 </div>
                             </div>
@@ -218,14 +217,14 @@
     function addLogo2() {
         var div = document.createElement('a');
         div.innerHTML =
-            ' <a href="index.html"><img src="/images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+            ' <a href="/"><img src="/images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
         document.getElementById('logo').appendChild(div);
     }
 
     function addLogo1() {
         var div = document.createElement('a');
         div.innerHTML =
-            ' <a href="index.html"><img src="images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
+            ' <a href="/"><img src="images/logo.png" alt="Wedding Vendors" class="img-responsive"></a>';
         document.getElementById('logo').appendChild(div);
     }
 </script>

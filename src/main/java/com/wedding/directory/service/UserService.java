@@ -44,6 +44,10 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateVendorProfile(User user) {
+        userRepository.save(user);
+    }
+
     public String login(User user) {
         User byEmail = userRepository.findByEmail(user.getEmail());
         if (byEmail == null) {

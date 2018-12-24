@@ -55,9 +55,6 @@ public class FileController {
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @RequestParam("user") String vendor) throws InterruptedException {
         List<UploadFileResponse> list = new ArrayList<>();
         UploadFileResponse response = null;
-        System.err.println(vendor);
-        User user = userService.findUserModalByEmail(vendor);
-        ADProfile adProfile = advertisementService.getByVendor(user);
         int count = 1;
         for (MultipartFile file : files) {
             String fileName = fileStorageService.storeAdFiles(file);

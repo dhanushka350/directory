@@ -150,7 +150,7 @@ function search() {
 function viewMore() {
     localStorage.setItem("selectedCity", $('#cmb-city').find(":selected").text());
     localStorage.setItem("selectedCate", $('#cmb-cate').find(":selected").text());
-    window.open("http://localhost:7575/home/listing/vendors", "_self");
+    window.open("/home/listing/vendors", "_self");
 }
 
 

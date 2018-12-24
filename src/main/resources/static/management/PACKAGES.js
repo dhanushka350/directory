@@ -60,6 +60,9 @@ var PACKAGE = {
                 success: function (data, textStatus, jqXHR) {
                     if (data.status) {
                         swal("Success!", data.message, "success");
+                        setTimeout(function () {
+                            window.location.replace("/admin/all/advertisements");
+                        }, 1000);
                     } else {
                         swal("Oops!", data.message, "error");
                     }

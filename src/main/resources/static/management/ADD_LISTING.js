@@ -57,10 +57,10 @@ var AD = {
         e["map"] = $('#google').val();
         e["view"] = $('#view').val();
 
-        e["coverImage1"] = $('#sl1').val();
-        e["coverImage2"] = $('#sl2').val();
-        e["coverImage3"] = $('#sl3').val();
-        e["coverImage4"] = $('#sl4').val();
+        e["coverImage1"] = localStorage.getItem('SL1');
+        e["coverImage2"] = localStorage.getItem('SL2');
+        e["coverImage3"] = localStorage.getItem('SL3');
+        e["coverImage4"] = localStorage.getItem('SL4');
 
         var d = JSON.stringify(e);
 

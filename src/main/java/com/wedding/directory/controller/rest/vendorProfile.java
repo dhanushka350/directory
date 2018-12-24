@@ -39,7 +39,7 @@ public class vendorProfile {
         email.setName(user.getName());
         email.setPhone(user.getPhone());
         email.setActive(1);
-        userService.saveUser(email);
+        userService.updateVendorProfile(email);
         return "updated";
     }
 

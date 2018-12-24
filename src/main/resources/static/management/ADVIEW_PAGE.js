@@ -222,42 +222,42 @@ function getPackgeDetails(id) {
                 document.getElementById("pack_img").innerHTML = "<ul>\n" +
                     "                                    <li class=\"col-md-4\">\n" +
                     "                                        <div id=\"pack-img-1\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage1 + " alt= ''/> " +
+                    "                                                src=" + data.packageImage1 + "  " +
                     "                                                alt=\"\"/></div>\n" +
                     "                                        <div class=\"pg-list-ser-p2\">\n" +
                     "                                            <h4 id=\"txt-pac-1\"></h4></div>\n" +
                     "                                    </li>\n" +
                     "                                    <li class=\"col-md-4\">\n" +
                     "                                        <div id=\"pack-img-2\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage2 + " alt= ''/> " +
+                    "                                                src=" + data.packageImage2 + "  " +
                     "                                                alt=\"\"/></div>\n" +
                     "                                        <div class=\"pg-list-ser-p2\">\n" +
                     "                                            <h4 id=\"txt-pac-2\"></h4></div>\n" +
                     "                                    </li>\n" +
                     "                                    <li class=\"col-md-4\">\n" +
                     "                                        <div id=\"pack-img-3\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage3 + " alt= ''/> " +
+                    "                                                src=" + data.packageImage3 + " " +
                     "                                                alt=\"\"/></div>\n" +
                     "                                        <div class=\"pg-list-ser-p2\">\n" +
                     "                                            <h4 id=\"txt-pac-3\"></h4></div>\n" +
                     "                                    </li>\n" +
                     "                                    <li class=\"col-md-4\">\n" +
                     "                                        <div id=\"pack-img-4\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage4 + " alt= ''/> " +
+                    "                                                src=" + data.packageImage4 + " " +
                     "                                                alt=\"\"/></div>\n" +
                     "                                        <div class=\"pg-list-ser-p2\">\n" +
                     "                                            <h4 id=\"txt-pac-4\"></h4></div>\n" +
                     "                                    </li>\n" +
                     "                                    <li class=\"col-md-4\">\n" +
                     "                                        <div id=\"pack-img-5\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage5 + " alt= ''/> " +
+                    "                                                src=" + data.packageImage5 + "  " +
                     "                                                alt=\"\"/></div>\n" +
                     "                                        <div class=\"pg-list-ser-p2\">\n" +
                     "                                            <h4 id=\"txt-pac-5\"></h4></div>\n" +
                     "                                    </li>\n" +
                     "                                    <li class=\"col-md-4\">\n" +
                     "                                        <div id=\"pack-img-6\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage6 + " alt= ''/> " +
+                    "                                                src=" + data.packageImage6 + "  " +
                     "                                                alt=\"\"/></div>\n" +
                     "                                        <div class=\"pg-list-ser-p2\">\n" +
                     "                                            <h4 id=\"txt-pac-6\"></h4></div>\n" +
