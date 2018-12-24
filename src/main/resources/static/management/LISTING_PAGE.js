@@ -17,7 +17,7 @@ function search(city, cate) {
             $('#allAds\n').empty();
             if (data.length === 0) {
                 document.getElementById("count_txt").innerHTML = data.length + " Results";
-                document.getElementById("addAds").innerHTML = "No Result Found";
+                document.getElementById("allAds").innerHTML = "<h1 style='text-align: center'>No Result Found</h1>";
             } else {
                 document.getElementById("count_txt").innerHTML = data.length + " Results";
                 for (var i = 0; i < data.length; i++) {
