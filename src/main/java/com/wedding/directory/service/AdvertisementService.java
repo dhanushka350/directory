@@ -81,15 +81,6 @@ public class AdvertisementService {
         return day + "-" + month + "-" + year;
     }
 
-    public String updateAdImages(ADProfile profile) {
-        ADProfile save = repository.save(profile);
-        if (save != null) {
-            return "SUCCESS";
-        } else {
-            return "FAILED";
-        }
-    }
-
     public ADProfile getByVendor(User user) {
         return repository.findTopByVendor(user);
     }

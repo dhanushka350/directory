@@ -65,38 +65,11 @@ public class FileController {
             String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/ad/downloadFile/").path(fileName).toUriString();
             response = new UploadFileResponse(fileName, uriString, file.getContentType(), file.getSize());
             list.add(response);
-            setAdImagesUrls(adProfile, uriString, count);
             count++;
         }
-        advertisementService.updateAdImages(adProfile);
         return list;
     }
 
-    private ADProfile setAdImagesUrls(ADProfile adProfile, String uriString, int count) {
-        System.out.println(uriString);
-        if (count == 1) {
-            adProfile.setCoverImage1(uriString);
-        } else if (count == 2) {
-            adProfile.setCoverImage2(uriString);
-        } else if (count == 3) {
-            adProfile.setCoverImage3(uriString);
-        } else if (count == 4) {
-            adProfile.setCoverImage4(uriString);
-        } else if (count == 5) {
-            adProfile.getPackages().setPackageImage1(uriString);
-        } else if (count == 6) {
-            adProfile.getPackages().setPackageImage2(uriString);
-        } else if (count == 7) {
-            adProfile.getPackages().setPackageImage3(uriString);
-        } else if (count == 8) {
-            adProfile.getPackages().setPackageImage4(uriString);
-        } else if (count == 9) {
-            adProfile.getPackages().setPackageImage5(uriString);
-        } else if (count == 10) {
-            adProfile.getPackages().setPackageImage6(uriString);
-        }
-        return adProfile;
-    }
 
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {

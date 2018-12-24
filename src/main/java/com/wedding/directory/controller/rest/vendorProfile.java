@@ -38,6 +38,7 @@ public class vendorProfile {
         email.setDob(user.getDob());
         email.setName(user.getName());
         email.setPhone(user.getPhone());
+        email.setActive(1);
         userService.saveUser(email);
         return "updated";
     }

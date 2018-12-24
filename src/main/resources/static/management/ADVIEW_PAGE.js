@@ -279,7 +279,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName1 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes1 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice1 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice1+"</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName2 != null) {
@@ -290,7 +290,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName2 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes2 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice2 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice2+"</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName3 != null) {
@@ -301,7 +301,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName3 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes3 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice3 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice3+"</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName4 != null) {
@@ -312,7 +312,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName4 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes4 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice4 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice4+"</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName5 != null) {
@@ -323,7 +323,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName5 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes5 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice5 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice5+"</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName6 != null) {
@@ -334,7 +334,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName6 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes6 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice6 + "</h4>\n" +
+                        "                                    <h4 style='color: red'>"+data.packagePrice6+"</h4>\n" +
                         "                                </div>";
                 }
             }

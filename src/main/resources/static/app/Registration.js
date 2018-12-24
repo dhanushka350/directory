@@ -1,3 +1,9 @@
+$("#password").on("keydown", function (e) {
+    if (e.keyCode === 13) {
+        login.UserLogin();
+    }
+});
+
 $('#login').click(function (n) {
     login.UserLogin();
 });
@@ -20,7 +26,7 @@ var login = {
                 if (data === "WRONG EMAIL") {
                     swal("Hmm!", "we don't know any user for this email. \n make sure your credentials and lets try again", "error");
                 } else if (data === "WRONG PASSWORD") {
-                    swal("WARNING!", "wrong password. \n if you want to reset please click frogot password.", "error");
+                    swal("WARNING!", "wrong password. \n if you want to reset please click forgot password.", "error");
                 } else {
                     var name = $("#email").val();
                     localStorage.removeItem('VENDOR');
