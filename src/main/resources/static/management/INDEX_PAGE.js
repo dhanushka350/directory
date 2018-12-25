@@ -91,7 +91,7 @@ function setFrontPageAdv() {
 
 function itemView(param) {
     localStorage.setItem("selectedAd", param);
-    window.open("http://localhost:7575/home/profileview", "_self");
+    window.open("/home/profileview", "_self");
 }
 
 $('#cmb-city').on('change', function () {
