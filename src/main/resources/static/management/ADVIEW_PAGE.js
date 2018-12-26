@@ -39,23 +39,27 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("slider-img-3").innerHTML = "<img src='" + data.coverImage3 + "'>";
             document.getElementById("slider-img-4").innerHTML = "<img src='" + data.coverImage4 + "'>";
 
-            document.getElementById("txt-days").innerHTML = "Opening days : " + data.openingDates;
-            document.getElementById("txt-open").innerHTML = "Opening Time : " + data.openingTime;
-            document.getElementById("txt-close").innerHTML = "Closing Time : " + data.closingTime;
+            document.getElementById("txt-days").innerHTML = data.openingDates;
+            document.getElementById("txt-open").innerHTML = data.openingTime;
+            document.getElementById("txt-close").innerHTML = data.closingTime;
+            document.getElementById("txt_mob").innerHTML = data.venodr.phone;
+            document.getElementById("txt_email").innerHTML = data.venodr.email;
+
             document.getElementById("open_time").innerHTML = data.openingTime;
             document.getElementById("close_time").innerHTML = data.closingTime;
             document.getElementById("open_days").innerHTML = data.openingDates;
-            document.getElementById("exp").innerHTML = data.experience
-            document.getElementById("created-date").innerHTML = "Since " + data.createdDate
-            document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "'><i class=\"fa fa-facebook fb1\"></i> Facebook</a>";
-            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "'><i class=\"fa fa-twitter tw1\"></i> Twitter</a>";
+
+            // document.getElementById("exp").innerHTML = data.experience
+            // document.getElementById("created-date").innerHTML = "Since " + data.createdDate
+            document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook fb1\"></i> Facebook</a>";
+            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-twitter tw1\"></i> Twitter</a>";
 
             document.getElementById("lcation").innerHTML = "<iframe id=\"lcation\"\n" +
                 "                                        src='" + data.map + "' " +
                 "                                        allowfullscreen></iframe>";
 
-            document.getElementById("image-comp").innerHTML = "<img style='width: 80px;height: 80px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
-            document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
+            // document.getElementById("image-comp").innerHTML = "<img style='width: 80px;height: 80px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
+            // document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
             userid = data.id;
             setRatings(userid);
             getTopRating(data.city, data.category);
@@ -106,6 +110,15 @@ function saveRatings() {
     });
 }
 
+function getRatings(avg, data) {
+    console.log(data + "length");
+    if (data === "0") {
+        return 0;
+    } else {
+        return avg / data;
+    }
+}
+
 function setRatings(param) {
     var avg = 0;
     $.ajax({
@@ -127,7 +140,7 @@ function setRatings(param) {
                     "                                    </li>"
                 ));
             }
-            document.getElementById("raings_count").innerHTML = "<span>" + avg / data.length + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + "reviews</p>";
+            document.getElementById("raings_count").innerHTML = "<span>" + getRatings(avg, data.length) + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + " reviews</p>";
 
             if ((avg / data.length) < 5) {
                 $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
@@ -176,7 +189,6 @@ function getTopRating(city, catogry) {
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
             $('#top_three\n').empty();
-            console.log(data);
             if (data.length === 0) {
                 $('#top_three').append($("<h1>No Result Found</h1>"));
             } else {
@@ -271,7 +283,7 @@ function getPackgeDetails(id) {
                 document.getElementById("txt-pac-5").innerHTML = data.packageName5;
                 document.getElementById("txt-pac-6").innerHTML = data.packageName6;
 
-                if (data.packageName1 != null) {
+                if (data.packageName1 !== "") {
                     document.getElementById("pack_1").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage1 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
@@ -279,10 +291,10 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName1 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes1 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice1 + "</h4>\n" +
+                        "                                    <h4 style='color: red'><span>RS </span>" + data.packagePrice1 + "</h4>\n" +
                         "                                </div>";
                 }
-                if (data.packageName2 != null) {
+                if (data.packageName2 !== "") {
                     document.getElementById("pack_2").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage2 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
@@ -293,7 +305,7 @@ function getPackgeDetails(id) {
                         "                                    <h4 style='color: red'>" + data.packagePrice2 + "</h4>\n" +
                         "                                </div>";
                 }
-                if (data.packageName3 != null) {
+                if (data.packageName3 !== "") {
                     document.getElementById("pack_3").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage3 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
@@ -304,7 +316,7 @@ function getPackgeDetails(id) {
                         "                                    <h4 style='color: red'>" + data.packagePrice3 + "</h4>\n" +
                         "                                </div>";
                 }
-                if (data.packageName4 != null) {
+                if (data.packageName4 !== "") {
                     document.getElementById("pack_4").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage4 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
@@ -315,7 +327,7 @@ function getPackgeDetails(id) {
                         "                                    <h4 style='color: red'>" + data.packagePrice4 + "</h4>\n" +
                         "                                </div>";
                 }
-                if (data.packageName5 != null) {
+                if (data.packageName5 !== "") {
                     document.getElementById("pack_5").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage5 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
@@ -326,7 +338,7 @@ function getPackgeDetails(id) {
                         "                                    <h4 style='color: red'>" + data.packagePrice5 + "</h4>\n" +
                         "                                </div>";
                 }
-                if (data.packageName6 != null) {
+                if (data.packageName6 !== "") {
                     document.getElementById("pack_6").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage6 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
