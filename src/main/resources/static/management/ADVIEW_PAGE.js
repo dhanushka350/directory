@@ -42,13 +42,13 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("txt-days").innerHTML = data.openingDates;
             document.getElementById("txt-open").innerHTML = data.openingTime;
             document.getElementById("txt-close").innerHTML = data.closingTime;
-            document.getElementById("txt_mob").innerHTML = data.venodr.phone;
-            document.getElementById("txt_email").innerHTML = data.venodr.email;
+
 
             document.getElementById("open_time").innerHTML = data.openingTime;
             document.getElementById("close_time").innerHTML = data.closingTime;
             document.getElementById("open_days").innerHTML = data.openingDates;
-
+            document.getElementById("txt_mob").innerHTML = data.venodr.phone;
+            document.getElementById("txt_email").innerHTML = data.venodr.email;
             // document.getElementById("exp").innerHTML = data.experience
             // document.getElementById("created-date").innerHTML = "Since " + data.createdDate
             document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook fb1\"></i> Facebook</a>";
