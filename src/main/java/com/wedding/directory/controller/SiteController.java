@@ -11,7 +11,7 @@ public class SiteController {
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView public_home() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("launch");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 

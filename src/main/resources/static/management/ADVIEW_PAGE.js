@@ -23,7 +23,7 @@ function getDataFromBackend(selctedAd) {
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
             $("#img-main").css("background-image", "url('" + data.coverImage1 + "')");
-            $("#image-comp").css("background-image", "url('" + data.coverImage1 + "')");
+            // $("#image-comp").css("background-image", "url('" + data.coverImage1 + "')");
 
             document.getElementById("txt-name").innerHTML = data.title;
             document.getElementById("txt-address").innerHTML = "<b>Address:</b>" + data.venodr.address;
