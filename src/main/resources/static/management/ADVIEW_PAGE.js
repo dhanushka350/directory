@@ -27,9 +27,7 @@ function getDataFromBackend(selctedAd) {
 
             document.getElementById("com-txt").innerHTML = data.title;
             // document.getElementById("txt-address").innerHTML = "<b>Address:</b>" + data.venodr.address;
-            // document.getElementById("txt-cont").innerHTML = "<i class=\"fa fa-phone\" aria-hidden=\"true\"></i>" + data.venodr.phone;
-            // document.getElementById("txt-email").innerHTML = "<i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>" + data.venodr.email;
-            // document.getElementById("txt-owner").innerHTML = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i>" + data.venodr.name + " " + data.venodr.lastName;
+
             document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
             document.getElementById("txt-desc").innerHTML = data.description;
 
@@ -39,18 +37,11 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("slider-img-3").innerHTML = "<img src='" + data.coverImage3 + "'>";
             document.getElementById("slider-img-4").innerHTML = "<img src='" + data.coverImage4 + "'>";
 
-            // document.getElementById("txt-days").innerHTML = data.openingDates;
-            // document.getElementById("txt-open").innerHTML = data.openingTime;
-            // document.getElementById("txt-close").innerHTML = data.closingTime;
-
-
             document.getElementById("open_time").innerHTML = data.openingTime;
             document.getElementById("close_time").innerHTML = data.closingTime;
             document.getElementById("open_days").innerHTML = data.openingDates;
             document.getElementById("txt_mob").innerHTML = data.venodr.phone;
             document.getElementById("txt_email").innerHTML = data.venodr.email;
-            // document.getElementById("exp").innerHTML = data.experience
-            // document.getElementById("created-date").innerHTML = "Since " + data.createdDate
             document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook fb1\"></i> Facebook</a>";
             document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-twitter tw1\"></i> Twitter</a>";
 
@@ -60,6 +51,9 @@ function getDataFromBackend(selctedAd) {
 
             document.getElementById("image-comp").innerHTML = "<img style='width: 150px;height: 150px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
             document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
+            document.getElementById("inq-text").innerHTML = "Send Enquiry to <span style='color: orangered'> " + data.title + "</span> \n" +
+                "                                        Fill in your details and <span style='color: orangered'> " + data.title + "</span>  will get back to you\n" +
+                "                                        shortly.";
             userid = data.id;
             setRatings(userid);
             getTopRating(data.city, data.category);
