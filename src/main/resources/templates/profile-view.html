@@ -545,4 +545,23 @@
     }
 </script>
 
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            console.log("eee")
+            document.getElementById("top-bar").style.display = "block";
+            document.getElementById("header").style.position = "relative";
+
+        } else {
+            console.log("ssss");
+            document.getElementById("top-bar").style.display = "none";
+            document.getElementById("header").style.position = "fixed";
+            document.getElementById("header").style.width = "100%";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+</script>
+
 </html>
