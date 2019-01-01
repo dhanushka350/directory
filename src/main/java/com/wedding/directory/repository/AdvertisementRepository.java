@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface AdvertisementRepository extends JpaRepository<ADProfile, Integer> {
+    ADProfile findTopByVendorAndIdEquals(User user, int id);
+
     ADProfile findTopByVendor(User user);
 
     ADProfile getById(int id);

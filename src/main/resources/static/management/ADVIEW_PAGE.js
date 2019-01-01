@@ -3,6 +3,7 @@ var selctedAd;
 function loadData() {
     selctedAd = localStorage.getItem("selectedAd");
     getDataFromBackend(selctedAd);
+    getAllAdsByVendor();
 }
 
 
@@ -113,6 +114,39 @@ function getRatings(avg, data) {
     }
 }
 
+function getAllAdsByVendor() {
+    selctedAd = localStorage.getItem("selectedAd");
+    $.ajax({
+        url: "/admin/get/all/extra/advertisement",
+        dataType: 'json',
+        contentType: "application/json",
+        type: 'POST',
+        data: selctedAd,
+        success: function (data, textStatus, jqXHR) {
+            if (data.length <= 0) {
+                swal("No extra advertisement found.");
+            } else {
+                for (var i = 0; i < data.length; i++) {
+
+                    $('#other_ads').append($('<li class="col-md-4" style="cursor: pointer" onclick="itemView("'+data[i].id+'")">\n' +
+                        '<div class=\"pg-list-ser-p1\"><img src="' + data[i].coverImage1 + '" alt=\"\"> </div>\n' +
+                        '<div class=\"pg-list-ser-p2\">\n' +
+                        '<h4>' + data[i].title + '</h4></div>\n' +
+                        '</li>'));
+                }
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+
+        },
+        beforeSend: function (xhr) {
+
+        }
+    });
+
+
+}
+
 function setRatings(param) {
     var avg = 0;
     $.ajax({
@@ -134,8 +168,11 @@ function setRatings(param) {
                     "                                    </li>"
                 ));
             }
-            document.getElementById("raings_count").innerHTML = "<span>" + getRatings(avg, data.length) + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + " reviews</p>";
-
+            if (data.length === 0) {
+                document.getElementById("raings_count").innerHTML = "<span>" + "0" + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + "No" + " reviews</p>";
+            } else {
+                document.getElementById("raings_count").innerHTML = "<span>" + getRatings(avg, data.length) + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + " reviews</p>";
+            }
             if ((avg / data.length) < 5) {
                 $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
                     "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Below Average</div>\n" +
@@ -188,7 +225,7 @@ function getTopRating(city, catogry) {
             } else {
                 for (var i = 0; i < 3; i++) {
 
-                    $('#top_three').append($("<div onclick='itemView(" + data[i].id + ")' >\n" +
+                    $('#top_three').append($("<div onclick='itemView(" + data[i].id + ")' style='cursor: pointer' >\n" +
                         "                            <div class=\"list-mig-like-com\">\n" +
                         "                                <div class=\"list-mig-lc-img\"><img src=\'" + data[i].coverImage1 + "' alt=\"\"/> <span\n" +
                         "                                        class=\"home-list-pop-rat list-mi-pr\"></span></div>\n" +
@@ -225,57 +262,6 @@ function getPackgeDetails(id) {
             if (data.length === 0) {
                 document.getElementById("pack_img").innerHTML = "no packages found";
             } else {
-                document.getElementById("pack_img").innerHTML = "<ul>\n" +
-                    "                                    <li class=\"col-md-4\">\n" +
-                    "                                        <div id=\"pack-img-1\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage1 + "  " +
-                    "                                                alt=\"\"/></div>\n" +
-                    "                                        <div class=\"pg-list-ser-p2\">\n" +
-                    "                                            <h4 id=\"txt-pac-1\"></h4></div>\n" +
-                    "                                    </li>\n" +
-                    "                                    <li class=\"col-md-4\">\n" +
-                    "                                        <div id=\"pack-img-2\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage2 + "  " +
-                    "                                                alt=\"\"/></div>\n" +
-                    "                                        <div class=\"pg-list-ser-p2\">\n" +
-                    "                                            <h4 id=\"txt-pac-2\"></h4></div>\n" +
-                    "                                    </li>\n" +
-                    "                                    <li class=\"col-md-4\">\n" +
-                    "                                        <div id=\"pack-img-3\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage3 + " " +
-                    "                                                alt=\"\"/></div>\n" +
-                    "                                        <div class=\"pg-list-ser-p2\">\n" +
-                    "                                            <h4 id=\"txt-pac-3\"></h4></div>\n" +
-                    "                                    </li>\n" +
-                    "                                    <li class=\"col-md-4\">\n" +
-                    "                                        <div id=\"pack-img-4\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage4 + " " +
-                    "                                                alt=\"\"/></div>\n" +
-                    "                                        <div class=\"pg-list-ser-p2\">\n" +
-                    "                                            <h4 id=\"txt-pac-4\"></h4></div>\n" +
-                    "                                    </li>\n" +
-                    "                                    <li class=\"col-md-4\">\n" +
-                    "                                        <div id=\"pack-img-5\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage5 + "  " +
-                    "                                                alt=\"\"/></div>\n" +
-                    "                                        <div class=\"pg-list-ser-p2\">\n" +
-                    "                                            <h4 id=\"txt-pac-5\"></h4></div>\n" +
-                    "                                    </li>\n" +
-                    "                                    <li class=\"col-md-4\">\n" +
-                    "                                        <div id=\"pack-img-6\" class=\"pg-list-ser-p1\"><img\n" +
-                    "                                                src=" + data.packageImage6 + "  " +
-                    "                                                alt=\"\"/></div>\n" +
-                    "                                        <div class=\"pg-list-ser-p2\">\n" +
-                    "                                            <h4 id=\"txt-pac-6\"></h4></div>\n" +
-                    "                                    </li>\n" +
-                    "                                </ul>"
-
-                document.getElementById("txt-pac-1").innerHTML = data.packageName1;
-                document.getElementById("txt-pac-2").innerHTML = data.packageName2;
-                document.getElementById("txt-pac-3").innerHTML = data.packageName3;
-                document.getElementById("txt-pac-4").innerHTML = data.packageName4;
-                document.getElementById("txt-pac-5").innerHTML = data.packageName5;
-                document.getElementById("txt-pac-6").innerHTML = data.packageName6;
 
                 if (data.packageName1 !== "") {
                     document.getElementById("pack_1").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage1 + "' alt=\"\"></div>\n" +

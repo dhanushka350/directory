@@ -8,6 +8,10 @@ $('#save').click(function (e) {
     AD.saveAd();
 
 });
+
+$('#cmb_ads').on('change', function () {
+    AD.getSelectedAD(this.value);
+});
 var VENDOR = {
     getDetails: function (name) {
         $.ajax({
@@ -41,6 +45,7 @@ var VENDOR = {
 var AD = {
     saveAd: function () {
         var e = {};
+        e["id"] = $('#cmb_ads').find(":selected").val();
         e["vendor"] = localStorage.getItem('VENDOR');
         e["title"] = $('#ad_title').val();
         e["type"] = $('#type').find(":selected").text();
@@ -117,6 +122,75 @@ var AD = {
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
+            },
+            beforeSend: function (xhr) {
+
+            }
+        });
+    },
+    getAllAds: function () {
+        var name = localStorage.getItem('VENDOR');
+        $('#cmb_ads')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="all">Select Advertisement</option>')
+            .val('all');
+
+        $.ajax({
+            url: "/admin/get/all/advertisement",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            data: name,
+            success: function (data, textStatus, jqXHR) {
+                if (data.length <= 0) {
+                    swal("No advertisement found.");
+                } else {
+                    for (var i = 0; i < data.length; i++) {
+                        $('#cmb_ads').append($('<option>', {
+                            value: data[i].id,
+                            text: data[i].title
+                        }));
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            },
+            beforeSend: function (xhr) {
+
+            }
+        });
+
+    },
+    getSelectedAD: function (id) {
+        $.ajax({
+            url: "/admin/get/edit/advertisement",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            data: id,
+            success: function (data, textStatus, jqXHR) {
+
+                $('#ad_title').val(data.title);
+                $('#type').val(data.type.split(" ")[0]);
+                $('#city').val(data.city);
+                $('#category').val(data.category);
+                $('#opening_days').val(data.openingDates);
+                $('#opening_time').val(data.openingTime);
+                $('#closing_time').val(data.closingTime);
+                $('#desc').val(data.description);
+                $('#facebook').val(data.facebook);
+                $('#twitter').val(data.twitter);
+                $('#experience').val(data.experience);
+                $('input[name="optionsRadios"][value="' + data.professionals + '"]').prop('checked', true);
+                $('#google').val(data.map);
+                $('#view').val(data.view);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                swal("Oops!", "Advertisement Not Found..", "error");
             },
             beforeSend: function (xhr) {
 

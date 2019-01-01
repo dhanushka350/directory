@@ -52,10 +52,23 @@ public class AdvertisementController {
         return service.getAllAdsByVendor(user);
     }
 
+    @RequestMapping(value = "/get/all/extra/advertisement", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ADResponse> getAllExtraAdsByVendor(@RequestBody String ad) {
+        ADResponse response = service.getOneAdvertiesment(ad);
+        return service.getAllExtraAdsByVendor(response.getVendor());
+    }
+
     @RequestMapping(value = "/view_packages", method = RequestMethod.POST)
     @ResponseBody
     public Package viewPackages(@RequestBody int id) {
         return service.getPackageDetailsByAd(id);
+    }
+
+    @RequestMapping(value = "/get/edit/advertisement", method = RequestMethod.POST)
+    @ResponseBody
+    public ADResponse viewAdvertisement(@RequestBody int id) {
+        return service.getOneAdvertiesment(id + "");
     }
 
 

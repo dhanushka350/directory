@@ -5,14 +5,17 @@ $(document).ready(function () {
     });
     disableFedilds(true);
 });
+
 $('#save').click(function (e) {
     e.preventDefault();
     PACKAGE.save();
 
 });
+
 $('#cmb_ads').on('change', function () {
     PACKAGE.getSelectedPackage(this.value);
 });
+
 var PACKAGE = {
     save: function () {
         if ("all" === $('#cmb_ads').find(":selected").val()) {
@@ -85,7 +88,6 @@ var PACKAGE = {
 
     },
     getAllAds: function () {
-
         var name = localStorage.getItem('VENDOR');
         $('#cmb_ads')
             .find('option')

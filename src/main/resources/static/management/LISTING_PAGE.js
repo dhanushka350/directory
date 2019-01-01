@@ -21,7 +21,7 @@ function search(city, cate) {
             } else {
                 document.getElementById("count_txt").innerHTML = data.length + " Results";
                 for (var i = 0; i < data.length; i++) {
-                    $('#allAds\n').append($(" <div onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\">\n" +
+                    $('#allAds\n').append($(" <div onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\" style='cursor: pointer'>\n" +
                         "                        <!-- venue box start-->\n" +
                         "                        <div class=\"vendor-image\">\n" +
                         "                            <!-- venue pic -->\n" +
@@ -41,9 +41,9 @@ function search(city, cate) {
                         "                                    <span class=\"rating-count\"></span></div>\n" +
                         "                            </div>\n" +
                         "                            <!-- /.caption -->\n" +
-                        "                            <div class=\"vendor-price\">\n" +
-                        "                                <div class=\"price\">$390 - $600</div>\n" +
-                        "                            </div>\n" +
+                        // "                            <div class=\"vendor-price\">\n" +
+                        // "                                <div class=\"price\">$390 - $600</div>\n" +
+                        // "                            </div>\n" +
                         "                        </div>\n" +
                         "                        <!-- venue details -->\n" +
                         "                    </div>"));

@@ -46,6 +46,7 @@ public class FileController {
 
         User vendor = userService.findUserModalByEmail(user);
         vendor.setImage(fileDownloadUri);
+        vendor.setActive(1);
         userService.saveUser(vendor);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
