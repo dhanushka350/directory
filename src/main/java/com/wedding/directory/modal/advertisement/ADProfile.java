@@ -23,6 +23,9 @@ public class ADProfile {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "status")
+    private int active;
+
     @Column(name = "type")
     private String type;
 
@@ -94,6 +97,22 @@ public class ADProfile {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "adProfile", fetch = FetchType.LAZY)
     private List<Ratings> rating = new ArrayList<>();
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public String getAdCreatedDate() {
+        return adCreatedDate;
+    }
+
+    public void setAdCreatedDate(String adCreatedDate) {
+        this.adCreatedDate = adCreatedDate;
+    }
 
     public int getId() {
         return id;

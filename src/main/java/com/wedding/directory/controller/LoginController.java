@@ -62,7 +62,7 @@ public class LoginController {
         } else {
             userService.saveUser(user);
             sendRegistrationMailToAdmins(user.getEmail());
-            modelAndView.setViewName("registration-success.html");
+            modelAndView.setViewName("login.html");
 
         }
         return modelAndView;
@@ -78,10 +78,17 @@ public class LoginController {
     public void sendRegistrationMailToAdmins(String vendor) {
         EmailContent content = new EmailContent();
         content.setFrom("ZEEBO SYSTEM");
-//        dilananushka123@gmail.com
-        content.setTo("dhanushka@akvasoft.com");
+
+        // for user
+        content.setTo(vendor);
         content.setSubject("Account Activation Alert!");
-        content.setMessage(vendor + "  Registered Just Now.. \n You have to activate this account manually.. \n ZEEBO SYSTEM");
+        content.setMessage("Your account is activated... \n ZEEBO SYSTEM");
+        emailService.sendEmail(content);
+
+        // for admins
+        //        dilananushka123@gmail.com
+        content.setTo("dilananushka123@gmail.com");
+        content.setMessage("New account created and activated for " + vendor + "\n ZEEBO SYSTEM");
         emailService.sendEmail(content);
     }
 }

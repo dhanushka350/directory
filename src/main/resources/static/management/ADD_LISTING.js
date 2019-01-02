@@ -134,7 +134,7 @@ var AD = {
             .find('option')
             .remove()
             .end()
-            .append('<option value="all">Select Advertisement</option>')
+            .append('<option value="0">Select Advertisement</option>')
             .val('all');
 
         $.ajax({
