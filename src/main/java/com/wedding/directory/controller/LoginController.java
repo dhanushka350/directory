@@ -62,7 +62,7 @@ public class LoginController {
         } else {
             userService.saveUser(user);
             sendRegistrationMailToAdmins(user.getEmail());
-            modelAndView.setViewName("registration-success.html");
+            modelAndView.setViewName("admin/home");
 
         }
         return modelAndView;
