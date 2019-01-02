@@ -374,8 +374,6 @@
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <select class="form-control" id="category">
                                                 <option disabled="disabled">Choose option</option>
-                                                <option>Cake</option>
-                                                <option>DJ</option>
                                                 <option>Accessories & Fancy Items</option>
                                                 <option>Ashtaka & Jayamangala Gatha</option>
                                                 <option>Astrologers</option>
@@ -480,7 +478,6 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Experience</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <select class="form-control" id="experience">
-                                                <option>Choose option</option>
                                                 <option value="Upto 2 month of service">Upto 2 month of service</option>
                                                 <option value="Upto 6 month of service">Upto 6 month of service</option>
                                                 <option value="Upto 1 year of service">Upto 1 year of service</option>
@@ -529,7 +526,6 @@
                                             Type</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <select class="form-control" id="type">
-                                                <option>Choose Advertisement Type</option>
                                                 <option value="FREE">FREE - 1 year</option>
                                                 <!--<option value="PREMIUM">PREMIUM - 6 years</option>-->
                                             </select>
@@ -650,8 +646,7 @@
                 }
 
                 document.getElementById("welcome").innerText = data.name;
-                document.getElementById("test").innerText = "Hey " + data.name + " please test this page and give us a feedback";
-
+                // document.getElementById("test").innerText = "Hey " + data.name + " please test this page and give us a feedback";
             },
             error: function (jqXHR, textStatus, errorThrown) {
 

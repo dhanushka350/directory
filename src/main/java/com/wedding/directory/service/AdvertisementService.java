@@ -33,7 +33,10 @@ public class AdvertisementService {
         LocalDateTime now = LocalDateTime.now();
         boolean update = false;
         User user = userService.findUserModalByEmail(adResponse.getVendor());
-        ADProfile response = repository.findTopByVendorAndIdEquals(user, adResponse.getId());
+        ADProfile response = null;
+        if (adResponse.getId() != 0) {
+            response = repository.findTopByVendorAndIdEquals(user, adResponse.getId());
+        }
         if (response == null) {
             response = new ADProfile();
             response.setPackages(packageRepository.save(new Packages()));
@@ -60,6 +63,8 @@ public class AdvertisementService {
         response.setCoverImage2(adResponse.getCoverImage2());
         response.setCoverImage3(adResponse.getCoverImage3());
         response.setCoverImage4(adResponse.getCoverImage4());
+        response.setActive(1);
+
         if (!update) {
             response.setCreatedDate(getDate());
             response.setExpiredDate(getExpireDate(response.getCreatedDate()));
@@ -263,7 +268,7 @@ public class AdvertisementService {
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
             adResponse.setCreatedDate(adProfile.getCreatedDate());
-            System.err.println("add advertisement "+adProfile.getCoverImage1());
+
             list.add(adResponse);
         }
         return list;
