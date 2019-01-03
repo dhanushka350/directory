@@ -70,8 +70,20 @@ public class ADResponse {
     private String packageName5;
 
     private String packageName6;
+
     private String createdDate;
+
     private Venodr venodr;
+
+    private String referral;
+
+    public String getReferral() {
+        return referral;
+    }
+
+    public void setReferral(String referral) {
+        this.referral = referral;
+    }
 
     public String getPackageName5() {
         return packageName5;

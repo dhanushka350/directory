@@ -61,6 +61,7 @@ var AD = {
         e["professionals"] = $('input[name=optionsRadios]:checked').val();
         e["map"] = $('#google').val();
         e["view"] = $('#view').val();
+        e["referral"] = $('#referral').val();
 
         e["coverImage1"] = localStorage.getItem('SL1');
         e["coverImage2"] = localStorage.getItem('SL2');
@@ -190,7 +191,7 @@ var AD = {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                swal("Oops!", "Advertisement Not Found..", "error");
+                swal("No advertisement found.");
             },
             beforeSend: function (xhr) {
 

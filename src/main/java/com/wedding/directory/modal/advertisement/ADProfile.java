@@ -83,6 +83,9 @@ public class ADProfile {
     @Column(name = "expired_date")
     private String expiredDate;
 
+    @Column(name = "referral")
+    private String referral;
+
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "packages", nullable = false)
     @NotFound(action = NotFoundAction.IGNORE)
@@ -104,6 +107,14 @@ public class ADProfile {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getReferral() {
+        return referral;
+    }
+
+    public void setReferral(String referral) {
+        this.referral = referral;
     }
 
     public String getAdCreatedDate() {

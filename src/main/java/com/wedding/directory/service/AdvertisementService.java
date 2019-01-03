@@ -64,6 +64,7 @@ public class AdvertisementService {
         response.setCoverImage3(adResponse.getCoverImage3());
         response.setCoverImage4(adResponse.getCoverImage4());
         response.setActive(1);
+        response.setReferral(adResponse.getReferral());
 
         if (!update) {
             response.setCreatedDate(getDate());
@@ -181,9 +182,12 @@ public class AdvertisementService {
     }
 
     public ADResponse getOneAdvertiesment(String addID) {
-
-        ADProfile adProfile = repository.getOne(Integer.parseInt(addID));
         ADResponse adResponse = new ADResponse();
+        if (Integer.parseInt(addID) == 0) {
+            return adResponse;
+        }
+        ADProfile adProfile = repository.getOne(Integer.parseInt(addID));
+
         if (adProfile != null) {
             adResponse.setId(adProfile.getId());
             adResponse.setVendor(adProfile.getVendor().getEmail());
