@@ -4,6 +4,21 @@ $(window).load(function () {
     setFrontPageAdv();
 });
 
+//
+// $('#cmb-city').autocomplete({
+//     source: '/advertisement/getAllCities',
+//     onSelect: function (suggestion) {
+//         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+//     }
+// });
+//
+// $('#cmb-cate').autocomplete({
+//     source: '/advertisement/getAllVendorCat',
+//     onSelect: function (suggestion) {
+//         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+//     }
+// });
+
 
 function getCity() {
     $.ajax({
