@@ -52,7 +52,6 @@ function setFrontPageAdv() {
         success: function (data, textStatus, jqXHR) {
             $('#top-ads\n').empty();
             if (data.length === 0) {
-                alert("no res found")
                 $('#top-ads').append($("<h1>No Results Found</h1>"));
             } else {
                 for (var i = 0; i < data.length; i++) {
@@ -110,7 +109,7 @@ function search() {
         success: function (data, textStatus, jqXHR) {
             $('#top-ads\n').empty();
             if (data.length === 0) {
-                alert("no result found");
+
             } else {
                 for (var i = 0; i < data.length; i++) {
                     $('#top-ads\n').append($("<div id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"col-md-4 vendor-box\">\n" +
