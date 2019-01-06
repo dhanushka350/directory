@@ -44,7 +44,7 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("txt_mob").innerHTML = data.venodr.phone;
             document.getElementById("txt_email").innerHTML = data.venodr.email;
             document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook fb1\"></i> Facebook</a>";
-            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-twitter tw1\"></i> Twitter</a>";
+            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-edge tw1\"></i> Web Site</a>";
 
             document.getElementById("lcation").innerHTML = "<iframe id=\"lcation\"\n" +
                 "                                        src='" + data.map + "' " +
