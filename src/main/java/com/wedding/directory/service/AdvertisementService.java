@@ -128,43 +128,32 @@ public class AdvertisementService {
         List<ADResponse> adResponses = new ArrayList<>();
         ADResponse adResponse;
         for (ADProfile adProfile : all) {
-            adResponse = new ADResponse();
-            adResponse.setId(adProfile.getId());
-            adResponse.setVendor(adProfile.getVendor().getEmail());
-            adResponse.setTitle(adProfile.getTitle());
-            adResponse.setType(adProfile.getType());
-            adResponse.setCity(adProfile.getCity());
-            adResponse.setCategory(adProfile.getCategory());
-            adResponse.setOpeningTime(adProfile.getOpeningTime());
-            adResponse.setOpeningDates(adProfile.getOpeningDates());
-            adResponse.setClosingTime(adProfile.getClosingTime());
-            adResponse.setDescription(adProfile.getDescription());
-            adResponse.setFacebook(adProfile.getFacebook());
-            adResponse.setTwitter(adProfile.getTwitter());
-            adResponse.setExperience(adProfile.getExperience());
-            adResponse.setProfessionals(adProfile.getProfessionals());
-            adResponse.setMap(adProfile.getMap());
-            adResponse.setView(adProfile.getView());
+            if (adProfile.getActive() == 1) {
+                adResponse = new ADResponse();
+                adResponse.setId(adProfile.getId());
+                adResponse.setVendor(adProfile.getVendor().getEmail());
+                adResponse.setTitle(adProfile.getTitle());
+                adResponse.setType(adProfile.getType());
+                adResponse.setCity(adProfile.getCity());
+                adResponse.setCategory(adProfile.getCategory());
+                adResponse.setOpeningTime(adProfile.getOpeningTime());
+                adResponse.setOpeningDates(adProfile.getOpeningDates());
+                adResponse.setClosingTime(adProfile.getClosingTime());
+                adResponse.setDescription(adProfile.getDescription());
+                adResponse.setFacebook(adProfile.getFacebook());
+                adResponse.setTwitter(adProfile.getTwitter());
+                adResponse.setExperience(adProfile.getExperience());
+                adResponse.setProfessionals(adProfile.getProfessionals());
+                adResponse.setMap(adProfile.getMap());
+                adResponse.setView(adProfile.getView());
 
-            adResponse.setCoverImage1(adProfile.getCoverImage1());
-            adResponse.setCoverImage2(adProfile.getCoverImage2());
-            adResponse.setCoverImage3(adProfile.getCoverImage3());
-            adResponse.setCoverImage4(adProfile.getCoverImage4());
-            adResponse.setCreatedDate(adProfile.getCreatedDate());
-
-
-//            adResponse.setPackageImage1(adProfile.getPackages().getPackageImage1());
-//            adResponse.setPackageImage2(adProfile.getPackages().getPackageImage2());
-//            adResponse.setPackageImage3(adProfile.getPackages().getPackageImage3());
-//            adResponse.setPackageImage4(adProfile.getPackages().getPackageImage4());
-//
-//            adResponse.setPackageName1(adProfile.getPackages().getPackageName1());
-//            adResponse.setPackageName2(adProfile.getPackages().getPackageName2());
-//            adResponse.setPackageName3(adProfile.getPackages().getPackageName3());
-//            adResponse.setPackageName4(adProfile.getPackages().getPackageName4());
-//            adResponse.setPackageName5(adProfile.getPackages().getPackageName5());
-//            adResponse.setPackageName6(adProfile.getPackages().getPackageName6());
-            adResponses.add(adResponse);
+                adResponse.setCoverImage1(adProfile.getCoverImage1());
+                adResponse.setCoverImage2(adProfile.getCoverImage2());
+                adResponse.setCoverImage3(adProfile.getCoverImage3());
+                adResponse.setCoverImage4(adProfile.getCoverImage4());
+                adResponse.setCreatedDate(adProfile.getCreatedDate());
+                adResponses.add(adResponse);
+            }
         }
         return adResponses;
     }
@@ -189,39 +178,41 @@ public class AdvertisementService {
         ADProfile adProfile = repository.getOne(Integer.parseInt(addID));
 
         if (adProfile != null) {
-            adResponse.setId(adProfile.getId());
-            adResponse.setVendor(adProfile.getVendor().getEmail());
-            adResponse.setTitle(adProfile.getTitle());
-            adResponse.setType(adProfile.getType());
-            adResponse.setCity(adProfile.getCity());
-            adResponse.setCategory(adProfile.getCategory());
-            adResponse.setOpeningTime(adProfile.getOpeningTime());
-            adResponse.setOpeningDates(adProfile.getOpeningDates());
-            adResponse.setClosingTime(adProfile.getClosingTime());
-            adResponse.setDescription(adProfile.getDescription());
-            adResponse.setFacebook(adProfile.getFacebook());
-            adResponse.setTwitter(adProfile.getTwitter());
-            adResponse.setExperience(adProfile.getExperience());
-            adResponse.setProfessionals(adProfile.getProfessionals());
-            adResponse.setMap(adProfile.getMap());
-            adResponse.setView(adProfile.getView());
-            adResponse.setCoverImage1(adProfile.getCoverImage1());
-            adResponse.setCoverImage2(adProfile.getCoverImage2());
-            adResponse.setCoverImage3(adProfile.getCoverImage3());
-            adResponse.setCoverImage4(adProfile.getCoverImage4());
-            adResponse.setCreatedDate(adProfile.getCreatedDate());
+            if (adProfile.getActive() == 1) {
+                adResponse.setId(adProfile.getId());
+                adResponse.setVendor(adProfile.getVendor().getEmail());
+                adResponse.setTitle(adProfile.getTitle());
+                adResponse.setType(adProfile.getType());
+                adResponse.setCity(adProfile.getCity());
+                adResponse.setCategory(adProfile.getCategory());
+                adResponse.setOpeningTime(adProfile.getOpeningTime());
+                adResponse.setOpeningDates(adProfile.getOpeningDates());
+                adResponse.setClosingTime(adProfile.getClosingTime());
+                adResponse.setDescription(adProfile.getDescription());
+                adResponse.setFacebook(adProfile.getFacebook());
+                adResponse.setTwitter(adProfile.getTwitter());
+                adResponse.setExperience(adProfile.getExperience());
+                adResponse.setProfessionals(adProfile.getProfessionals());
+                adResponse.setMap(adProfile.getMap());
+                adResponse.setView(adProfile.getView());
+                adResponse.setCoverImage1(adProfile.getCoverImage1());
+                adResponse.setCoverImage2(adProfile.getCoverImage2());
+                adResponse.setCoverImage3(adProfile.getCoverImage3());
+                adResponse.setCoverImage4(adProfile.getCoverImage4());
+                adResponse.setCreatedDate(adProfile.getCreatedDate());
 
-            Venodr venodr = new Venodr();
-            venodr.setId(adProfile.getVendor().getId());
-            venodr.setEmail(adProfile.getVendor().getEmail());
-            venodr.setName(adProfile.getVendor().getName());
-            venodr.setLastName(adProfile.getVendor().getLastName());
-            venodr.setPhone(adProfile.getVendor().getPhone());
-            venodr.setDob(adProfile.getVendor().getDob());
-            venodr.setAddress(adProfile.getVendor().getAddress());
-            venodr.setActive(adProfile.getVendor().getActive());
-            venodr.setImage(adProfile.getVendor().getImage());
-            adResponse.setVenodr(venodr);
+                Venodr venodr = new Venodr();
+                venodr.setId(adProfile.getVendor().getId());
+                venodr.setEmail(adProfile.getVendor().getEmail());
+                venodr.setName(adProfile.getVendor().getName());
+                venodr.setLastName(adProfile.getVendor().getLastName());
+                venodr.setPhone(adProfile.getVendor().getPhone());
+                venodr.setDob(adProfile.getVendor().getDob());
+                venodr.setAddress(adProfile.getVendor().getAddress());
+                venodr.setActive(adProfile.getVendor().getActive());
+                venodr.setImage(adProfile.getVendor().getImage());
+                adResponse.setVenodr(venodr);
+            }
         }
         return adResponse;
     }
