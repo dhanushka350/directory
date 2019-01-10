@@ -44,13 +44,14 @@ var VENDOR = {
 
 var AD = {
     saveAd: function () {
+        alert($('#city').val() + $('#category').val());
         var e = {};
         e["id"] = $('#cmb_ads').find(":selected").val();
         e["vendor"] = localStorage.getItem('VENDOR');
         e["title"] = $('#ad_title').val();
         e["type"] = $('#type').val();
         e["city"] = $('#city').val();
-        e["category"] = $('#category').find(":selected").text();
+        e["category"] = $('#category').val();
         e["openingDates"] = $('#opening_days').val();
         e["openingTime"] = $('#opening_time').val();
         e["closingTime"] = $('#closing_time').val();
