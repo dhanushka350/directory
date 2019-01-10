@@ -18,8 +18,6 @@ $('#save').click(function (e) {
         e.preventDefault();
         AD.saveAd();
     }
-
-
 });
 
 $('#cmb_ads').on('change', function () {
