@@ -1,7 +1,4 @@
-// $(function () {
-//     var name = localStorage.getItem('VENDOR');
-//     VENDOR.getDetails(name);
-// });
+
 
 $('#save').click(function (e) {
     e.preventDefault();
@@ -44,7 +41,7 @@ var VENDOR = {
 
 var AD = {
     saveAd: function () {
-        
+
         var e = {};
         e["id"] = $('#cmb_ads').find(":selected").val();
         e["vendor"] = localStorage.getItem('VENDOR');
