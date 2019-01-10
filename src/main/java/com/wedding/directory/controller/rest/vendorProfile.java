@@ -23,7 +23,7 @@ public class vendorProfile {
     @RequestMapping(value = "/view_profile", method = RequestMethod.POST)
     @ResponseBody
     public User viewProfile(@RequestBody String name) {
-
+        System.out.println(name + "===============================");
         return userService.findUserModalByEmail(name);
     }
 

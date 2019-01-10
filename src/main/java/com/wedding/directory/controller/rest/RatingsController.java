@@ -22,7 +22,7 @@ public class RatingsController {
 
     @RequestMapping(value = "/getAll/{adID}", method = RequestMethod.GET)
     public List<RatingsDTO> getRatigsByAdId(@PathVariable int adID) {
-
+        System.err.println(adID+"==========================--------------------");
         return ratingService.getRatigsByAdId(adID);
     }
 

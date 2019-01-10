@@ -48,8 +48,8 @@ var AD = {
         e["id"] = $('#cmb_ads').find(":selected").val();
         e["vendor"] = localStorage.getItem('VENDOR');
         e["title"] = $('#ad_title').val();
-        e["type"] = $('#type').find(":selected").text();
-        e["city"] = $('#city').find(":selected").text();
+        e["type"] = $('#type').val();
+        e["city"] = $('#city').val();
         e["category"] = $('#category').find(":selected").text();
         e["openingDates"] = $('#opening_days').val();
         e["openingTime"] = $('#opening_time').val();
@@ -135,7 +135,7 @@ var AD = {
             .find('option')
             .remove()
             .end()
-            .append('<option value="0">Select Advertisement",')
+            .append('<option value="0">Select Advertisement</option>')
             .val('all');
 
         $.ajax({
@@ -149,10 +149,12 @@ var AD = {
                     swal("No advertisement found.");
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        $('#cmb_ads').append($('"', {
-                            value: data[i].id,
-                            text: data[i].title
-                        }));
+                        alert(data.title);
+
+                        // $('#cmb_ads').append($('"', {
+                        //     value: data[i].id,
+                        //     text: data[i].title
+                        // }));
                     }
                 }
             },

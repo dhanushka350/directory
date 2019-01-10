@@ -43,8 +43,8 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("open_days").innerHTML = data.openingDates;
             document.getElementById("txt_mob").innerHTML = data.venodr.phone;
             document.getElementById("txt_email").innerHTML = data.venodr.email;
-            document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook fb1\"></i> Facebook</a>";
-            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-edge tw1\"></i> Web Site</a>";
+            document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook\"></i> Facebook</a>";
+            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-edge\"></i> Web Site</a>";
 
             document.getElementById("lcation").innerHTML = "<iframe id=\"lcation\"\n" +
                 "                                        src='" + data.map + "' " +
@@ -128,11 +128,13 @@ function getAllAdsByVendor() {
             } else {
                 for (var i = 0; i < data.length; i++) {
 
-                    $('#other_ads').append($('<li class="col-md-4" style="cursor: pointer" onclick="itemView("'+data[i].id+'")">\n' +
+                    $('#other_ads').append($("<div onclick='itemView(" + data[i].id + ")' style='cursor: pointer' >\n" +
+                        '<li class="col-md-4" style="cursor: pointer">\n' +
                         '<div class=\"pg-list-ser-p1\"><img src="' + data[i].coverImage1 + '" alt=\"\"> </div>\n' +
                         '<div class=\"pg-list-ser-p2\">\n' +
                         '<h4>' + data[i].title + '</h4></div>\n' +
-                        '</li>'));
+                        '</li>\n' +
+                        '</div>'));
                 }
             }
         },
@@ -149,15 +151,16 @@ function getAllAdsByVendor() {
 
 function setRatings(param) {
     var avg = 0;
+
     $.ajax({
         url: "/ratings/getAll/" + param,
         dataType: 'json',
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-
             for (var i = 0; i < data.length; i++) {
                 avg += data[i].ratings;
+
                 $('#review_div\n').append($("<li>\n" +
                     "                                        <div class=\"lr-user-wr-img\"><img src=\"/profile/images/users/2.png\" alt=\"\"></div>\n" +
                     "                                        <div class=\"lr-user-wr-con\">\n" +
@@ -173,13 +176,16 @@ function setRatings(param) {
             } else {
                 document.getElementById("raings_count").innerHTML = "<span>" + getRatings(avg, data.length) + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + " reviews</p>";
             }
+
             if ((avg / data.length) < 5) {
-                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
-                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Below Average</div>\n" +
-                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
-                    "                                            <div class=\"lp-ur-all-left-13 lp-ur-all-left-below\"></div>\n" +
+                $('#review_status').append($("<div class='lp-ur-all-left-1'>\n" +
+                    "                                        <div class='lp-ur-all-left-11' style='font-weight: bold;'>Below Average</div>\n" +
+                    "                                        <div class='lp-ur-all-left-12'>\n" +
+                    "                                            <div class='lp-ur-all-left-13 lp-ur-all-left-below'></div>\n" +
                     "                                        </div>\n" +
                     "                                    </div>"));
+
+                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i>"));
 
             } else if ((avg / data.length) > 5 & (avg / data.length) < 10) {
                 $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
@@ -189,6 +195,8 @@ function setRatings(param) {
                     "                                        </div>\n" +
                     "                                    </div>"));
 
+                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i>"));
+
             } else if ((avg / data.length) > 10 & (avg / data.length) < 20) {
                 $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
                     "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Good</div>\n" +
@@ -197,6 +205,8 @@ function setRatings(param) {
                     "                                        </div>\n" +
                     "                                    </div>"));
 
+                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i>"));
+
             } else if ((avg / data.length) > 20) {
                 $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
                     "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Excellent</div>\n" +
@@ -204,6 +214,8 @@ function setRatings(param) {
                     "                                            <div class=\"lp-ur-all-left-13\"></div>\n" +
                     "                                        </div>\n" +
                     "                                    </div>"));
+
+                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i>"));
 
             }
 
@@ -335,6 +347,7 @@ function getPackgeDetails(id) {
 }
 
 function itemView(param) {
+
     localStorage.setItem("selectedAd", param);
     window.open("/home/profileview", "_self");
 }

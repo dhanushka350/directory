@@ -34,6 +34,7 @@ function getCity() {
                     value: data[i],
                     text: data[i]
                 }));
+                alert(data[i]);
             }
         },
     });
@@ -75,7 +76,7 @@ function setFrontPageAdv() {
                         "                        <figure id=\"img-one\" class=\"effect-bubba\"><img src=" + data[i].coverImage1 + " alt=\"wedding venue\"\n" +
                         "                                                          class=\"img-responsive\">\n" +
                         "                            <figcaption>\n" +
-                        "                                <h2>" + data[i].title + "</h2>\n" +
+                        "                                <h2 style='font-weight: bold'>" + data[i].title + "</h2>\n" +
                         "                                <p>" + data[i].city + "</p>\n" +
                         "                                <p class=\"rating\"><i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i\n" +
                         "                                        class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star-o\"></i>\n" +

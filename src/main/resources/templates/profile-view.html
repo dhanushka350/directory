@@ -90,9 +90,7 @@
         <div class="list-pg-upro">
             <h2 id="com-txt">Kevin Jack</h2>
             <h5 id="name-txt">Kevin Jack</h5>
-            <div class="list-rat-ch"><i class="fa fa-star" aria-hidden="true"></i> <i
-                    class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i
-                    class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+            <div class="list-rat-ch" id="ad_rating"></div>
         </div>
     </div>
 </div>
@@ -102,49 +100,22 @@
             <div class="com-padd">
                 <div class="list-pg-lt list-page-com-p">
                     <div class="row">
-                        <div style="padding-right: 0px; padding-left: 8px;" class="col-md-3">
-                            <a class="btn btn-block btn-primary active" data-toggle="tab" href="#home">About us</a>
+                        <div style="padding-right: 10px;" class="col-md-3">
+                            <a class="btn btn-block btn-info active" data-toggle="tab" href="#menu2">gallery</a>
                         </div>
-                        <div style="padding: 0" class="col-md-3">
-                            <a class="btn btn-block btn-success" data-toggle="tab" href="#menu1">Other Services</a>
+                        <div style="padding-right: 18px;" class="col-md-3">
+                            <a class="btn btn-block btn-primary" data-toggle="tab" href="#home">About us</a>
                         </div>
-                        <div style="padding: 0" class="col-md-3">
-                            <a class="btn btn-block btn-info" data-toggle="tab" href="#menu2">gallery</a>
-                        </div>
-                        <div style="padding-left: 0px;padding-right: 8px;" class="col-md-3">
+                        <div style="padding-left: 0px;padding-right: 20px;" class="col-md-3">
                             <a class="btn btn-block btn-warning" data-toggle="tab" href="#menu3">Packages</a>
+                        </div>
+                        <div style="padding: 0px; padding-right: 20px;" class="col-md-3">
+                            <a class="btn btn-block btn-success" data-toggle="tab" href="#menu1">Other Services</a>
                         </div>
                     </div>
 
                     <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <!--LISTING DETAILS: LEFT PART 1-->
-                            <div class="pglist-p1 pglist-bg pglist-p-com" id="ld-abour">
-                                <div class="pglist-p-com-ti">
-                                    <h3 id="txt-compname"><span>About</span></h3></div>
-                                <div class="list-pg-inn-sp">
-
-                                    <p id="txt-desc"></p>
-
-                                </div>
-                            </div>
-                            <!--END LISTING DETAILS: LEFT PART 1-->
-                        </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <!--LISTING DETAILS: LEFT PART 2-->
-                            <div class="pglist-p2 pglist-bg pglist-p-com" id="ld-ser">
-                                <div class="pglist-p-com-ti">
-                                    <h3><span>Other</span> Services</h3></div>
-                                <div class="list-pg-inn-sp">
-                                    <p id="txt-package-name"></p>
-                                    <div id="pack_img" class="row pg-list-ser">
-                                        <ul id="other_ads"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--END LISTING DETAILS: LEFT PART 2-->
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
+                        <div id="menu2" class="tab-pane fade in active">
                             <!--LISTING DETAILS: LEFT PART 3-->
                             <div class="pglist-p3 pglist-bg pglist-p-com" id="ld-gal">
                                 <div class="pglist-p-com-ti">
@@ -182,6 +153,19 @@
                             </div>
                             <!--END LISTING DETAILS: LEFT PART 3-->
                         </div>
+                        <div id="home" class="tab-pane fade in">
+                            <!--LISTING DETAILS: LEFT PART 1-->
+                            <div class="pglist-p1 pglist-bg pglist-p-com" id="ld-abour">
+                                <div class="pglist-p-com-ti">
+                                    <h3 id="txt-compname"><span>About</span></h3></div>
+                                <div class="list-pg-inn-sp">
+
+                                    <p id="txt-desc"></p>
+
+                                </div>
+                            </div>
+                            <!--END LISTING DETAILS: LEFT PART 1-->
+                        </div>
                         <div id="menu3" class="tab-pane fade">
                             <!--LISTING DETAILS: LEFT PART 4-->
                             <div class="pglist-p3 pglist-bg pglist-p-com" id="ld-roo">
@@ -212,6 +196,21 @@
                             </div>
 
                         </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <!--LISTING DETAILS: LEFT PART 2-->
+                            <div class="pglist-p2 pglist-bg pglist-p-com" id="ld-ser">
+                                <div class="pglist-p-com-ti">
+                                    <h3><span>Other</span> Services</h3></div>
+                                <div class="list-pg-inn-sp">
+                                    <p id="txt-package-name"></p>
+                                    <div id="pack_img" class="row pg-list-ser">
+                                        <ul id="other_ads"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END LISTING DETAILS: LEFT PART 2-->
+                        </div>
+
                     </div>
 
                     <div class="pglist-p3 pglist-bg pglist-p-com" id="">
@@ -392,16 +391,8 @@
                                     <li>Opening Days <span id="open_days">10:00pm</span></li>
                                     <li>Mobile <span id="txt_mob">10:00pm</span></li>
                                     <li>E-mail <span id="txt_email">10:00pm</span></li>
-                                    <div class="share-btn">
-                                        <ul>
-                                            <li id="fb"><a href="#"><i class="fa fa-facebook fb1"></i> Facebook</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="share-btn">
-                                        <ul>
-                                            <li id="tw"><a href="#"><i class="fa fa-edge tw1"></i> Web Site</a></li>
-                                        </ul>
-                                    </div>
+                                    <li id="fb"><a href="#"><i class="fa fa-facebook fb1"></i> Facebook</a></li>
+                                    <li id="tw"><a href="#"><i class="fa fa-edge tw1"></i> Web Site</a></li>
                                 </ul>
                             </div>
                         </div>

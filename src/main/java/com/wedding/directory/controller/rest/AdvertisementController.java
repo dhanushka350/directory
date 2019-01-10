@@ -41,7 +41,6 @@ public class AdvertisementController {
     public ADProfile getDetails(@RequestBody String user) {
         User modal = userService.findUserModalByEmail(user);
         ADProfile adProfile = service.getByVendor(modal);
-        System.out.println(user + "===============================================");
         return adProfile;
 
     }
@@ -49,6 +48,7 @@ public class AdvertisementController {
     @RequestMapping(value = "/get/all/advertisement", method = RequestMethod.POST)
     @ResponseBody
     public List<AllAdvertisements> getAllAdsByVendor(@RequestBody String user) {
+        System.out.println(user + "======================================================================================");
         return service.getAllAdsByVendor(user);
     }
 

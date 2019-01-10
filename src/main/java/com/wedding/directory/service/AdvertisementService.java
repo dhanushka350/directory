@@ -230,6 +230,7 @@ public class AdvertisementService {
             advertisement.setPayment_status("free");
             advertisement.setTitle(allByVendorEqual.getTitle());
             advertisement.setType(allByVendorEqual.getType());
+            System.out.println(advertisement.getTitle()+"===========================**************");
             list.add(advertisement);
         }
         return list;
