@@ -5,7 +5,7 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
     <title>Directory! | </title>
 
@@ -76,7 +76,7 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col" role="main" style="height: 100%">
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
@@ -85,12 +85,12 @@
 
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                            </div>
+                            <!--<div class="input-group">-->
+                            <!--<input type="text" class="form-control" placeholder="Search for...">-->
+                            <!--<span class="input-group-btn">-->
+                            <!--<button class="btn btn-default" type="button">Go!</button>-->
+                            <!--</span>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>Personal Information
-                                    <small>All fields are requierd</small>
+                                    <small>All fields are required</small>
                                 </h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -177,28 +177,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top: 8%;">
-                        <div class="col-md-6" style="margin-left: 10%">
-                            <div class="thumbnail">
-                                <div class="image view view-first">
-                                    <img style="width: 100%; display: block;" src="/app/images/media.jpg"
-                                         alt="image" id="main_prof_image"/>
-                                    <div class="mask">
-                                        <p id="main_prof"></p>
-                                        <div class="tools tools-bottom">
-                                            <a href="" id="image_link"><i class="fa fa-link"></i></a>
-                                            <a href="/home/fileStorage"><i class="fa fa-pencil"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="caption" style="text-align: center">
-                                    <button type="button" id="update_image" class="btn btn-success">Update image
-                                    </button>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="profile_img" style="height: 50%;width: 50%;">
+                            <div id="crop-avatar">
+                                <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar"
+                                     title="Change the avatar" id="main_prof_image">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="upload-content">
+                            <div class="single-upload">
+                                <form id="singleUploadForm" name="singleUploadForm">
+                                    <input id="singleFileUploadInput" type="file" name="file" class="file-input"
+                                           required/>
+                                    <br>
+                                    <button type="submit" class="primary submit-btn">Submit</button>
+                                </form>
+                                <div class="upload-response">
+                                    <div id="singleFileUploadError"></div>
+                                    <div id="singleFileUploadSuccess"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -292,6 +302,96 @@
             }
         });
     }
+</script>
+<script>
+    'use strict';
+
+    var singleUploadForm = document.querySelector('#singleUploadForm');
+    var singleFileUploadInput = document.querySelector('#singleFileUploadInput');
+    var singleFileUploadError = document.querySelector('#singleFileUploadError');
+    var singleFileUploadSuccess = document.querySelector('#singleFileUploadSuccess');
+
+    var multipleUploadForm = document.querySelector('#multipleUploadForm');
+    var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
+    var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
+    var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess');
+    var user = localStorage.getItem('VENDOR');
+
+    function uploadSingleFile(file) {
+        var formData = new FormData();
+        formData.append("file", file);
+        formData.append("user", user);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/uploadFile");
+
+        xhr.onload = function () {
+            console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+            if (xhr.status == 200) {
+                singleFileUploadError.style.display = "none";
+                singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>DownloadUrl : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
+                singleFileUploadSuccess.style.display = "block";
+                location.reload(true);
+            } else {
+                singleFileUploadSuccess.style.display = "none";
+                singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+            }
+        }
+
+        xhr.send(formData);
+    }
+
+    function uploadMultipleFiles(files) {
+        var formData = new FormData();
+        for (var index = 0; index < files.length; index++) {
+            formData.append("files", files[index]);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/uploadMultipleFiles");
+
+        xhr.onload = function () {
+            console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+            if (xhr.status == 200) {
+                multipleFileUploadError.style.display = "none";
+                var content = "<p>All Files Uploaded Successfully</p>";
+                for (var i = 0; i < response.length; i++) {
+                    content += "<p>DownloadUrl : <a href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
+                }
+                multipleFileUploadSuccess.innerHTML = content;
+                multipleFileUploadSuccess.style.display = "block";
+            } else {
+                multipleFileUploadSuccess.style.display = "none";
+                multipleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+            }
+        }
+
+        xhr.send(formData);
+    }
+
+
+    singleUploadForm.addEventListener('submit', function (event) {
+        var files = singleFileUploadInput.files;
+        if (files.length === 0) {
+            singleFileUploadError.innerHTML = "Please select a file";
+            singleFileUploadError.style.display = "block";
+        }
+        uploadSingleFile(files[0]);
+        event.preventDefault();
+    }, true);
+
+
+    multipleUploadForm.addEventListener('submit', function (event) {
+        var files = multipleFileUploadInput.files;
+        if (files.length === 0) {
+            multipleFileUploadError.innerHTML = "Please select at least one file";
+            multipleFileUploadError.style.display = "block";
+        }
+        uploadMultipleFiles(files);
+        event.preventDefault();
+    }, true);
+
 </script>
 </body>
 </html>

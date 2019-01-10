@@ -1,3 +1,5 @@
+
+
 $(function () {
     var name = localStorage.getItem('VENDOR');
     VENDOR.getDetails(name);
@@ -10,6 +12,7 @@ $('#update').click(function (n) {
 $('#update_image').click(function (n) {
     window.location.replace("/home/fileStorage");
 });
+
 
 var VENDOR = {
     getDetails: function (name) {

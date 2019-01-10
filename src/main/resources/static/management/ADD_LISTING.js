@@ -44,7 +44,7 @@ var VENDOR = {
 
 var AD = {
     saveAd: function () {
-        alert($('#city').val() + $('#category').val());
+        
         var e = {};
         e["id"] = $('#cmb_ads').find(":selected").val();
         e["vendor"] = localStorage.getItem('VENDOR');
