@@ -266,7 +266,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input class="form-control" id="city"  placeholder="Choose option"/>
+                                            <input class="form-control" id="city" placeholder="Choose option"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -381,8 +381,8 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">360 image</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control"
-                                                   placeholder="Past your iframe code here"
-                                                   id="view">
+                                                   placeholder="upgrade your account to premium"
+                                                   id="view" disabled="disabled">
                                         </div>
                                     </div>
 
@@ -407,8 +407,17 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Cover Images</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <a class="btn btn-success" href="#openModal">Upload
-                                                Covers</a>
+                                            <!--<a class="btn btn-success" href="#openModal">Upload-->
+                                            <!--Covers</a>-->
+                                            <form id="multipleUploadForm" name="multipleUploadForm"
+                                                  style="width: 50%; height: 90%">
+                                                <input id="multipleFileUploadInput" type="file" name="files"
+                                                       class="file-input" multiple required/>
+                                                <br/>
+                                                <button type="button" onclick="multiple(this);" id="multi"
+                                                        class="primary submit-btn">Submit
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>
@@ -416,32 +425,33 @@
                                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                             <button type="button" class="btn btn-primary">Cancel</button>
                                             <button type="reset" class="btn btn-primary">Reset</button>
-                                            <button type="button" id="save" class="btn btn-success">Submit
+                                            <button type="button" id="save" class="btn btn-success" disabled="disabled">
+                                                Submit
                                             </button>
                                         </div>
                                     </div>
 
                                 </form>
-                                <div id="openModal" class="modalbg">
-                                    <div class="dialog">
-                                        <a href="#close" title="Close" class="close">X</a>
-                                        <div class="alert alert-success">
-                                            <ul class="margin-bottom-none padding-left-lg">
-                                                <li style="font-weight: bold">Quick Upload</li>
-                                                <li>Select 4 images for your cover.</li>
-                                            </ul>
-                                        </div>
-                                        <form id="multipleUploadForm" name="multipleUploadForm"
-                                              style="width: 50%; height: 90%">
-                                            <input id="multipleFileUploadInput" type="file" name="files"
-                                                   class="file-input" multiple required/>
-                                            <br/>
-                                            <button type="button" onclick="multiple(this);" id="multi"
-                                                    class="primary submit-btn">Submit
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+                                <!--<div id="openModal" class="modalbg">-->
+                                <!--<div class="dialog">-->
+                                <!--<a href="#close" title="Close" class="close">X</a>-->
+                                <!--<div class="alert alert-success">-->
+                                <!--<ul class="margin-bottom-none padding-left-lg">-->
+                                <!--<li style="font-weight: bold">Quick Upload</li>-->
+                                <!--<li>Select 4 images for your cover.</li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+                                <!--<form id="multipleUploadForm" name="multipleUploadForm"-->
+                                <!--style="width: 50%; height: 90%">-->
+                                <!--<input id="multipleFileUploadInput" type="file" name="files"-->
+                                <!--class="file-input" multiple required/>-->
+                                <!--<br/>-->
+                                <!--<button type="button" onclick="multiple(this);" id="multi"-->
+                                <!--class="primary submit-btn">Submit-->
+                                <!--</button>-->
+                                <!--</form>-->
+                                <!--</div>-->
+                                <!--</div>-->
                             </div>
                         </div>
 
@@ -562,7 +572,7 @@
                 localStorage.setItem('SL2', response[1].fileDownloadUri);
                 localStorage.setItem('SL3', response[2].fileDownloadUri);
                 localStorage.setItem('SL4', response[3].fileDownloadUri);
-
+                $('#save').prop("disabled", false);
                 document.getElementsByClassName("close")[0].click();
             } else {
                 swal("Some Error Occurred", response && response.message, "error");

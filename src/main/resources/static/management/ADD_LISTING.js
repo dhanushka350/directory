@@ -147,12 +147,10 @@ var AD = {
                     swal("No advertisement found.");
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        alert(data.title);
-
-                        // $('#cmb_ads').append($('"', {
-                        //     value: data[i].id,
-                        //     text: data[i].title
-                        // }));
+                        $('#cmb_ads').append($('"', {
+                            value: data[i].id,
+                            text: data[i].title
+                        }));
                     }
                 }
             },

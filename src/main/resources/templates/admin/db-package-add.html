@@ -264,11 +264,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="caption">
-                                                        <a href="#popup1" id="img1" class="img_up"
-                                                           style="font-weight: bold">Add
-                                                            Image</a>
-                                                    </div>
+                                                    <form id="multipleUploadForm1" name="multipleUploadForm1"
+                                                          style="width: 50%; height: 90%">
+                                                        <input id="multipleFileUploadInput1" type="file" name="files"
+                                                               class="file-input" multiple required/>
+                                                        <button type="button" onclick="multiple(this);" id="img1"
+                                                                class="primary submit-btn img_up">Submit
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -330,11 +333,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="caption">
-                                                        <a href="#popup1" id="img2" class="img_up"
-                                                           style="font-weight: bold">Add
-                                                            Image</a>
-                                                    </div>
+                                                    <form id="multipleUploadForm2" name="multipleUploadForm2"
+                                                          style="width: 50%; height: 90%">
+                                                        <input id="multipleFileUploadInput2" type="file" name="files"
+                                                               class="file-input" multiple required/>
+                                                        <button type="button" onclick="multiple(this);" id="img2"
+                                                                class="primary submit-btn img_up">Submit
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -395,11 +401,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="caption">
-                                                        <a href="#popup1" id="img3" class="img_up"
-                                                           style="font-weight: bold">Add
-                                                            Image</a>
-                                                    </div>
+                                                    <form id="multipleUploadForm3" name="multipleUploadForm3"
+                                                          style="width: 50%; height: 90%">
+                                                        <input id="multipleFileUploadInput3" type="file" name="files"
+                                                               class="file-input" multiple required/>
+                                                        <button type="button" onclick="multiple(this);" id="img3"
+                                                                class="primary submit-btn img_up">Submit
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -460,11 +469,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="caption">
-                                                        <a href="#popup1" id="img4" class="img_up"
-                                                           style="font-weight: bold">Add
-                                                            Image</a>
-                                                    </div>
+                                                    <form id="multipleUploadForm4" name="multipleUploadForm4"
+                                                          style="width: 50%; height: 90%">
+                                                        <input id="multipleFileUploadInput4" type="file" name="files"
+                                                               class="file-input" multiple required/>
+                                                        <button type="button" onclick="multiple(this);" id="img4"
+                                                                class="primary submit-btn img_up">Submit
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -525,11 +537,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="caption">
-                                                        <a href="#popup1" id="img5" class="img_up"
-                                                           style="font-weight: bold">Add
-                                                            Image</a>
-                                                    </div>
+                                                    <form id="multipleUploadForm5" name="multipleUploadForm5"
+                                                          style="width: 50%; height: 90%">
+                                                        <input id="multipleFileUploadInput5" type="file" name="files"
+                                                               class="file-input" multiple required/>
+                                                        <button type="button" onclick="multiple(this);" id="img5"
+                                                                class="primary submit-btn img_up">Submit
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -578,7 +593,7 @@
                                             <div class="col-md-3 col-sm-3 col-xs-12">
                                                 <div class="thumbnail">
                                                     <div class="image view view-first">
-                                                        <img style="width: 100%; display: block;"
+                                                        <img style="width: 100%; height: 100%; display: block;"
                                                              src=""
                                                              alt="image" id="s6"/>
                                                         <div class="mask">
@@ -590,11 +605,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="caption">
-                                                        <a href="#popup1" id="img6" class="img_up"
-                                                           style="font-weight: bold">Add
-                                                            Image</a>
-                                                    </div>
+                                                    <form id="multipleUploadForm6" name="multipleUploadForm6"
+                                                          style="width: 50%; height: 90%">
+                                                        <input id="multipleFileUploadInput6" type="file" name="files"
+                                                               class="file-input" multiple required/>
+                                                        <button type="button" onclick="multiple(this);" id="img6"
+                                                                class="primary submit-btn img_up">Submit
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -632,20 +650,6 @@
     </div>
 </div>
 
-<div id="popup1" class="overlay">
-    <div class="popup">
-        <a class="close" href="#" id="finished">&times;</a>
-        <br/>
-        <div class="multiple-upload">
-            <h3>Quick Upload</h3>
-            <form id="multipleUploadForm" name="multipleUploadForm" style="width: 50%; height: 90%">
-                <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required/>
-                <br/>
-                <button type="button" onclick="multiple(this);" id="multi" class="primary submit-btn">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>
 <!-- jQuery -->
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -715,14 +719,19 @@
         });
     }
 </script>
+
 <script>
     'use strict';
 
     // var multipleUploadForm = document.querySelector('#multipleUploadForm');
-    var multipleUploadForm = document.querySelector('#multi');
-    var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
-    var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
-    var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess');
+
+    var multipleFileUploadInput6 = document.querySelector('#multipleFileUploadInput6');
+    var multipleFileUploadInput5 = document.querySelector('#multipleFileUploadInput5');
+    var multipleFileUploadInput4 = document.querySelector('#multipleFileUploadInput4');
+    var multipleFileUploadInput3 = document.querySelector('#multipleFileUploadInput3');
+    var multipleFileUploadInput2 = document.querySelector('#multipleFileUploadInput2');
+    var multipleFileUploadInput1 = document.querySelector('#multipleFileUploadInput1');
+
     var user = localStorage.getItem('VENDOR');
 
 
@@ -778,8 +787,7 @@
             if (uri.length > 5) {
                 $('#s6').attr('src', uri);
                 document.getElementsByClassName("close")[0].click();
-            } else {ke
-
+            } else {
                 $('#s6').attr('src', "/images/package/NoImageFound.jpg.png");
                 document.getElementsByClassName("close")[0].click();
             }
@@ -823,25 +831,31 @@
     }, true);
 
     function multiple(n) {
-        var files = multipleFileUploadInput.files;
+        var files;
+        if (n.id === "img6") {
+            files = multipleFileUploadInput6.files;
+        }
+        if (n.id === "img5") {
+            files = multipleFileUploadInput5.files;
+        }
+        if (n.id === "img4") {
+            files = multipleFileUploadInput4.files;
+        }
+        if (n.id === "img3") {
+            files = multipleFileUploadInput3.files;
+        }
+        if (n.id === "img2") {
+            files = multipleFileUploadInput2.files;
+        }
+        if (n.id === "img1") {
+            files = multipleFileUploadInput1.files;
+        }
         if (files.length === 0) {
-            multipleFileUploadError.innerHTML = "Please select at least one file";
-            multipleFileUploadError.style.display = "block";
+            swal("Please select an image.");
         }
         uploadMultipleFiles(files);
         n.preventDefault();
     }
-
-    multipleUploadForm.addEventListener('submit', function (event) {
-        var files = multipleFileUploadInput.files;
-        if (files.length === 0) {
-            multipleFileUploadError.innerHTML = "Please select at least one file";
-            multipleFileUploadError.style.display = "block";
-        }
-        uploadMultipleFiles(files);
-        event.preventDefault();
-    }, true);
-
 </script>
 </body>
 </html>

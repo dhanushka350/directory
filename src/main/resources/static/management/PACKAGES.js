@@ -62,7 +62,7 @@ var PACKAGE = {
                 data: d,
                 success: function (data, textStatus, jqXHR) {
                     if (data.status) {
-                        swal("Success!", data.message, "success");
+                        swal("Success!", "packages added.");
                         setTimeout(function () {
                             window.location.replace("/admin/all/advertisements");
                         }, 1000);
