@@ -130,11 +130,19 @@ public class AdvertisementService {
     }
 
     public List<String> getAllCity() {
-        return repository.getDistinctByCity();
+        List<String> list = new ArrayList<>();
+        for (City city : cityRepo.findAll()) {
+            list.add(city.getCity());
+        }
+        return list;
     }
 
     public List<String> getAllVenoCat() {
-        return repository.getAllVenoCat();
+        List<String> list = new ArrayList<>();
+        for (Category category : categoryRepo.findAll()) {
+            list.add(category.getCategory());
+        }
+        return list;
     }
 
     /**
