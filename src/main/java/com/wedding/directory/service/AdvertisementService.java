@@ -2,10 +2,14 @@ package com.wedding.directory.service;
 
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
+import com.wedding.directory.modal.advertisement.Category;
+import com.wedding.directory.modal.advertisement.City;
 import com.wedding.directory.modal.advertisement.Packages;
 import com.wedding.directory.payload.*;
 import com.wedding.directory.payload.Package;
 import com.wedding.directory.repository.AdvertisementRepository;
+import com.wedding.directory.repository.CategoryRepo;
+import com.wedding.directory.repository.CityRepo;
 import com.wedding.directory.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +26,14 @@ public class AdvertisementService {
 
     @Autowired
     private AdvertisementRepository repository;
-
     @Autowired
     private UserService userService;
     @Autowired
     private PackageRepository packageRepository;
+    @Autowired
+    private CityRepo cityRepo;
+    @Autowired
+    private CategoryRepo categoryRepo;
 
     public String addListing(ADResponse adResponse) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -44,8 +51,22 @@ public class AdvertisementService {
             update = true;
             System.err.println("updating ad - " + response.getId());
         }
-        response.setCategory(adResponse.getCategory());
-        response.setCity(adResponse.getCity());
+
+        Category category = categoryRepo.getTopByCategoryEquals(adResponse.getCategory());
+        City city = cityRepo.getTopByCityEquals(adResponse.getCity());
+        if (category == null) {
+            category = new Category();
+            category.setCategory(adResponse.getCategory());
+            category = categoryRepo.save(category);
+        }
+        if (city == null) {
+            city = new City();
+            city.setCity(adResponse.getCity());
+            city = cityRepo.save(city);
+        }
+
+        response.setCategory(category);
+        response.setCity(city);
         response.setOpeningDates(adResponse.getOpeningDates());
         response.setOpeningTime(adResponse.getOpeningTime());
         response.setClosingTime(adResponse.getClosingTime());
@@ -134,8 +155,8 @@ public class AdvertisementService {
                 adResponse.setVendor(adProfile.getVendor().getEmail());
                 adResponse.setTitle(adProfile.getTitle());
                 adResponse.setType(adProfile.getType());
-                adResponse.setCity(adProfile.getCity());
-                adResponse.setCategory(adProfile.getCategory());
+                adResponse.setCity(adProfile.getCity().getCity());
+                adResponse.setCategory(adProfile.getCategory().getCategory());
                 adResponse.setOpeningTime(adProfile.getOpeningTime());
                 adResponse.setOpeningDates(adProfile.getOpeningDates());
                 adResponse.setClosingTime(adProfile.getClosingTime());
@@ -183,8 +204,8 @@ public class AdvertisementService {
                 adResponse.setVendor(adProfile.getVendor().getEmail());
                 adResponse.setTitle(adProfile.getTitle());
                 adResponse.setType(adProfile.getType());
-                adResponse.setCity(adProfile.getCity());
-                adResponse.setCategory(adProfile.getCategory());
+                adResponse.setCity(adProfile.getCity().getCity());
+                adResponse.setCategory(adProfile.getCategory().getCategory());
                 adResponse.setOpeningTime(adProfile.getOpeningTime());
                 adResponse.setOpeningDates(adProfile.getOpeningDates());
                 adResponse.setClosingTime(adProfile.getClosingTime());
@@ -200,7 +221,8 @@ public class AdvertisementService {
                 adResponse.setCoverImage3(adProfile.getCoverImage3());
                 adResponse.setCoverImage4(adProfile.getCoverImage4());
                 adResponse.setCreatedDate(adProfile.getCreatedDate());
-
+                adResponse.setReferral(adProfile.getReferral());
+                adResponse.setStatus(adProfile.getActive());
                 Venodr venodr = new Venodr();
                 venodr.setId(adProfile.getVendor().getId());
                 venodr.setEmail(adProfile.getVendor().getEmail());
@@ -230,7 +252,7 @@ public class AdvertisementService {
             advertisement.setPayment_status("free");
             advertisement.setTitle(allByVendorEqual.getTitle());
             advertisement.setType(allByVendorEqual.getType());
-            System.out.println(advertisement.getTitle()+"===========================**************");
+            System.out.println(advertisement.getTitle() + "===========================**************");
             list.add(advertisement);
         }
         return list;
@@ -247,8 +269,8 @@ public class AdvertisementService {
             adResponse.setVendor(adProfile.getVendor().getEmail());
             adResponse.setTitle(adProfile.getTitle());
             adResponse.setType(adProfile.getType());
-            adResponse.setCity(adProfile.getCity());
-            adResponse.setCategory(adProfile.getCategory());
+            adResponse.setCity(adProfile.getCity().getCity());
+            adResponse.setCategory(adProfile.getCategory().getCategory());
             adResponse.setOpeningTime(adProfile.getOpeningTime());
             adResponse.setOpeningDates(adProfile.getOpeningDates());
             adResponse.setClosingTime(adProfile.getClosingTime());
@@ -386,5 +408,24 @@ public class AdvertisementService {
         aPackage.setPackagePrice6(id.getPackages().getPackagePrice6());
 
         return aPackage;
+    }
+
+    public String updateStatus(String id) {
+        String ad = id.split("-")[0];
+        String status = id.split("-")[1];
+        String res = "Try Again Later.";
+        ADProfile byId = repository.getById(Integer.parseInt(ad));
+        if (byId == null) {
+            return "advertisement status update failed";
+        } else {
+            byId.setActive(Integer.parseInt(status));
+            repository.saveAndFlush(byId);
+            if (Integer.parseInt(status) == 0) {
+                res = "Advertisement Deactivated";
+            } else if (Integer.parseInt(status) == 1) {
+                res = "Advertisement Activated";
+            }
+        }
+        return res;
     }
 }

@@ -1,5 +1,6 @@
 var selctedAd;
 
+
 function loadData() {
     selctedAd = localStorage.getItem("selectedAd");
     getDataFromBackend(selctedAd);
@@ -12,6 +13,11 @@ $('#btn_review').click(function (e) {
     e.preventDefault();
 });
 
+
+$('#msubmit').click(function (e) {
+    sentInquiry();
+    e.preventDefault();
+});
 
 let userid = null;
 let ratings = 0;
@@ -350,4 +356,47 @@ function itemView(param) {
 
     localStorage.setItem("selectedAd", param);
     window.open("/home/profileview", "_self");
+}
+
+function sentInquiry() {
+    var e = {};
+    
+    e["name"] = document.getElementById("mname").value;
+    e["mobile"] = document.getElementById("mnumber").value;
+    e["email"] = document.getElementById("memail").value;
+    e["city"] = document.getElementById("mcity").value;
+    e["message"] = document.getElementById("mmessage").value;
+    e["status"] = 0;
+    e["messageid"] = "";
+    e["ad"] = selctedAd;
+    var d = JSON.stringify(e);
+    $.ajax({
+        url: "/control/emails/sent/Inquiry",
+        dataType: 'json',
+        contentType: "application/json",
+        type: 'POST',
+        data: d,
+        success: function (data, textStatus, jqXHR) {
+
+            if ("SUCCESS" === data) {
+                swal("message delivered.");
+                $("#mname").val("");
+                $("#mnumber").val("");
+                $("#memail").val("");
+                $("#mcity").val("");
+                $("#mmessage").val("");
+
+            } else if ("FAILED" === data) {
+                swal(data + "!", "Please try again later.");
+            } else {
+                swal("Oops!", data);
+            }
+            // location.reload(true);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            swal(textStatus, errorThrown);
+        },
+        beforeSend: function (xhr) {
+        }
+    });
 }

@@ -34,7 +34,6 @@ function getCity() {
                     value: data[i],
                     text: data[i]
                 }));
-                alert(data[i]);
             }
         },
     });

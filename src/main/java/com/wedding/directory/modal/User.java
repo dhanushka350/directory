@@ -2,6 +2,7 @@ package com.wedding.directory.modal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wedding.directory.modal.advertisement.ADProfile;
+import com.wedding.directory.modal.messages.InquiryModal;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -62,6 +63,10 @@ public class User {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER)
     private List<ADProfile> ads = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<InquiryModal> messages = new ArrayList<>();
 
 
 }

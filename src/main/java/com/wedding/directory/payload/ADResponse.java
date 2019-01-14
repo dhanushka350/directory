@@ -73,9 +73,29 @@ public class ADResponse {
 
     private String createdDate;
 
+    private String endDate;
+
     private Venodr venodr;
 
     private String referral;
+
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 
     public String getReferral() {
         return referral;

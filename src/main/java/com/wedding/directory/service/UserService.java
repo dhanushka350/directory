@@ -1,7 +1,12 @@
 package com.wedding.directory.service;
 
+import com.wedding.directory.mail.EmailService;
 import com.wedding.directory.modal.Role;
 import com.wedding.directory.modal.User;
+import com.wedding.directory.modal.messages.InquiryModal;
+import com.wedding.directory.payload.EmailContent;
+import com.wedding.directory.payload.Inquiry;
+import com.wedding.directory.repository.InquiryRepo;
 import com.wedding.directory.repository.RoleRepository;
 import com.wedding.directory.repository.UserRepository;
 
@@ -9,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -21,10 +28,15 @@ public class UserService {
     @Qualifier("roleRepository")
     @Autowired
     private RoleRepository roleRepository;
-
+    @Autowired
+    private AdvertisementService advertisementService;
+    @Autowired
+    private InquiryRepo inquiryRepo;
+    @Autowired
+    private EmailService emailService;
 
     public boolean findUserByEmail(String email) {
-        System.out.println(email);
+
         return userRepository.existsByEmail(email);
     }
 
@@ -62,6 +74,33 @@ public class UserService {
                 return "WRONG PASSWORD";
             }
         }
+    }
+
+    public String sentInquiry(Inquiry inquiry) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String vendor = advertisementService.getOneAdvertiesment(inquiry.getAd() + "").getVendor();
+        User user = userRepository.findByEmail(vendor);
+        InquiryModal inquiryModal = new InquiryModal();
+        inquiryModal.setCity(inquiry.getCity());
+        inquiryModal.setDate(dtf.format(now));
+        inquiryModal.setEmail(inquiry.getEmail());
+        inquiryModal.setMobile(inquiry.getMobile());
+        inquiryModal.setName(inquiry.getName());
+        inquiryModal.setStatus(inquiry.getStatus());
+        inquiryModal.setMessage(inquiry.getMessage());
+        inquiryModal.setUser(user);
+        InquiryModal save = inquiryRepo.save(inquiryModal);
+        if (save != null) {
+            EmailContent content = new EmailContent();
+            content.setTo(user.getEmail());
+            content.setFrom("zeebo directory");
+            content.setSubject("New Message");
+            content.setMessage("you have new message from " + inquiry.getName() + ".");
+            emailService.sendEmail(content);
+            return "SUCCESS";
+        }
+        return "FAILED";
     }
 
 }

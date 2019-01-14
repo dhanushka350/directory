@@ -48,7 +48,6 @@ public class AdvertisementController {
     @RequestMapping(value = "/get/all/advertisement", method = RequestMethod.POST)
     @ResponseBody
     public List<AllAdvertisements> getAllAdsByVendor(@RequestBody String user) {
-        System.out.println(user + "======================================================================================");
         return service.getAllAdsByVendor(user);
     }
 
@@ -69,6 +68,13 @@ public class AdvertisementController {
     @ResponseBody
     public ADResponse viewAdvertisement(@RequestBody int id) {
         return service.getOneAdvertiesment(id + "");
+    }
+
+    @RequestMapping(value = "/update_ad_status{addID}", method = RequestMethod.GET)
+    @ResponseBody
+    public String updateStatus(@PathVariable String addID) {
+
+        return service.updateStatus(addID);
     }
 
 

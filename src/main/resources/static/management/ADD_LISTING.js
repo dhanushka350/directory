@@ -1,5 +1,3 @@
-
-
 $('#save').click(function (e) {
     e.preventDefault();
     AD.saveAd();
@@ -129,6 +127,7 @@ var AD = {
     },
     getAllAds: function () {
         var name = localStorage.getItem('VENDOR');
+        var options = '';
         $('#cmb_ads')
             .find('option')
             .remove()
@@ -147,10 +146,7 @@ var AD = {
                     swal("No advertisement found.");
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        $('#cmb_ads').append($('"', {
-                            value: data[i].id,
-                            text: data[i].title
-                        }));
+                        $('#cmb_ads').append('<option value="' + data[i].id + '">' + data[i].title + '</option>');
                     }
                 }
             },
@@ -195,147 +191,59 @@ var AD = {
 
             }
         });
+    },
+    CityList: function () {
+        var options = '';
+        $.ajax({
+            url: "/staff/get/city/list",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'GET',
+            success: function (data, textStatus, jqXHR) {
+                if (data.length === 0) {
+                    swal("advertisement areas not found.");
+                } else {
+                    for (var i = 0; i < data.length; i++) {
+                        options += '<option value="' + data[i].city + '" />';
+                        document.getElementById('citylist').innerHTML = options;
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                swal(textStatus);
+            },
+            beforeSend: function (xhr) {
+
+            },
+
+        });
+    },
+    CategoryList: function () {
+        var options = '';
+        $.ajax({
+            url: "/staff/get/category/list",
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'GET',
+            success: function (data, textStatus, jqXHR) {
+                if (data.length === 0) {
+                    swal("advertisement category list not found.");
+                } else {
+                    for (var i = 0; i < data.length; i++) {
+                        options += '<option value="' + data[i].category + '" />';
+                        document.getElementById('catelist').innerHTML = options;
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                swal(textStatus);
+            },
+            beforeSend: function (xhr) {
+
+            },
+
+        });
     }
 }
 
-var availableTags = [
-    "Nugegoda",
-    "Colombo 6",
-    "Kottawa",
-    "Dehiwala",
-    "Piliyandala",
-    "Galle",
-    "Ambalangoda",
-    "Elpitiya",
-    "Hikkaduwa",
-    "Baddegama",
-    "Kandy",
-    "Katugastota",
-    "Gampola",
-    "Peradeniya",
-    "Kundasale",
-    "Akkarepattu",
-    "Ampara",
-    "Kalmunai",
-    "Sainthamaruthu",
-    "Anuradhapura",
-    "Kekirawa",
-    "Tambuttegama",
-    "Medawachchiya",
-    "Eppawala",
-    "Badulla",
-    "Bandarawela",
-    "Welimada",
-    "Mahiyanganaya",
-    "Ella",
-    "Batticaloa",
-    "Gampaha",
-    "Negombo",
-    "Kadawatha",
-    "Kiribathgoda",
-    "Kelaniya",
-    "Tangalla",
-    "Beliatta",
-    "Ambalantota",
-    "Tissamaharama",
-    "Hambantota",
-    "Jaffna",
-    "Chavakachcheri",
-    "Nallur",
-    "Panadura",
-    "Horana",
-    "Kalutara",
-    "Bandaragama",
-    "Matugama",
-    "Kegalle",
-    "Mawanella",
-    "Warakapola",
-    "Ruwanwella",
-    "Rambukkana",
-    "Kilinochchi",
-    "Kurunegala",
-    "Kuliyapitiya",
-    "Pannala",
-    "Narammala",
-    "Wariyapola",
-    "Mannar",
-    "Matale",
-    "Dambulla",
-    "Galewela",
-    "Ukuwela",
-    "Sigiriya",
-    "Matara",
-    "Akuressa",
-    "Weligama",
-    "Hakmana",
-    "Dikwella",
-    "Moneragala",
-    "Wellawaya",
-    "Buttala",
-    "Kataragama",
-    "Bibile",
-    "Mullativu",
-    "Nuwara Eliya",
-    "Hatton",
-    "Ginigathena",
-    "Madulla",
-    "Polonnaruwa",
-    "Hingurakgoda",
-    "Kaduruwela",
-    "Medirigiriya",
-    "Chilaw",
-    "Wennappuwa",
-    "Puttalam",
-    "Marawila",
-    "Nattandiya",
-    "Ratnapura",
-    "Embilipitiya",
-    "Balangoda",
-    "Pelmadulla",
-    "Eheliyagoda",
-    "Trincomalee",
-    "Kinniya",
-    "Vavuniya"
-];
-$("#city").autocomplete({
-    lookup: availableTags
-});
-var cato = [
-    "DJ",
-    "Accessories & Fancy Items",
-    "Ashtaka & Jayamangala Gatha",
-    "Astrologers",
-    "Balloons",
-    "Bands",
-    "Beauticians & Hair Dressers",
-    "Jewellery - Other",
-    "Bridal Wear",
-    "Cake Structures",
-    "Car Hire & Limousines",
-    "Caterers",
-    "Chocolates",
-    "Cosmetic Products",
-    "Dancing Groups",
-    "Designing & Sewing",
-    "Event Management Companies",
-    "Flowers",
-    "Grooms' Wear",
-    "Hiring Tents & Chairs",
-    "Honeymoon & Tour Packages",
-    "Hotels",
-    "Marriage Registrars",
-    "Photo Locations",
-    "Photographers",
-    "Poruwa Suppliers",
-    "Salons",
-    "Settee Backs & Oil Lamps",
-    "Shoes",
-    "Travel Agents",
-    "Wedding Cake Boxes",
-    "Wedding Cakes",
-    "Wedding Invitations",
-    "Wedding Planners",
-];
-$("#category").autocomplete({
-    lookup: cato
-});
+

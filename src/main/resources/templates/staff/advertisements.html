@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ZEEBO|STAFF</title>
+    <link rel="stylesheet" type="text/css" href="/semantic-ui/dist/semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="/semantic-ui/dist/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        $.getJSON('https://json.geoiplookup.io/api?callback=?', function (data) {
+            console.log(JSON.stringify(data, null, 2));
+            $("#ip").text(JSON.stringify(data.ip, null, 2));
+        });
+
+        function logout() {
+            localStorage.removeItem('VENDOR');
+            location.replace("/");
+        }
+    </script>
+</head>
+<body onload="ADVERTISMENTS.AllList();">
+<div class="ui top fixed menu" style="background-color: #0e8c8c; height: 7%">
+    <div class="left menu">
+        <div class="item">
+            <div class="smail ui icon input">
+                <a class="item" style="font-weight: bold; font-size: medium; color: white">
+                    <i class="university icon"></i>
+                    Zeebo(Pvt) Ltd. || STAFF ACCESS - IP:<span id="ip"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="right menu">
+        <div class="item">
+            <div class="smail ui left icon input">
+                <i class="search icon"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+        <a class="smail ui item">
+            <div class="ui animated button" tabindex="0" onclick="logout();">
+                <div class="visible content">LOGOUT</div>
+                <div class="hidden content">
+                    <i class="sign out alternate icon"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="ui bottom attached segment  pushable">
+    <div class="ui visible left vertical sidebar menu">
+        <a class="item" style="font-weight: bold; margin-top: 20%" href="/system/admin/home">
+            <i class="home icon" style="font-weight: bold"></i>
+            Home
+        </a>
+        <div class="ui fitted divider"></div>
+
+        <a class="item" style="font-weight: bold;">
+            <i class="envelope icon"></i>
+            Inbox
+        </a>
+
+        <div class="ui fitted divider"></div>
+        <a class="item" style="color: teal;font-weight: bold;" href="/system/admin/service/advertisements">
+            <i class="lightbulb outline icon"></i>
+            Advertisements
+        </a>
+        <div class="ui fitted divider"></div>
+
+        <a class="item" style="font-weight: bold;" href="/system/admin/service/areas">
+            <i class="globe icon"></i>
+            Service Areas
+        </a>
+        <div class="ui fitted divider"></div>
+
+        <a class="item" style="font-weight: bold;" href="/system/admin/service/category">
+            <i class="file alternate icon"></i>
+            AD Categories
+        </a>
+        <div class="ui fitted divider"></div>
+
+        <a class="item" style="font-weight: bold;">
+            <i class="id card icon"></i>
+            Vendors
+        </a>
+        <div class="ui fitted divider"></div>
+
+        <a class="item" style="font-weight: bold;">
+            <i class="chart bar outline icon"></i>
+            Sales
+        </a>
+        <div class="ui fitted divider"></div>
+    </div>
+    <div class="pusher" style="margin-right: 20%; margin-left: 2%;  margin-top: 5%">
+        <div class="ui grid">
+            <div class="four column row">
+                <div class="left floated column">
+                    <h4 class="ui header">Advertisements</h4>
+                </div>
+                <div class="right floated column">
+                    <div class="ui right floated pagination menu">
+                        <a onclick="setPage(this.text)" class="icon item button">
+                            <i class="left chevron icon"></i> Back
+                        </a>
+
+                        <a onclick="setPage(this.text)" class="icon item button" style="margin-left: 1%">
+                            Next <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sixteen column row">
+            <table class="ui grey very compact table" id="tbl_ads">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Vendor</th>
+                    <th>Type</th>
+                    <th>City</th>
+                    <th>Created Date</th>
+                    <th>End Date</th>
+                    <th>Referral Code</th>
+                    <th>Status</th>
+                    <th style="text-align: center">View</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/management/staff/ALL_ADVERTISEMENTS.js"></script>
+</body>
+</html>

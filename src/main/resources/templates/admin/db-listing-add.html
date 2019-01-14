@@ -192,7 +192,7 @@
     </script>
 </head>
 
-<body class="nav-md" onload="VENDOR.getDetails();profileImage();AD.getAllAds();">
+<body class="nav-md" onload="VENDOR.getDetails();profileImage();AD.getAllAds(); AD.CityList();AD.CategoryList();">
 <div class="se-pre-con"></div>
 <div class="container body">
     <div class="main_container">
@@ -266,15 +266,19 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input class="form-control" id="city" placeholder="Choose option"/>
+                                            <input class="form-control" list="citylist" id="city" placeholder="Choose city"/>
                                         </div>
                                     </div>
+                                    <datalist id="citylist"></datalist>
+
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input class="form-control" id="category" placeholder="Choose option">
+                                            <input class="form-control" id="category" list="catelist" placeholder="Choose category">
                                         </div>
                                     </div>
+                                    <datalist id="catelist"></datalist>
+
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Opening Dates</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">

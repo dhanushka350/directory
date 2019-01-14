@@ -29,11 +29,15 @@ public class ADProfile {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "city")
-    private String city;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "city", nullable = false)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private City city;
 
-    @Column(name = "category")
-    private String category;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category", nullable = false)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private Category category;
 
     @Column(name = "opening_days")
     private String openingDates;
@@ -101,6 +105,22 @@ public class ADProfile {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "adProfile", fetch = FetchType.LAZY)
     private List<Ratings> rating = new ArrayList<>();
 
+    public City getCity() {
+        return city;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     public int getActive() {
         return active;
     }
@@ -147,22 +167,6 @@ public class ADProfile {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getOpeningDates() {
