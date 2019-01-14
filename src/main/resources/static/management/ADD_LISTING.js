@@ -1,7 +1,18 @@
 $('#save').click(function (e) {
-    e.preventDefault();
-    AD.saveAd();
 
+    var area = document.getElementById("desc");
+    var message = document.getElementById("message");
+    var maxLength = 1000;
+    if (area.value.length > maxLength) {
+        message.style.display = 'block';
+        area.style.borderColor = "red";
+        area.focus();
+    } else {
+        area.style.borderColor = "#ccc";
+        message.style.display = 'none';
+        e.preventDefault();
+        AD.saveAd();
+    }
 });
 
 $('#cmb_ads').on('change', function () {

@@ -7,8 +7,91 @@ $(document).ready(function () {
 });
 
 $('#save').click(function (e) {
-    e.preventDefault();
-    PACKAGE.save();
+    var resp = false;
+    var desc1 = document.getElementById("pdesc1");
+    var message1 = document.getElementById("message1");
+    var maxLength = 1000;
+    if (desc1.value.length > maxLength) {
+        message1.style.display = 'block';
+        desc1.style.borderColor = "red";
+        desc1.focus();
+        resp = false;
+    } else {
+        desc1.style.borderColor = "#ccc";
+        message1.style.display = 'none';
+        resp = true;
+    }
+    var resp2 = false;
+    var desc2 = document.getElementById("pdesc2");
+    var message2 = document.getElementById("message2");
+    if (desc2.value.length > maxLength) {
+        message2.style.display = 'block';
+        desc2.style.borderColor = "red";
+        desc2.focus();
+        resp2 = false;
+    } else {
+        desc2.style.borderColor = "#ccc";
+        message2.style.display = 'none';
+        resp2 = true;
+    }
+    var resp3 = false;
+    var desc3 = document.getElementById("pdesc3");
+    var message3 = document.getElementById("message3");
+    if (desc3.value.length > maxLength) {
+        message3.style.display = 'block';
+        desc3.style.borderColor = "red";
+        desc3.focus();
+        resp3 = false;
+    } else {
+        desc3.style.borderColor = "#ccc";
+        message3.style.display = 'none';
+        resp3 = true;
+    }
+    var resp4 = false;
+    var desc4 = document.getElementById("pdesc4");
+    var message4 = document.getElementById("message4");
+    if (desc4.value.length > maxLength) {
+        message4.style.display = 'block';
+        desc4.style.borderColor = "red";
+        desc4.focus();
+        resp4 = false;
+    } else {
+        desc4.style.borderColor = "#ccc";
+        message4.style.display = 'none';
+        resp4 = true;
+    }
+    var resp5 = false;
+    var desc5 = document.getElementById("pdesc5");
+    var message5 = document.getElementById("message5");
+    if (desc5.value.length > maxLength) {
+        message5.style.display = 'block';
+        desc5.style.borderColor = "red";
+        desc5.focus();
+        resp5 = false;
+    } else {
+        desc5.style.borderColor = "#ccc";
+        message5.style.display = 'none';
+        resp5 = true;
+    }
+    var resp6 = false;
+    var desc6 = document.getElementById("pdesc6");
+    var message6 = document.getElementById("message6");
+    if (desc6.value.length > maxLength) {
+        message6.style.display = 'block';
+        desc6.style.borderColor = "red";
+        desc6.focus();
+        resp6 = false;
+    } else {
+        desc6.style.borderColor = "#ccc";
+        message6.style.display = 'none';
+        resp6 = true;
+    }
+    if (resp == true && resp2 == true && resp3 == true && resp4 == true && resp5 == true && resp6 == true) {
+        e.preventDefault();
+        PACKAGE.save();
+    } else {
+    }
+
 
 });
 
