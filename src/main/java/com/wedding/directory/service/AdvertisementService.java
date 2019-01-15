@@ -188,6 +188,9 @@ public class AdvertisementService {
     }
 
     public List<ADResponse> getTopRatedAdvertiesments(String city, String vend) {
+        System.out.println("==========================================");
+        System.out.println(city + " " + vend);
+        System.out.println("==========================================");
         if (vend.equals("Select Vendor Category") && city.equals("Select City")) {
             return setAdResponse(repository.findAll());
         } else if (vend.equals("Select Vendor Category")) {
