@@ -2,6 +2,8 @@ package com.wedding.directory.repository;
 
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
+import com.wedding.directory.modal.advertisement.Category;
+import com.wedding.directory.modal.advertisement.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,23 +27,14 @@ public interface AdvertisementRepository extends JpaRepository<ADProfile, Intege
     @Query(value = "SELECT DISTINCT category FROM advertisement", nativeQuery = true)
     List<String> getAllVenoCat();
 
-    @Query(value = "select * from advertisement where city =?1 LIMIT 17;", nativeQuery = true)
-    List<ADProfile> getLmitedDataBycity(String city);
 
-    @Query(value = "select * from advertisement where city =?1", nativeQuery = true)
-    List<ADProfile> getDataBycity(String city);
+    List<ADProfile> getTop17ByCityEquals(City city);
 
-    @Query(value = "select * from advertisement where category =?1 LIMIT 17;", nativeQuery = true)
-    List<ADProfile> getLmitedDataByVend(String vend);
+    List<ADProfile> getTop17ByCategoryEquals(Category category);
 
-    @Query(value = "select * from advertisement where category =?1", nativeQuery = true)
-    List<ADProfile> getDataByVend(String vend);
+    List<ADProfile> getTop17ByCityEqualsAndCategoryEquals(City city, Category category);
 
-    @Query(value = "select * from advertisement where category =?1  and city=?2 LIMIT 17; ", nativeQuery = true)
-    List<ADProfile> getLmitedData(String vend, String city);
-
-    @Query(value = "select * from advertisement where category =?1  and city=?2 ; ", nativeQuery = true)
-    List<ADProfile> getData(String vend, String city);
+    List<ADProfile> getAllByCityEqualsAndCategoryEquals(City city, Category cate);
 
     List<ADProfile> findAllByVendorEquals(User user);
 }

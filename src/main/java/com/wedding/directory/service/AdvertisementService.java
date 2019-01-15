@@ -191,11 +191,11 @@ public class AdvertisementService {
         if (vend.equals("Select Vendor Category") && city.equals("Select City")) {
             return setAdResponse(repository.findAll());
         } else if (vend.equals("Select Vendor Category")) {
-            return setAdResponse(repository.getLmitedDataBycity(city));
+            return setAdResponse(repository.getTop17ByCityEquals(cityRepo.getTopByCityEquals(city)));
         } else if (city.equals("Select City")) {
-            return setAdResponse(repository.getLmitedDataByVend(vend));
+            return setAdResponse(repository.getTop17ByCategoryEquals(categoryRepo.getTopByCategoryEquals(vend)));
         } else {
-            return setAdResponse(repository.getLmitedData(vend, city));
+            return setAdResponse(repository.getTop17ByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
         }
     }
 
@@ -302,27 +302,44 @@ public class AdvertisementService {
 
 
     public List<ADResponse> getAllAdvertiesmentsByCityAndCat(String city, String vend) {
+        System.err.println(city + vend);
         if (vend.equals("Select Vendor Category") && city.equals("Select City")) {
             System.out.println("===========================");
             System.out.println(1);
             System.out.println("===========================");
-            return setAdResponse(repository.findAll());
+            try {
+                return setAdResponse(repository.findAll());
+            } catch (NullPointerException e) {
+                return null;
+            }
         } else if (vend.equals("Select Vendor Category")) {
             System.out.println("===========================");
             System.out.println(2);
             System.out.println("===========================");
-            return setAdResponse(repository.getDataBycity(city));
+            try {
+                return setAdResponse(cityRepo.getTopByCityEquals(city).getAdProfiles());
+            } catch (NullPointerException e) {
+                return null;
+            }
         } else if (city.equals("Select City")) {
             System.out.println("===========================");
             System.out.println(3);
             System.out.println(vend);
             System.out.println("===========================");
-            return setAdResponse(repository.getDataByVend(vend));
+            try {
+                return setAdResponse(categoryRepo.getTopByCategoryEquals(vend).getAdProfiles());
+            } catch (NullPointerException e) {
+                return null;
+            }
         } else {
             System.out.println("===========================");
             System.out.println(4);
             System.out.println("===========================");
-            return setAdResponse(repository.getData(vend, city));
+            try {
+                return setAdResponse(repository.getAllByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
+            } catch (NullPointerException e) {
+                return null;
+            }
         }
     }
 
