@@ -87,8 +87,11 @@ public class ADProfile {
     @Column(name = "expired_date")
     private String expiredDate;
 
-    @Column(name = "referral")
-    private String referral;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "referral")
+    private User referral;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "packages", nullable = false)
@@ -129,11 +132,11 @@ public class ADProfile {
         this.active = active;
     }
 
-    public String getReferral() {
+    public User getReferral() {
         return referral;
     }
 
-    public void setReferral(String referral) {
+    public void setReferral(User referral) {
         this.referral = referral;
     }
 

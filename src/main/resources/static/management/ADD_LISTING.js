@@ -206,7 +206,7 @@ var AD = {
     CityList: function () {
         var options = '';
         $.ajax({
-            url: "/staff/get/city/list",
+            url: "/advertisement/getAllCities",
             dataType: 'json',
             contentType: "application/json",
             type: 'GET',
@@ -215,24 +215,17 @@ var AD = {
                     swal("advertisement areas not found.");
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        options += '<option value="' + data[i].city + '" />';
+                        options += '<option value="' + data[i] + '" />';
                         document.getElementById('citylist').innerHTML = options;
                     }
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                swal(textStatus);
-            },
-            beforeSend: function (xhr) {
-
-            },
-
         });
     },
     CategoryList: function () {
         var options = '';
         $.ajax({
-            url: "/staff/get/category/list",
+            url: "/advertisement/getAllVendorCat",
             dataType: 'json',
             contentType: "application/json",
             type: 'GET',
@@ -241,18 +234,11 @@ var AD = {
                     swal("advertisement category list not found.");
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        options += '<option value="' + data[i].category + '" />';
+                        options += '<option value="' + data[i] + '" />';
                         document.getElementById('catelist').innerHTML = options;
                     }
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                swal(textStatus);
-            },
-            beforeSend: function (xhr) {
-
-            },
-
         });
     }
 }

@@ -35,7 +35,7 @@ public class vendorProfile {
         email.setAddress(user.getAddress());
         email.setEmail(user.getEmail());
         email.setLastName(user.getLastName());
-        email.setDob(user.getDob());
+        email.setNic(user.getNic());
         email.setName(user.getName());
         email.setPhone(user.getPhone());
         email.setActive(1);

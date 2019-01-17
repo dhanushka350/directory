@@ -84,8 +84,8 @@ public class AdvertisementService {
         response.setCoverImage2(adResponse.getCoverImage2());
         response.setCoverImage3(adResponse.getCoverImage3());
         response.setCoverImage4(adResponse.getCoverImage4());
-        response.setActive(1);
-        response.setReferral(adResponse.getReferral());
+        response.setActive(0);
+        response.setReferral(userService.getByNIC(adResponse.getReferral()));
 
         if (!update) {
             response.setCreatedDate(getDate());
@@ -126,7 +126,7 @@ public class AdvertisementService {
     }
 
     public List<ADResponse> getTopRatedAdvertiesments() {
-        return setAdResponse(repository.getLmitedData());
+        return setAdResponse(repository.getAll17ByActiveEquals(1));
     }
 
     public List<String> getAllCity() {
@@ -232,7 +232,7 @@ public class AdvertisementService {
                 adResponse.setCoverImage3(adProfile.getCoverImage3());
                 adResponse.setCoverImage4(adProfile.getCoverImage4());
                 adResponse.setCreatedDate(adProfile.getCreatedDate());
-                adResponse.setReferral(adProfile.getReferral());
+                adResponse.setReferral(adProfile.getReferral().getNic());
                 adResponse.setStatus(adProfile.getActive());
                 Venodr venodr = new Venodr();
                 venodr.setId(adProfile.getVendor().getId());
@@ -240,7 +240,7 @@ public class AdvertisementService {
                 venodr.setName(adProfile.getVendor().getName());
                 venodr.setLastName(adProfile.getVendor().getLastName());
                 venodr.setPhone(adProfile.getVendor().getPhone());
-                venodr.setDob(adProfile.getVendor().getDob());
+                venodr.setDob(adProfile.getVendor().getNic());
                 venodr.setAddress(adProfile.getVendor().getAddress());
                 venodr.setActive(adProfile.getVendor().getActive());
                 venodr.setImage(adProfile.getVendor().getImage());
@@ -257,13 +257,17 @@ public class AdvertisementService {
         for (ADProfile allByVendorEqual : repository.findAllByVendorEquals(user)) {
             advertisement = new AllAdvertisements();
             advertisement.setId(allByVendorEqual.getId());
-            advertisement.setAd_status("online");
             advertisement.setCreated_date(allByVendorEqual.getCreatedDate());
             advertisement.setExpire_date(allByVendorEqual.getExpiredDate());
             advertisement.setPayment_status("free");
             advertisement.setTitle(allByVendorEqual.getTitle());
             advertisement.setType(allByVendorEqual.getType());
-            System.out.println(advertisement.getTitle() + "===========================**************");
+
+            if (allByVendorEqual.getActive() == 0) {
+                advertisement.setAd_status("offline");
+            } else {
+                advertisement.setAd_status("online");
+            }
             list.add(advertisement);
         }
         return list;

@@ -22,7 +22,7 @@
         }
     </script>
 </head>
-<body onload="getDataFromBackend();">
+<body onload="BROKER.List();getDataFromBackend();">
 <div class="ui top fixed menu" style="background-color: #0e8c8c; height: 7%">
     <div class="left menu">
         <div class="item">
@@ -66,7 +66,7 @@
         </a>
 
         <div class="ui fitted divider"></div>
-        <a class="item" style="color: teal;font-weight: bold;" href="/system/admin/service/advertisements">
+        <a class="item" style="font-weight: bold;" href="/system/admin/service/advertisements">
             <i class="lightbulb outline icon"></i>
             Advertisements
         </a>
@@ -88,7 +88,7 @@
             <i class="id card icon"></i>
             Vendors
         </a>
-        <a class="item" style="font-weight: bold;" href="/system/admin/service/manage/brokers">
+        <a class="item" style="font-weight: bold;color: teal;" href="/system/admin/service/manage/brokers">
             <i class="id card icon"></i>
             Brokers
         </a>
@@ -104,10 +104,7 @@
         <div class="ui grid">
             <div class="four column row">
                 <div class="left floated column">
-                    <h4 class="ui header">Manage Advertisement</h4>
-                </div>
-                <div class="right floated column">
-                    <a class="ui pointing red basic label" id="lbl_vendor"></a>
+                    <h4 class="ui header">Manage Brokers</h4>
                 </div>
             </div>
         </div>
@@ -116,56 +113,52 @@
             <div class="sixteen column row">
 
                 <div class="eight wide column">
-                    <div class="ui teal secondary segment">
+                    <div class="ui teal segment">
                         <div class="ui form mini">
-                            <h5 class="ui header">Advertisement Details</h5>
+                            <h5 class="ui header">Broker Details</h5>
 
                             <div class="inline fields">
                                 <div class="sixteen wide field">
-                                    <label style="width: 30%">Title</label>
-                                    <input id="ad_title" placeholder="Title" type="text" disabled="disabled"
+                                    <label style="width: 30%">NIC</label>
+                                    <input id="br_nic" placeholder="NIC Number" type="text"
                                            style="font-weight: bold;color: teal;text-align: center">
                                 </div>
                             </div>
 
                             <div class="inline fields">
                                 <div class="sixteen wide field">
-                                    <label style="width: 30%">City</label>
-                                    <input id="ad_city" placeholder="City" type="text" disabled="disabled"
+                                    <label style="width: 30%">Name</label>
+                                    <input id="br_name" placeholder="Name" type="text"
                                            style="font-weight: bold;color: teal;text-align: center">
                                 </div>
                             </div>
-
                             <div class="inline fields">
                                 <div class="sixteen wide field">
-                                    <label style="width: 30%">Category</label>
-                                    <input id="ad_cate" placeholder="Category" type="text" disabled="disabled"
+                                    <label style="width: 30%">Mobile</label>
+                                    <input id="br_mobile" placeholder="Mobile" type="text"
                                            style="font-weight: bold;color: teal;text-align: center">
                                 </div>
                             </div>
-
                             <div class="inline fields">
                                 <div class="sixteen wide field">
-                                    <label style="width: 30%">Description</label>
-                                    <textarea id="ad_desc" placeholder="Description"
-                                              style="font-weight: bold; color: teal; height: 5px;"
-                                              disabled="disabled"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="inline fields">
-                                <div class="sixteen wide field">
-                                    <label style="width: 30%">Registered Date</label>
-                                    <input id="ad_createdDate" placeholder="Registered Date" type="text"
-                                           disabled="disabled" style="font-weight: bold;color: teal;text-align: center">
-                                </div>
-                            </div>
-
-                            <div class="inline fields">
-                                <div class="sixteen wide field">
-                                    <label style="width: 30%">Referral Code</label>
-                                    <input id="ad_referel" placeholder="Referral Code" type="text" disabled="disabled"
+                                    <label style="width: 30%">Email</label>
+                                    <input id="br_email" placeholder="Email" type="text"
                                            style="font-weight: bold;color: teal;text-align: center">
+                                </div>
+                            </div>
+                            <div class="inline fields">
+                                <div class="sixteen wide field">
+                                    <label style="width: 30%">Address</label>
+                                    <textarea id="br_address" placeholder="Address"
+                                              style="font-weight: bold; color: teal; height: 5px;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="inline fields">
+                                <div class="sixteen wide field">
+                                    <label style="width: 30%">Referrals</label>
+                                    <input id="br_referrals" placeholder="Referrals" type="text"
+                                           style="font-weight: bold;color: teal;text-align: center" disabled="disabled">
                                 </div>
                             </div>
 
@@ -173,59 +166,49 @@
                                 <div class="sixteen wide field">
                                     <label style="width: 30%">Status</label>
                                     <div class="ui slider checkbox">
-                                        <input id="ad_status" name="newsletter" type="checkbox"
-                                               onclick="setAdStatus();">
+                                        <input id="br_status" name="newsletter" type="checkbox"
+                                               onclick="setActive();">
                                         <label id="lbl_status"></label>
                                     </div>
                                 </div>
                             </div>
-
+                            <button class="fluid ui button teal" id="br_save">SAVE</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="eight wide column">
-                    <div class="ui teal secondary segment">
-                        <div class="ui form mini">
-                            <h5 class="ui header">Vendor Details</h5>
+                    <div class="ui grid">
+                        <div class="four column row">
+                            <div class="right floated column">
+                                <div class="ui right floated pagination menu">
+                                    <a onclick="setPage(this.text)" class="icon item button">
+                                        <i class="left chevron icon"></i> Back
+                                    </a>
 
-                            <div class="inline fields">
-                                <div class="sixteen wide field">
-                                    <label style="width: 30%">Name</label>
-                                    <input id="ven_name" placeholder="Owner Name" type="text" disabled="disabled"
-                                           style="font-weight: bold;color: teal;text-align: center">
-                                </div>
-                            </div>
-
-                            <div class="inline fields">
-                                <div class="sixteen wide field">
-                                    <label style="width: 30%">Contact Number</label>
-                                    <input id="ven_mobile" placeholder="Mobile No" type="number" disabled="disabled"
-                                           style="font-weight: bold;color: teal;text-align: center">
-                                </div>
-                            </div>
-
-                            <div class="inline fields">
-                                <div class="sixteen wide field">
-                                    <label style="width: 30%">Email</label>
-                                    <input id="ven_email" placeholder="Email" type="text" disabled="disabled"
-                                           style="font-weight: bold;color: teal;text-align: center">
-                                </div>
-                            </div>
-
-                            <div class="inline fields">
-                                <div class="sixteen wide field">
-                                    <label style="width: 30%">Address</label>
-                                    <textarea id="ven_address" placeholder="Address"
-                                              style="color: teal;font-weight: bold; height: 5px;"
-                                              disabled="disabled"></textarea>
+                                    <a onclick="setPage(this.text)" class="icon item button" style="margin-left: 2%">
+                                        Next <i class="right chevron icon"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <table class="ui grey very compact table" id="tbl_brokers">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>NIC</th>
+                            <th>Name</th>
+                            <th>Referrals</th>
+                            <th style="text-align: center">View</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
+                        </tbody>
+                    </table>
                     <div class="ui teal secondary segment">
-                        <button class="fluid ui button teal" onclick="guestView();">Guest View</button>
+                        <button class="fluid ui button teal" onclick="notActivated();">PAYMENTS</button>
                     </div>
                 </div>
             </div>
@@ -259,6 +242,6 @@
     </div>
 </div>
 
-<script src="/management/staff/MANAGE_ADVERTISEMENT.js"></script>
+<script src="/management/staff/BROKERS.js"></script>
 </body>
 </html>

@@ -18,8 +18,7 @@ public interface AdvertisementRepository extends JpaRepository<ADProfile, Intege
 
     ADProfile getById(int id);
 
-    @Query(value = "select * from advertisement LIMIT 17; ", nativeQuery = true)
-    List<ADProfile> getLmitedData();
+    List<ADProfile> getAll17ByActiveEquals(int active);
 
     @Query(value = "SELECT DISTINCT city FROM advertisement", nativeQuery = true)
     List<String> getDistinctByCity();

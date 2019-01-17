@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.modal.messages.InquiryModal;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.IndexColumn;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -47,8 +50,8 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "birthday")
-    private String dob;
+    @Column(name = "nic")
+    private String nic;
 
     @Column(name = "active")
     private int active;
@@ -63,6 +66,12 @@ public class User {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER)
     private List<ADProfile> ads = new ArrayList<>();
+
+    @JsonIgnore
+    @Fetch(FetchMode.SELECT)
+    @IndexColumn(name="LIST_INDEX")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "referral", fetch = FetchType.EAGER)
+    private List<ADProfile> referrals = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)

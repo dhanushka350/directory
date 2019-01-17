@@ -42,4 +42,11 @@ public class AdminController {
         modelAndView.setViewName("staff/manage_advertisements.html");
         return modelAndView;
     }
+
+    @RequestMapping(value = {"/service/manage/brokers"}, method = RequestMethod.GET)
+    public ModelAndView brokerPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("staff/Brokers.html");
+        return modelAndView;
+    }
 }

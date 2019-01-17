@@ -1,14 +1,16 @@
 var selctedAd;
-
+var activated = false;
 
 function setAdStatus() {
     var remember = document.getElementById("ad_status");
     if (remember.checked) {
         updateStatus(1);
         document.getElementById("lbl_status").innerHTML = "ACTIVE";
+        this.activated = true;
     } else {
         updateStatus(0);
         document.getElementById("lbl_status").innerHTML = "INACTIVE";
+        this.activated = false;
     }
 }
 
@@ -29,11 +31,12 @@ function updateStatus(status) {
 function getDataFromBackend() {
     selctedAd = localStorage.getItem("selectedAd");
     $.ajax({
-        url: "/advertisement/getOne/" + selctedAd,
+        url: "/staff/getOne/" + selctedAd,
         dataType: 'json',
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
+
             document.getElementById("lbl_vendor").innerText = data.venodr.name + " -||- " + data.title;
             document.getElementById("ad_title").value = data.title;
             document.getElementById("ad_city").value = data.city;
@@ -50,12 +53,15 @@ function getDataFromBackend() {
             if (data.status === 0) {
                 $('#ad_status').prop('checked', false);
                 document.getElementById("lbl_status").innerHTML = "INACTIVE";
+                this.activated = false;
             } else if (data.status === 1) {
                 $('#ad_status').prop('checked', true);
                 document.getElementById("lbl_status").innerHTML = "ACTIVATED";
+                this.activated = true;
             } else {
                 $('#ad_status').prop('checked', false);
                 document.getElementById("lbl_status").innerHTML = "BLOCKED";
+                this.activated = false;
             }
 
         }
@@ -63,6 +69,22 @@ function getDataFromBackend() {
 }
 
 function guestView() {
-    localStorage.setItem("selectedAd", selctedAd);
-    window.open("/home/profileview", "_blank");
+    if (this.activated === true) {
+        localStorage.setItem("selectedAd", selctedAd);
+        window.open("/home/profileview", "_blank");
+    } else {
+        $('.ui.basic.modal')
+            .modal('show')
+        ;
+    }
+}
+
+function activate() {
+    $('#ad_status').prop('checked', true);
+    this.activated = true;
+    setTimeout(function () {
+        setAdStatus();
+        guestView();
+    }, 5000);
+
 }

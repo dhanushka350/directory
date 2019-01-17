@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service("userService")
 public class UserService {
@@ -51,9 +52,36 @@ public class UserService {
     public void saveUser(User user) {
         user.setPassword(user.getPassword());
         user.setActive(1);
-        Role userRole = roleRepository.findByRole("VENDOR");
+        Role userRole = roleRepository.findByRole("VENDOR");// VENDOR
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
+    }
+
+    public String saveBrokers(User user) {
+        System.err.println(user.getNic());
+        User top = userRepository.findTopByNicEquals(user.getNic());
+        if (top != null) {
+            Set<Role> roles = top.getRoles();
+            Role userRole = roleRepository.findByRole("BROKER");// VENDOR / ADMIN
+            roles.add(userRole);
+            User update = userRepository.saveAndFlush(top);
+            if (update != null) {
+                return user.getName() + " got a new role.";
+            } else {
+                return "This nic already registered in our system. \n but we can't add this role now.";
+            }
+        } else {
+            Role userRole = roleRepository.findByRole("BROKER");// VENDOR / ADMIN
+            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            user.setPassword(user.getEmail() + "@directory");
+            user.setLastName("NOT ADDED.");
+            User save = userRepository.save(user);
+            if (save != null) {
+                return "Successfully Added.";
+            } else {
+                return "Failed.";
+            }
+        }
     }
 
     public void updateVendorProfile(User user) {
@@ -69,6 +97,13 @@ public class UserService {
                 return "home/profile/pending";
             }
             if (byEmail.getPassword().equalsIgnoreCase(user.getPassword())) {
+                for (Role role : byEmail.getRoles()) {
+                    System.err.println(role.getRole());
+                    if (role.getRole().equalsIgnoreCase("ADMIN")) {
+                        return "system/admin/home";
+                    }
+                }
+                ;
                 return "admin/home";
             } else {
                 return "WRONG PASSWORD";
@@ -101,6 +136,10 @@ public class UserService {
             return "SUCCESS";
         }
         return "FAILED";
+    }
+
+    public User getByNIC(String nic) {
+        return userRepository.findTopByNicEquals(nic);
     }
 
 }

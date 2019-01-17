@@ -1,9 +1,11 @@
-
-
 function setAd(row) {
     var id = $(row).closest("tr").find('td:eq(0)').text();
     localStorage.setItem("selectedAd", id);
     location.replace("/home/profileview");
+}
+
+function notActivated() {
+    swal("Advertisement Not Activated Yet.");
 }
 
 var VENDOR_AD_LIST = {
@@ -25,7 +27,8 @@ var VENDOR_AD_LIST = {
                                </tr>');
                 } else {
                     for (var i = 0; i < data.length; i++) {
-                        $('#ad_list').append('<tr>\n\
+                        if (data[i].ad_status === "offline") {
+                            $('#ad_list').append('<tr>\n\
                                     <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].id + '</td>\n\
                                     <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].type + '</td>\n\
                                     <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].created_date + '</td>\n\
@@ -33,9 +36,20 @@ var VENDOR_AD_LIST = {
                                     <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].title + '</td>\n\
                                     <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].payment_status + '</td>\n\
                                     <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].ad_status + '</td>\n\
-                                    <td style="font-size: x-small;font-weight: bold;text-align: left" class=" last"><a href="#" onclick="setAd(this);">View</a>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left" class=" last"><a href="#" onclick="notActivated();">View</a></td>\n\
                                     </tr>');
-
+                        } else {
+                            $('#ad_list').append('<tr>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].id + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].type + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].created_date + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].expire_date + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].title + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].payment_status + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left">' + data[i].ad_status + '</td>\n\
+                                    <td style="font-size: x-small;font-weight: bold;text-align: left" class=" last"><a href="#" onclick="setAd(this);">View</a></td>\n\
+                                    </tr>');
+                        }
                     }
                 }
             },
