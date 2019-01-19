@@ -87,8 +87,33 @@
 <!--TOP SEARCH SECTION-->
 <div th:replace="fragments/header :: header"/>
 <div class="pglist-p3 pglist-bg pglist-p-com">
-    <div id="image-comp" class="pg-list-user-pro">
-    </div>
+    <!--<div id="image-comp" class="pg-list-user-pro">-->
+    <!--</div>-->
+    <!--<div class="list-pg-inn-sp">-->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div id="slider-img-1" class="item active"><img
+                        src="/profile/images/slider/1.jpg"
+                        alt="Los Angeles">
+                </div>
+                <div id="slider-img-2" class="item"><img src="/profile/images/slider/2.jpg"
+                                                         alt="Chicago"></div>
+                <div id="slider-img-3" class="item"><img src="/profile/images/slider/3.jpg"
+                                                         alt="New York"></div>
+                <div id="slider-img-4" class="item"><img src="/profile/images/slider/4.jpg"
+                                                         alt="New York"></div>
+            </div>
+
+        </div>
+    <!--</div>-->
     <div style="text-align: center; padding-top: 4%;" class="list-pg-inn-sp">
         <div class="list-pg-upro">
             <h2 id="com-txt">Kevin Jack</h2>
