@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.modal.messages.InquiryModal;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.IndexColumn;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;

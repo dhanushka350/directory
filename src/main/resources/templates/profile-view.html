@@ -14,13 +14,20 @@
     <link href="../../../../fonts.googleapis.com/css4ab1.css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
     <!-- FONTAWESOME ICONS -->
     <link rel="stylesheet" href="/profile/css/font-awesome.min.css">
+    <link href='../../../fonts.googleapis.com/css8ee5.css?family=Montserrat:400,700|Roboto:400,400italic,500,500italic,700,700italic,300italic,300'
+          rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- ALL CSS FILES -->
     <link href="/profile/css/materialize.css" rel="stylesheet">
     <link href="/profile/css/style.css" rel="stylesheet">
     <link href="/profile/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
     <link href="/profile/css/responsive.css" rel="stylesheet">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.transitions.css">
     <!--top header -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
@@ -66,7 +73,8 @@
             margin-top: 0 !important;
             margin-left: 0 !important;
         }
-        .com-padd{
+
+        .com-padd {
             padding: 49px 0px;
         }
 
@@ -86,42 +94,59 @@
 <div class="se-pre-con"></div>
 <!--TOP SEARCH SECTION-->
 <div th:replace="fragments/header :: header"/>
-<div class="pglist-p3 pglist-bg pglist-p-com">
-    <!--<div id="image-comp" class="pg-list-user-pro">-->
-    <!--</div>-->
-    <!--<div class="list-pg-inn-sp">-->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div id="slider-img-1" class="item active"><img
-                        src="/profile/images/slider/1.jpg"
-                        alt="Los Angeles">
-                </div>
-                <div id="slider-img-2" class="item"><img src="/profile/images/slider/2.jpg"
-                                                         alt="Chicago"></div>
-                <div id="slider-img-3" class="item"><img src="/profile/images/slider/3.jpg"
-                                                         alt="New York"></div>
-                <div id="slider-img-4" class="item"><img src="/profile/images/slider/4.jpg"
-                                                         alt="New York"></div>
-            </div>
 
+<div class="slider-bg">
+    <!-- slider start-->
+    <div id="slider" class="owl-carousel owl-theme slider">
+        <div class="item"><img src="images/hero-image-3.jpg" alt="Wedding couple just married"></div>
+        <div class="item"><img src="images/hero-image-2.jpg" alt="Wedding couple just married"></div>
+        <div class="item"><img src="images/hero-image.jpg" alt="Wedding couple just married"></div>
+    </div>
+    <div class="find-section">
+        <!-- Find search section-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 finder-block">
+                    <div class="finder-caption">
+                        <h1>Find your perfect Wedding Vendor</h1>
+                        <p>Over <strong>1200+ Wedding Vendor </strong>for you special date &amp; Find the perfect venue
+                            &amp; save you date.</p>
+                    </div>
+                    <div class="finderform">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <!--<input type="text" class="form-control" placeholder="Select City" id="cmb-cate"/>-->
+                                    <select id="cmb-cate" class="form-control">
+                                        <option>Select Vendor Category</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <!--<input type="text" class="form-control" placeholder="Select City" id="cmb-city"/>-->
+                                    <select id="cmb-city" class="form-control">
+                                        <option>Select City</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    <!--</div>-->
+    </div>
+    <!-- /.Find search section-->
+</div>
+<div class="pglist-p3 pglist-bg pglist-p-com">
     <div style="text-align: center; padding-top: 4%;" class="list-pg-inn-sp">
         <div class="list-pg-upro">
-            <h2 id="com-txt">Kevin Jack</h2>
-            <h5 id="name-txt">Kevin Jack</h5>
+            <h2 id="com-txt">Something went wrong</h2>
+            <h5 id="name-txt">Something went wrong</h5>
             <div class="list-rat-ch" id="ad_rating"></div>
         </div>
     </div>
 </div>
+<!--</div>-->
+
 <section class="list-pg-bg">
     <div class="container">
         <div class="row">
@@ -138,7 +163,8 @@
                             <a class="btn btn-block btn-warning" data-toggle="tab" href="#menu3">Packages</a>
                         </div>
                         <div style="padding: 0px; padding-right: 20px;" class="col-md-3">
-                            <a class="btn btn-block btn-success" data-toggle="tab" href="#menu1">Other Services</a>
+                            <a class="btn btn-block btn-success" data-toggle="tab" href="#menu1">Other
+                                Services</a>
                         </div>
                     </div>
 
@@ -163,19 +189,25 @@
                                                     src="/profile/images/slider/1.jpg"
                                                     alt="Los Angeles">
                                             </div>
-                                            <div id="slider-img-2" class="item"><img src="/profile/images/slider/2.jpg"
-                                                                                     alt="Chicago"></div>
-                                            <div id="slider-img-3" class="item"><img src="/profile/images/slider/3.jpg"
-                                                                                     alt="New York"></div>
-                                            <div id="slider-img-4" class="item"><img src="/profile/images/slider/4.jpg"
-                                                                                     alt="New York"></div>
+                                            <div id="slider-img-2" class="item"><img
+                                                    src="/profile/images/slider/2.jpg"
+                                                    alt="Chicago"></div>
+                                            <div id="slider-img-3" class="item"><img
+                                                    src="/profile/images/slider/3.jpg"
+                                                    alt="New York"></div>
+                                            <div id="slider-img-4" class="item"><img
+                                                    src="/profile/images/slider/4.jpg"
+                                                    alt="New York"></div>
                                         </div>
                                         <!-- Left and right controls -->
-                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i
-                                                class="fa fa-angle-left list-slider-nav" aria-hidden="true"></i> </a>
-                                        <a class="right carousel-control" href="#myCarousel" data-slide="next"> <i
-                                                class="fa fa-angle-right list-slider-nav list-slider-nav-rp"
-                                                aria-hidden="true"></i> </a>
+                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                            <i
+                                                    class="fa fa-angle-left list-slider-nav"
+                                                    aria-hidden="true"></i> </a>
+                                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                            <i
+                                                    class="fa fa-angle-right list-slider-nav list-slider-nav-rp"
+                                                    aria-hidden="true"></i> </a>
                                     </div>
                                 </div>
                             </div>
@@ -200,23 +232,29 @@
                                 <div class="pglist-p-com-ti">
                                     <h3><span>Package</span> Details</h3></div>
                                 <div class="list-pg-inn-sp">
-                                    <div id="pack_1" class="home-list-pop list-spac list-spac-1 list-room-mar-o">
+                                    <div id="pack_1"
+                                         class="home-list-pop list-spac list-spac-1 list-room-mar-o">
 
                                     </div>
-                                    <div id="pack_2" class="home-list-pop list-spac list-spac-1 list-room-mar-o">
+                                    <div id="pack_2"
+                                         class="home-list-pop list-spac list-spac-1 list-room-mar-o">
                                         <!--LISTINGS IMAGE-->
 
                                     </div>
-                                    <div id="pack_3" class="home-list-pop list-spac list-spac-1 list-room-mar-o">
+                                    <div id="pack_3"
+                                         class="home-list-pop list-spac list-spac-1 list-room-mar-o">
 
                                     </div>
-                                    <div id="pack_4" class="home-list-pop list-spac list-spac-1 list-room-mar-o">
+                                    <div id="pack_4"
+                                         class="home-list-pop list-spac list-spac-1 list-room-mar-o">
 
                                     </div>
-                                    <div id="pack_5" class="home-list-pop list-spac list-spac-1 list-room-mar-o">
+                                    <div id="pack_5"
+                                         class="home-list-pop list-spac list-spac-1 list-room-mar-o">
 
                                     </div>
-                                    <div id="pack_6" class="home-list-pop list-spac list-spac-1 list-room-mar-o">
+                                    <div id="pack_6"
+                                         class="home-list-pop list-spac list-spac-1 list-room-mar-o">
 
                                     </div>
 
@@ -249,7 +287,8 @@
                             <div class="list-pg-write-rev">
                                 <form class="col" style="width: 100%">
                                     <p id="inq-text">Send Enquiry to Avora Digital Imaging (Pvt) Ltd
-                                        Fill in your details and Avora Digital Imaging (Pvt) Ltd will get back to you
+                                        Fill in your details and Avora Digital Imaging (Pvt) Ltd will get back
+                                        to you
                                         shortly.</p>
 
                                     <div class="row">
@@ -280,7 +319,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <button class="waves-effect waves-light btn-large full-btn" id="msubmit">
+                                            <button class="waves-effect waves-light btn-large full-btn"
+                                                    id="msubmit">
                                                 Submit Inquiry
                                             </button>
                                         </div>
@@ -297,14 +337,16 @@
                         <div class="list-pg-inn-sp">
                             <div class="list-pg-write-rev">
                                 <form class="col">
-                                    <p>Writing great reviews may help others discover the places that are just apt
+                                    <p>Writing great reviews may help others discover the places that are just
+                                        apt
                                         for
                                         them. Here are a few tips to write a good review:</p>
                                     <div class="row">
                                         <div class="col s12">
                                             <fieldset id="rate" class="rating">
                                                 <input type="radio" id="star5" name="rating" value="5"/>
-                                                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                <label class="full" for="star5"
+                                                       title="Awesome - 5 stars"></label>
                                                 <input type="radio" id="star4half" name="rating"
                                                        value="4 and a half"/>
                                                 <label class="half" for="star4half"
@@ -314,7 +356,8 @@
                                                        title="Pretty good - 4 stars"></label>
                                                 <input type="radio" id="star3half" name="rating"
                                                        value="3 and a half"/>
-                                                <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                                <label class="half" for="star3half"
+                                                       title="Meh - 3.5 stars"></label>
                                                 <input type="radio" id="star3" name="rating" value="3"/>
                                                 <label class="full" for="star3" title="Meh - 3 stars"></label>
                                                 <input type="radio" id="star2half" name="rating"
@@ -322,10 +365,12 @@
                                                 <label class="half" for="star2half"
                                                        title="Kinda bad - 2.5 stars"></label>
                                                 <input type="radio" id="star2" name="rating" value="2"/>
-                                                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                <label class="full" for="star2"
+                                                       title="Kinda bad - 2 stars"></label>
                                                 <input type="radio" id="star1half" name="rating"
                                                        value="1 and a half"/>
-                                                <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                                <label class="half" for="star1half"
+                                                       title="Meh - 1.5 stars"></label>
                                                 <input type="radio" id="star1" name="rating" value="1"/>
                                                 <label class="full" for="star1"
                                                        title="Sucks big time - 1 star"></label>
@@ -467,7 +512,8 @@
                         <div class="form-group has-feedback ak-field">
                             <label class="col-md-4 control-label">Full Name *</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="fname" placeholder="" required></div>
+                                <input type="text" class="form-control" name="fname" placeholder="" required>
+                            </div>
                         </div>
                         <!--LISTING INFORMATION-->
                         <div class="form-group has-feedback ak-field">
@@ -501,6 +547,16 @@
     <!-- GET QUOTES Popup END -->
 </section>
 <!--SCRIPT FILES-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/jquery.flexnav.js" type="text/javascript"></script>
+<script src="js/navigation.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/testimonial.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/header-sticky.js"></script>
 <script src="/profile/js/jquery.min.js"></script>
 <script src="/profile/js/bootstrap.js" type="text/javascript"></script>
 <script src="/profile/js/materialize.min.js" type="text/javascript"></script>

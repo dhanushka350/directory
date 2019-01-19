@@ -44,6 +44,11 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("slider-img-3").innerHTML = "<img src='" + data.coverImage3 + "'>";
             document.getElementById("slider-img-4").innerHTML = "<img src='" + data.coverImage4 + "'>";
 
+            // document.getElementById("img1").innerHTML = "<img src='" + data.coverImage1 + "'>";
+            // document.getElementById("img2").innerHTML = "<img src='" + data.coverImage2 + "'>";
+            // document.getElementById("img3").innerHTML = "<img src='" + data.coverImage3 + "'>";
+            // document.getElementById("img4").innerHTML = "<img src='" + data.coverImage4 + "'>";
+
             document.getElementById("open_time").innerHTML = data.openingTime;
             document.getElementById("close_time").innerHTML = data.closingTime;
             document.getElementById("open_days").innerHTML = data.openingDates;
