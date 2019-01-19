@@ -6,11 +6,11 @@ function setAdStatus() {
     if (remember.checked) {
         updateStatus(1);
         document.getElementById("lbl_status").innerHTML = "ACTIVE";
-        this.activated = true;
+        activated = true;
     } else {
         updateStatus(0);
         document.getElementById("lbl_status").innerHTML = "INACTIVE";
-        this.activated = false;
+        activated = false;
     }
 }
 
@@ -53,15 +53,11 @@ function getDataFromBackend() {
             if (data.status === 0) {
                 $('#ad_status').prop('checked', false);
                 document.getElementById("lbl_status").innerHTML = "INACTIVE";
-                this.activated = false;
+                activated = false;
             } else if (data.status === 1) {
                 $('#ad_status').prop('checked', true);
                 document.getElementById("lbl_status").innerHTML = "ACTIVATED";
-                this.activated = true;
-            } else {
-                $('#ad_status').prop('checked', false);
-                document.getElementById("lbl_status").innerHTML = "BLOCKED";
-                this.activated = false;
+                activated = true;
             }
 
         }
@@ -69,8 +65,9 @@ function getDataFromBackend() {
 }
 
 function guestView() {
-    if (this.activated === true) {
-        localStorage.setItem("selectedAd", selctedAd);
+    localStorage.removeItem("selectedAd");
+    localStorage.setItem("selectedAd", selctedAd);
+    if (activated === true) {
         window.open("/home/profileview", "_blank");
     } else {
         $('.ui.basic.modal')
@@ -84,7 +81,6 @@ function activate() {
     this.activated = true;
     setTimeout(function () {
         setAdStatus();
-        guestView();
     }, 5000);
 
 }

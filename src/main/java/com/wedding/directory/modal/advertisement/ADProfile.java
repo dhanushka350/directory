@@ -48,13 +48,13 @@ public class ADProfile {
     @Column(name = "closing_time")
     private String closingTime;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 3000)
     private String description;
 
-    @Column(name = "facebook")
+    @Column(name = "facebook", length = 1500)
     private String facebook;
 
-    @Column(name = "twitter")
+    @Column(name = "twitter",length = 1500)
     private String twitter;
 
     @Column(name = "experience")
@@ -63,22 +63,22 @@ public class ADProfile {
     @Column(name = "professionals")
     private String professionals;
 
-    @Column(name = "google_map")
+    @Column(name = "google_map",length = 3000)
     private String map;
 
     @Column(name = "view")
     private String view;
 
-    @Column(name = "cover_image_1")
+    @Column(name = "cover_image_1",length = 1500)
     private String coverImage1;
 
-    @Column(name = "cover_image_2")
+    @Column(name = "cover_image_2",length = 1500)
     private String coverImage2;
 
-    @Column(name = "cover_image_3")
+    @Column(name = "cover_image_3",length = 1500)
     private String coverImage3;
 
-    @Column(name = "cover_image_4")
+    @Column(name = "cover_image_4",length = 1500)
     private String coverImage4;
 
     @Column(name = "created_date")

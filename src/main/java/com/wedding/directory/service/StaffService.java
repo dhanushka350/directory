@@ -1,14 +1,12 @@
 package com.wedding.directory.service;
 
+import com.wedding.directory.modal.Role;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.modal.advertisement.Category;
 import com.wedding.directory.modal.advertisement.City;
 import com.wedding.directory.payload.*;
-import com.wedding.directory.repository.AdvertisementRepository;
-import com.wedding.directory.repository.CategoryRepo;
-import com.wedding.directory.repository.CityRepo;
-import com.wedding.directory.repository.UserRepository;
+import com.wedding.directory.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -26,6 +24,10 @@ public class StaffService {
     private CategoryRepo categoryRepo;
     @Autowired
     private AdvertisementRepository advertisementRepository;
+    @Qualifier("roleRepository")
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Qualifier("userRepository")
     @Autowired
     private UserRepository userRepository;
@@ -89,9 +91,15 @@ public class StaffService {
             response.setCoverImage3(adProfile.getCoverImage3());
             response.setCoverImage4(adProfile.getCoverImage4());
             response.setCreatedDate(adProfile.getCreatedDate());
-            response.setReferral(adProfile.getReferral().getNic());
             response.setEndDate(adProfile.getExpiredDate());
             response.setStatus(adProfile.getActive());
+
+            try {
+                response.setReferral(adProfile.getReferral().getNic());
+            } catch (NullPointerException e) {
+                response.setReferral("ZBZ-DEF-U-000-000-000-XV");
+            }
+
             list.add(response);
         }
         return list;
@@ -127,7 +135,7 @@ public class StaffService {
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
             adResponse.setCreatedDate(adProfile.getCreatedDate());
-            adResponse.setReferral(adProfile.getReferral().getNic());
+
             adResponse.setStatus(adProfile.getActive());
             Venodr venodr = new Venodr();
             venodr.setId(adProfile.getVendor().getId());
@@ -140,7 +148,12 @@ public class StaffService {
             venodr.setActive(adProfile.getVendor().getActive());
             venodr.setImage(adProfile.getVendor().getImage());
             adResponse.setVenodr(venodr);
-
+            System.err.println(venodr.getPhone());
+            try {
+                adResponse.setReferral(adProfile.getReferral().getNic());
+            } catch (NullPointerException e) {
+                adResponse.setReferral("ZBZ-DEF-U-000-000-000-XV");
+            }
         }
         return adResponse;
     }
@@ -148,7 +161,21 @@ public class StaffService {
     public List<BrokerPayload> getAllBrokers(Pageable pageable) {
         List<BrokerPayload> list = new ArrayList<>();
         BrokerPayload payload = null;
-        for (User user : userRepository.findAll(pageable)) {
+        Role broker = roleRepository.findByRole("BROKER");
+        if (broker == null) {
+            for (Role role : roleRepository.findAll()) {
+                if (role.getRole().equalsIgnoreCase("BROKER")) {
+                    broker = role;
+                    break;
+                }
+            }
+            ;
+        }
+
+        System.err.println(broker.getRole()+"ppppppp");
+
+        for (User user : userRepository.findAllByRolesContaining(broker, pageable)) {
+            System.err.println("Collected");
             payload = new BrokerPayload();
             payload.setName(user.getName());
             payload.setActive(user.getActive());

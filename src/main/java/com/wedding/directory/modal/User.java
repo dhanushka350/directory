@@ -56,7 +56,7 @@ public class User {
     @Column(name = "active")
     private int active;
 
-    @Column(name = "profile_image")
+    @Column(name = "profile_image",length = 1000)
     private String image;
 
     @ManyToMany(cascade = CascadeType.ALL)

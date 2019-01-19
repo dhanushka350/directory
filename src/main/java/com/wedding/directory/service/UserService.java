@@ -10,18 +10,17 @@ import com.wedding.directory.repository.InquiryRepo;
 import com.wedding.directory.repository.RoleRepository;
 import com.wedding.directory.repository.UserRepository;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service("userService")
-public class UserService {
+public class UserService implements InitializingBean {
 
     @Qualifier("userRepository")
     @Autowired
@@ -142,4 +141,26 @@ public class UserService {
         return userRepository.findTopByNicEquals(nic);
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Set<Role> roles = new HashSet<>();
+        Role adminRole = new Role();
+        adminRole.setId(1);
+        adminRole.setRole("ADMIN");
+        adminRole = roleRepository.save(adminRole);
+        roles.add(adminRole);
+
+        User admin = new User();
+        admin.setName("ADMIN");
+        admin.setLastName("ADMIN");
+        admin.setPassword("ADMIN");
+        admin.setNic("never mind");
+        admin.setActive(1);
+        admin.setPhone("never mind");
+        admin.setEmail("ADMIN@ADMIN.COM");
+        admin.setAddress("never mind");
+        admin.setId(1);
+        admin.setRoles(roles);
+        userRepository.save(admin);
+    }
 }

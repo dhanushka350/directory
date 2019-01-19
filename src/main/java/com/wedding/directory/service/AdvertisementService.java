@@ -232,8 +232,14 @@ public class AdvertisementService {
                 adResponse.setCoverImage3(adProfile.getCoverImage3());
                 adResponse.setCoverImage4(adProfile.getCoverImage4());
                 adResponse.setCreatedDate(adProfile.getCreatedDate());
-                adResponse.setReferral(adProfile.getReferral().getNic());
                 adResponse.setStatus(adProfile.getActive());
+
+                try {
+                    adResponse.setReferral(adProfile.getReferral().getNic());
+                } catch (NullPointerException e) {
+                    adResponse.setReferral("ZBZ-DEF-U-000-000-000-XV");
+                }
+
                 Venodr venodr = new Venodr();
                 venodr.setId(adProfile.getVendor().getId());
                 venodr.setEmail(adProfile.getVendor().getEmail());

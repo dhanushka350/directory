@@ -25,7 +25,7 @@ public class Ratings {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "review")
+    @Column(name = "review",length = 5000)
     private String review;
 
     @Column(name = "rating")

@@ -25,7 +25,7 @@ public class InquiryModal {
     private String email;
     @Column(name = "city")
     private String city;
-    @Column(name = "message")
+    @Column(name = "message",length = 3000)
     private String message;
     @Column(name = "message_status")
     private String status;

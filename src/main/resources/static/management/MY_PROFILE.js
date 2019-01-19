@@ -28,7 +28,7 @@ var VENDOR = {
                 $("#email").val(data.email);
                 $("#last_name").val(data.lastName);
                 $("#phone").val(data.phone);
-                $("#dob").val(data.dob);
+                $("#dob").val(data.nic);
                 $("#address").val(data.address);
 
             },
@@ -48,7 +48,7 @@ var VENDOR = {
         e["lastName"] = $('#last_name').val();
         e["email"] = $('#email').val();
         e["phone"] = $('#phone').val();
-        e["dob"] = $('#dob').val();
+        e["nic"] = $('#nic').val();
         e["address"] = $('#address').val();
         var d = JSON.stringify(e);
 

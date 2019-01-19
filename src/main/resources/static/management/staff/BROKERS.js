@@ -64,6 +64,12 @@ var BROKER = {
                 data: d,
                 success: function (data, textStatus, jqXHR) {
                     swal(data);
+                    BROKER.List();
+                    $('#br_name').val("");
+                    $('#br_nic').val("");
+                    $('#br_email').val("");
+                    $('#br_address').val("");
+                    $('#br_mobile').val("");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     swal(textStatus);
@@ -73,7 +79,6 @@ var BROKER = {
 
                 }
             });
-            BROKER.List();
         }
     },
     List: function () {

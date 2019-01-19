@@ -360,7 +360,7 @@ function itemView(param) {
 
 function sentInquiry() {
     var e = {};
-    
+
     e["name"] = document.getElementById("mname").value;
     e["mobile"] = document.getElementById("mnumber").value;
     e["email"] = document.getElementById("memail").value;

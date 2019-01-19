@@ -11,22 +11,22 @@ public class Packages {
     @Column(name = "pack_id")
     private int id;
 
-    @Column(name = "package_image_1")
+    @Column(name = "package_image_1",length = 1000)
     private String packageImage1;
 
-    @Column(name = "package_image_2")
+    @Column(name = "package_image_2",length = 1000)
     private String packageImage2;
 
-    @Column(name = "package_image_3")
+    @Column(name = "package_image_3",length = 1000)
     private String packageImage3;
 
-    @Column(name = "package_image_4")
+    @Column(name = "package_image_4",length = 1000)
     private String packageImage4;
 
-    @Column(name = "package_image_5")
+    @Column(name = "package_image_5",length = 1000)
     private String packageImage5;
 
-    @Column(name = "package_image_6")
+    @Column(name = "package_image_6",length = 1000)
     private String packageImage6;
 
     @Column(name = "package_Name_1")
@@ -47,22 +47,22 @@ public class Packages {
     @Column(name = "package_Name_6")
     private String packageName6;
 
-    @Column(name = "package_Desc_1")
+    @Column(name = "package_Desc_1",length = 1000)
     private String packageDes1;
 
-    @Column(name = "package_Des_2")
+    @Column(name = "package_Des_2",length = 1000)
     private String packageDes2;
 
-    @Column(name = "package_Des_3")
+    @Column(name = "package_Des_3",length = 1000)
     private String packageDes3;
 
-    @Column(name = "package_Des_4")
+    @Column(name = "package_Des_4",length = 1000)
     private String packageDes4;
 
-    @Column(name = "package_Des_5")
+    @Column(name = "package_Des_5",length = 1000)
     private String packageDes5;
 
-    @Column(name = "package_Des_6")
+    @Column(name = "package_Des_6",length = 1000)
     private String packageDes6;
 
     @Column(name = "package_Price_1")
