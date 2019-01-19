@@ -68,12 +68,6 @@ public class User {
     private List<ADProfile> ads = new ArrayList<>();
 
     @JsonIgnore
-    @Fetch(FetchMode.SELECT)
-    @IndexColumn(name="LIST_INDEX")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "referral", fetch = FetchType.EAGER)
-    private List<ADProfile> referrals = new ArrayList<>();
-
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<InquiryModal> messages = new ArrayList<>();
 

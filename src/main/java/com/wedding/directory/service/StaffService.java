@@ -1,7 +1,6 @@
 package com.wedding.directory.service;
 
-import com.wedding.directory.modal.Role;
-import com.wedding.directory.modal.User;
+import com.wedding.directory.modal.Broker;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.modal.advertisement.Category;
 import com.wedding.directory.modal.advertisement.City;
@@ -31,6 +30,9 @@ public class StaffService {
     @Qualifier("userRepository")
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BrokerRepo brokerRepo;
 
     public String saveCity(Area area) {
         City top = cityRepo.getTopByCityEquals(area.getCity());
@@ -90,12 +92,12 @@ public class StaffService {
             response.setCoverImage2(adProfile.getCoverImage2());
             response.setCoverImage3(adProfile.getCoverImage3());
             response.setCoverImage4(adProfile.getCoverImage4());
-            response.setCreatedDate(adProfile.getCreatedDate());
+            response.setCreatedDate(adProfile.getAdCreatedDate());
             response.setEndDate(adProfile.getExpiredDate());
             response.setStatus(adProfile.getActive());
 
             try {
-                response.setReferral(adProfile.getReferral().getNic());
+                response.setReferral(adProfile.getBroker().getNic());
             } catch (NullPointerException e) {
                 response.setReferral("ZBZ-DEF-U-000-000-000-XV");
             }
@@ -134,7 +136,7 @@ public class StaffService {
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
-            adResponse.setCreatedDate(adProfile.getCreatedDate());
+            adResponse.setCreatedDate(adProfile.getAdCreatedDate());
 
             adResponse.setStatus(adProfile.getActive());
             Venodr venodr = new Venodr();
@@ -150,7 +152,7 @@ public class StaffService {
             adResponse.setVenodr(venodr);
             System.err.println(venodr.getPhone());
             try {
-                adResponse.setReferral(adProfile.getReferral().getNic());
+                adResponse.setReferral(adProfile.getBroker().getNic());
             } catch (NullPointerException e) {
                 adResponse.setReferral("ZBZ-DEF-U-000-000-000-XV");
             }
@@ -158,35 +160,23 @@ public class StaffService {
         return adResponse;
     }
 
-    public List<BrokerPayload> getAllBrokers(Pageable pageable) {
-        List<BrokerPayload> list = new ArrayList<>();
-        BrokerPayload payload = null;
-        Role broker = roleRepository.findByRole("BROKER");
-        if (broker == null) {
-            for (Role role : roleRepository.findAll()) {
-                if (role.getRole().equalsIgnoreCase("BROKER")) {
-                    broker = role;
-                    break;
-                }
-            }
-            ;
-        }
+    public Page<Broker> getAllBrokers(Pageable pageable) {
 
-        System.err.println(broker.getRole()+"ppppppp");
+        return brokerRepo.findAll(pageable);
+    }
 
-        for (User user : userRepository.findAllByRolesContaining(broker, pageable)) {
-            System.err.println("Collected");
-            payload = new BrokerPayload();
-            payload.setName(user.getName());
-            payload.setActive(user.getActive());
-            payload.setAddress(user.getAddress());
-            payload.setEmail(user.getEmail());
-            payload.setId(user.getId());
-            payload.setRefferals("" + user.getReferrals().size());
-            payload.setNic(user.getNic());
-            list.add(payload);
+    public BrokerPayload getBrokerByNic(String id) {
+        Broker top = brokerRepo.findTopByNicEquals(id);
+        BrokerPayload payload = new BrokerPayload();
+        if (top != null) {
+            payload.setNic(top.getNic());
+            payload.setRefferals(top.getAdProfiles().size() + "");
+            payload.setEmail(top.getEmail());
+            payload.setAddress(top.getAddress());
+            payload.setActive(top.getActive());
+            payload.setName(top.getName());
         }
-        return list;
+        return payload;
     }
 
 }

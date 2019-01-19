@@ -1,11 +1,13 @@
 package com.wedding.directory.service;
 
 import com.wedding.directory.mail.EmailService;
+import com.wedding.directory.modal.Broker;
 import com.wedding.directory.modal.Role;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.messages.InquiryModal;
 import com.wedding.directory.payload.EmailContent;
 import com.wedding.directory.payload.Inquiry;
+import com.wedding.directory.repository.BrokerRepo;
 import com.wedding.directory.repository.InquiryRepo;
 import com.wedding.directory.repository.RoleRepository;
 import com.wedding.directory.repository.UserRepository;
@@ -34,6 +36,8 @@ public class UserService implements InitializingBean {
     private InquiryRepo inquiryRepo;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private BrokerRepo brokerRepo;
 
     public boolean findUserByEmail(String email) {
 
@@ -57,30 +61,24 @@ public class UserService implements InitializingBean {
     }
 
     public String saveBrokers(User user) {
-        System.err.println(user.getNic());
-        User top = userRepository.findTopByNicEquals(user.getNic());
-        if (top != null) {
-            Set<Role> roles = top.getRoles();
-            Role userRole = roleRepository.findByRole("BROKER");// VENDOR / ADMIN
-            roles.add(userRole);
-            User update = userRepository.saveAndFlush(top);
-            if (update != null) {
-                return user.getName() + " got a new role.";
-            } else {
-                return "This nic already registered in our system. \n but we can't add this role now.";
-            }
+
+
+        Broker broker = new Broker();
+        broker.setActive(user.getActive());
+        broker.setAddress(user.getAddress());
+        broker.setEmail(user.getEmail());
+        broker.setName(user.getName());
+        broker.setNic(user.getNic());
+        broker.setPhone(user.getPhone());
+
+        Broker broker1 = brokerRepo.findTopByNicEquals(user.getNic());
+        if (broker1 != null) {
+            return "This nic is already registered.";
         } else {
-            Role userRole = roleRepository.findByRole("BROKER");// VENDOR / ADMIN
-            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-            user.setPassword(user.getEmail() + "@directory");
-            user.setLastName("NOT ADDED.");
-            User save = userRepository.save(user);
-            if (save != null) {
-                return "Successfully Added.";
-            } else {
-                return "Failed.";
-            }
+            brokerRepo.save(broker);
+            return "Successfully Added.";
         }
+
     }
 
     public void updateVendorProfile(User user) {

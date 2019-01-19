@@ -1,5 +1,6 @@
 package com.wedding.directory.controller.rest;
 
+import com.wedding.directory.modal.Broker;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.Category;
 import com.wedding.directory.modal.advertisement.City;
@@ -12,11 +13,8 @@ import com.wedding.directory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -73,8 +71,12 @@ public class AdminSettings {
 
     @RequestMapping(value = "/get/all/brokers", method = RequestMethod.GET)
     @ResponseBody
-    public List<BrokerPayload> getAllBrokers(Pageable pageable) {
+    public Page<Broker> getAllBrokers(Pageable pageable) {
         return staffService.getAllBrokers(pageable);
     }
 
+    @RequestMapping(value = "/getBroker/{brokerNIC}", method = RequestMethod.GET)
+    public BrokerPayload getOneBroker(@PathVariable String brokerNIC) {
+        return staffService.getBrokerByNic(brokerNIC);
+    }
 }

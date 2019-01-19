@@ -7,10 +7,7 @@ import com.wedding.directory.modal.advertisement.City;
 import com.wedding.directory.modal.advertisement.Packages;
 import com.wedding.directory.payload.*;
 import com.wedding.directory.payload.Package;
-import com.wedding.directory.repository.AdvertisementRepository;
-import com.wedding.directory.repository.CategoryRepo;
-import com.wedding.directory.repository.CityRepo;
-import com.wedding.directory.repository.PackageRepository;
+import com.wedding.directory.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +31,8 @@ public class AdvertisementService {
     private CityRepo cityRepo;
     @Autowired
     private CategoryRepo categoryRepo;
+    @Autowired
+    private BrokerRepo brokerRepo;
 
     public String addListing(ADResponse adResponse) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -85,11 +84,11 @@ public class AdvertisementService {
         response.setCoverImage3(adResponse.getCoverImage3());
         response.setCoverImage4(adResponse.getCoverImage4());
         response.setActive(0);
-        response.setReferral(userService.getByNIC(adResponse.getReferral()));
+        response.setBroker(brokerRepo.findTopByNicEquals(adResponse.getReferral()));
 
         if (!update) {
-            response.setCreatedDate(getDate());
-            response.setExpiredDate(getExpireDate(response.getCreatedDate()));
+            response.setAdCreatedDate(getDate());
+            response.setExpiredDate(getExpireDate(response.getAdCreatedDate()));
         }
         ADProfile save = repository.save(response);
         if (save != null) {
@@ -180,7 +179,7 @@ public class AdvertisementService {
                 adResponse.setCoverImage2(adProfile.getCoverImage2());
                 adResponse.setCoverImage3(adProfile.getCoverImage3());
                 adResponse.setCoverImage4(adProfile.getCoverImage4());
-                adResponse.setCreatedDate(adProfile.getCreatedDate());
+                adResponse.setCreatedDate(adProfile.getAdCreatedDate());
                 adResponses.add(adResponse);
             }
         }
@@ -231,11 +230,11 @@ public class AdvertisementService {
                 adResponse.setCoverImage2(adProfile.getCoverImage2());
                 adResponse.setCoverImage3(adProfile.getCoverImage3());
                 adResponse.setCoverImage4(adProfile.getCoverImage4());
-                adResponse.setCreatedDate(adProfile.getCreatedDate());
+                adResponse.setCreatedDate(adProfile.getAdCreatedDate());
                 adResponse.setStatus(adProfile.getActive());
 
                 try {
-                    adResponse.setReferral(adProfile.getReferral().getNic());
+                    adResponse.setReferral(adProfile.getBroker().getNic());
                 } catch (NullPointerException e) {
                     adResponse.setReferral("ZBZ-DEF-U-000-000-000-XV");
                 }
@@ -263,7 +262,7 @@ public class AdvertisementService {
         for (ADProfile allByVendorEqual : repository.findAllByVendorEquals(user)) {
             advertisement = new AllAdvertisements();
             advertisement.setId(allByVendorEqual.getId());
-            advertisement.setCreated_date(allByVendorEqual.getCreatedDate());
+            advertisement.setCreated_date(allByVendorEqual.getAdCreatedDate());
             advertisement.setExpire_date(allByVendorEqual.getExpiredDate());
             advertisement.setPayment_status("free");
             advertisement.setTitle(allByVendorEqual.getTitle());
@@ -306,7 +305,7 @@ public class AdvertisementService {
             adResponse.setCoverImage2(adProfile.getCoverImage2());
             adResponse.setCoverImage3(adProfile.getCoverImage3());
             adResponse.setCoverImage4(adProfile.getCoverImage4());
-            adResponse.setCreatedDate(adProfile.getCreatedDate());
+            adResponse.setCreatedDate(adProfile.getAdCreatedDate());
 
             list.add(adResponse);
         }

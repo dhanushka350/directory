@@ -29,7 +29,7 @@ $('#br_save').click(function (e) {
 });
 
 
-function notWorkingAlert() {
+function view() {
     swal("Service not available");
 }
 
@@ -89,20 +89,21 @@ var BROKER = {
             contentType: "application/json",
             type: 'GET',
             success: function (data, textStatus, jqXHR) {
-                if (data.length <= 0) {
+                console.log(data);
+                if (data.content.length <= 0) {
                     $('#tbl_brokers').append('<tr>\n\
                                <td colspan=9><p align="center" style="color: teal">No records found in your database\n\
                                </p></td>\n\
                                </tr>');
                 } else {
-                    for (var i = 0; i < data.length; i++) {
+                    for (var i = 0; i < data.content.length; i++) {
 
                         $('#tbl_brokers').append('<tr style="cursor: pointer">\n\
-                                    <td>' + data[i].id + '</td>\n\
-                                    <td>' + data[i].nic + '</td>\n\
-                                    <td>' + data[i].name + '</td>\n\
-                                    <td>' + data[i].refferals + '</td>\n\
-                                    <td style="text-align: center"><button class="mini ui button teal" onclick="notWorkingAlert();">View</button></td>\n\
+                                    <td>' + data.content[i].id + '</td>\n\
+                                    <td>' + data.content[i].nic + '</td>\n\
+                                    <td>' + data.content[i].name + '</td>\n\
+                                    <td>' + data.content[i].phone + '</td>\n\
+                                    <td style="text-align: center"><button class="mini ui button teal" onclick="view();">View</button></td>\n\
                                     </tr>');
 
                     }
@@ -116,6 +117,17 @@ var BROKER = {
 
             },
 
+        });
+    },
+    getOne: function () {
+        $.ajax({
+            url: "/getBroker/" + selctedAd,
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'GET',
+            success: function (data, textStatus, jqXHR) {
+
+            }
         });
     }
 }
