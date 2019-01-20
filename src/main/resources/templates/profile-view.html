@@ -30,6 +30,68 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <style>
+        @keyframes slide {
+            0% {
+                left: 0%;
+            }
+            9% {
+                left: 0%;
+            }
+            18% {
+                left: -100%;
+            }
+            27% {
+                left: -100%;
+            }
+            36% {
+                left: -200%;
+            }
+            45% {
+                left: -200%;
+            }
+            54% {
+                left: -300%;
+            }
+            63% {
+                left: -300%;
+            }
+            72% {
+                left: -400%;
+            }
+            81% {
+                left: -400%;
+            }
+            90% {
+                left: -500%;
+            }
+            100% {
+                left: -500%;
+            }
+        }
+
+        #slider {
+            overflow: hidden;
+        }
+
+        #slider figure {
+            position: relative;
+            width: 600%;
+            margin: 0px;
+            left: 0px;
+            text-align: left;
+            animation: 30s slide infinite;
+        }
+
+        #slider figure img {
+            float: left;
+            width: 16.6666%;
+
+            height: 50%;
+        }
+
+
+
+
         .no-js #loader {
             display: none;
         }
@@ -66,8 +128,134 @@
             margin-top: 0 !important;
             margin-left: 0 !important;
         }
-        .com-padd{
+
+        .com-padd {
             padding: 49px 0px;
+        }
+
+        @import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+        /*html, body { background: #333 url("https://codepen.io/images/classy_fabric.png"); }*/
+
+        .slides {
+            padding: 0;
+            width: 100%;
+            height: 420px;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slides * {
+            user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .slides input {
+            display: none;
+        }
+
+        .slide-container {
+            display: block;
+        }
+
+        .slide {
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 420px;
+            display: block;
+            position: absolute;
+
+            transform: scale(0);
+
+            transition: all .7s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav label {
+            width: 200px;
+            height: 100%;
+            display: none;
+            position: absolute;
+
+            opacity: 0;
+            z-index: 9;
+            cursor: pointer;
+
+            transition: opacity .2s;
+
+            color: #FFF;
+            font-size: 156pt;
+            text-align: center;
+            line-height: 380px;
+            font-family: "Varela Round", sans-serif;
+            background-color: rgba(255, 255, 255, .3);
+            text-shadow: 0px 0px 15px rgb(119, 119, 119);
+        }
+
+        .slide:hover + .nav label {
+            opacity: 0.5;
+        }
+
+        .nav label:hover {
+            opacity: 1;
+        }
+
+        .nav .next {
+            right: 0;
+        }
+
+        input:checked + .slide-container .slide {
+            opacity: 1;
+
+            transform: scale(1);
+
+            transition: opacity 1s ease-in-out;
+        }
+
+        input:checked + .slide-container .nav label {
+            display: block;
+        }
+
+        .nav-dots {
+            width: 100%;
+            bottom: 9px;
+            height: 11px;
+            display: block;
+            position: absolute;
+            text-align: center;
+        }
+
+        .nav-dots .nav-dot {
+            top: -5px;
+            width: 11px;
+            height: 11px;
+            margin: 0 4px;
+            position: relative;
+            border-radius: 100%;
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-dots .nav-dot:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        input#img-1:checked ~ .nav-dots label#img-dot-1,
+        input#img-2:checked ~ .nav-dots label#img-dot-2,
+        input#img-3:checked ~ .nav-dots label#img-dot-3,
+        input#img-4:checked ~ .nav-dots label#img-dot-4 {
+            background: rgba(0, 0, 0, 0.8);
         }
 
     </style>
@@ -86,18 +274,72 @@
 <div class="se-pre-con"></div>
 <!--TOP SEARCH SECTION-->
 <div th:replace="fragments/header :: header"/>
-<div class="pglist-p3 pglist-bg pglist-p-com">
-    <div id="image-comp" class="pg-list-user-pro">
-    </div>
 
-    <div style="text-align: center; padding-top: 4%;" class="list-pg-inn-sp">
-        <div class="list-pg-upro">
-            <h2 id="com-txt">Kevin Jack</h2>
-            <h5 id="name-txt">Kevin Jack</h5>
-            <div class="list-rat-ch" id="ad_rating"></div>
+<ul class="slides">
+    <input type="radio" name="radio-btn" id="img-1" checked/>
+    <li class="slide-container">
+        <div class="slide" id="img1">
+            <!--<img src="http://farm9.staticflickr.com/8072/8346734966_f9cd7d0941_z.jpg"/>-->
         </div>
-    </div>
-</div>
+        <div class="nav">
+            <label for="img-4" class="prev">&#x2039;</label>
+            <label for="img-2" class="next">&#x203a;</label>
+        </div>
+    </li>
+
+    <input type="radio" name="radio-btn" id="img-2"/>
+    <li class="slide-container">
+        <div class="slide" id="img2">
+            <!--<img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg"/>-->
+        </div>
+        <div class="nav">
+            <label for="img-1" class="prev">&#x2039;</label>
+            <label for="img-3" class="next">&#x203a;</label>
+        </div>
+    </li>
+
+    <input type="radio" name="radio-btn" id="img-3"/>
+    <li class="slide-container">
+        <div class="slide" id="img3">
+            <!--<img src="http://farm9.staticflickr.com/8068/8250438572_d1a5917072_z.jpg"/>-->
+        </div>
+        <div class="nav">
+            <label for="img-2" class="prev">&#x2039;</label>
+            <label for="img-4" class="next">&#x203a;</label>
+        </div>
+    </li>
+
+    <input type="radio" name="radio-btn" id="img-4"/>
+    <li class="slide-container">
+        <div class="slide" id="img4">
+            <!--<img src="http://farm9.staticflickr.com/8061/8237246833_54d8fa37f0_z.jpg"/>-->
+        </div>
+        <div class="nav">
+            <label for="img-3" class="prev">&#x2039;</label>
+            <label for="img-1" class="next">&#x203a;</label>
+        </div>
+    </li>
+
+    <li class="nav-dots">
+        <label for="img-1" class="nav-dot" id="img-dot-1"></label>
+        <label for="img-2" class="nav-dot" id="img-dot-2"></label>
+        <label for="img-3" class="nav-dot" id="img-dot-3"></label>
+        <label for="img-4" class="nav-dot" id="img-dot-4"></label>
+    </li>
+</ul>
+
+
+<!--<div class="pglist-p3 pglist-bg pglist-p-com">-->
+<!--<div id="profile_image" class="pg-list-user-pro">-->
+<!--</div>-->
+<!--<div style="text-align: center; padding-top: 4%;" class="list-pg-inn-sp">-->
+<!--<div class="list-pg-upro">-->
+<!--<h2 id="com-txt">Kevin Jack</h2>-->
+<!--<h5 id="name-txt">Kevin Jack</h5>-->
+<!--<div class="list-rat-ch" id="ad_rating"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <section class="list-pg-bg">
     <div class="container">
         <div class="row">
@@ -121,41 +363,50 @@
                     <div class="tab-content">
                         <div id="menu2" class="tab-pane fade in active">
                             <!--LISTING DETAILS: LEFT PART 3-->
-                            <div class="pglist-p3 pglist-bg pglist-p-com" id="ld-gal">
-                                <div class="pglist-p-com-ti">
-                                    <h3><span>Photo</span> Gallery</h3></div>
-                                <div class="list-pg-inn-sp">
-                                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                        <!-- Indicators -->
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                                            <li data-target="#myCarousel" data-slide-to="3"></li>
-                                        </ol>
-                                        <!-- Wrapper for slides -->
-                                        <div class="carousel-inner">
-                                            <div id="slider-img-1" class="item active"><img
-                                                    src="/profile/images/slider/1.jpg"
-                                                    alt="Los Angeles">
-                                            </div>
-                                            <div id="slider-img-2" class="item"><img src="/profile/images/slider/2.jpg"
-                                                                                     alt="Chicago"></div>
-                                            <div id="slider-img-3" class="item"><img src="/profile/images/slider/3.jpg"
-                                                                                     alt="New York"></div>
-                                            <div id="slider-img-4" class="item"><img src="/profile/images/slider/4.jpg"
-                                                                                     alt="New York"></div>
-                                        </div>
-                                        <!-- Left and right controls -->
-                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i
-                                                class="fa fa-angle-left list-slider-nav" aria-hidden="true"></i> </a>
-                                        <a class="right carousel-control" href="#myCarousel" data-slide="next"> <i
-                                                class="fa fa-angle-right list-slider-nav list-slider-nav-rp"
-                                                aria-hidden="true"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="pglist-p3 pglist-bg pglist-p-com" id="ld-gal">-->
+                            <!--<div class="pglist-p-com-ti">-->
+                            <!--<h3><span>Photo</span> Gallery</h3></div>-->
+                            <!--<div class="list-pg-inn-sp">-->
+                            <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">-->
+                            <!--&lt;!&ndash; Indicators &ndash;&gt;-->
+                            <!--<ol class="carousel-indicators">-->
+                            <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+                            <!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
+                            <!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
+                            <!--<li data-target="#myCarousel" data-slide-to="3"></li>-->
+                            <!--</ol>-->
+                            <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+                            <!--<div class="carousel-inner">-->
+                            <!--<div id="slider-img-1" class="item active"><img-->
+                            <!--src="/profile/images/slider/1.jpg" alt="Image Gallery"></div>-->
+                            <!--<div id="slider-img-2" class="item"><img src="/profile/images/slider/2.jpg"-->
+                            <!--alt="Image Gallery"></div>-->
+                            <!--<div id="slider-img-3" class="item"><img src="/profile/images/slider/3.jpg"-->
+                            <!--alt="Image Gallery"></div>-->
+                            <!--<div id="slider-img-4" class="item"><img src="/profile/images/slider/4.jpg"-->
+                            <!--alt="Image Gallery"></div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; Left and right controls &ndash;&gt;-->
+                            <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i-->
+                            <!--class="fa fa-angle-left list-slider-nav" aria-hidden="true"></i> </a>-->
+                            <!--<a class="right carousel-control" href="#myCarousel" data-slide="next"> <i-->
+                            <!--class="fa fa-angle-right list-slider-nav list-slider-nav-rp"-->
+                            <!--aria-hidden="true"></i> </a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
                             <!--END LISTING DETAILS: LEFT PART 3-->
+
+                            <div id="slider" style="margin-top: 0.5%">
+                                <figure id="slidy">
+                                    <img id="slider-img-1" src="http://media.newjobs.com/mm/xvaderinnlx/cjt2/top.jpg"/>
+                                    <img id="slider-img-2" src="http://media.newjobs.com/mm/xvaderinnlx/cjt2/slide1.jpg"/>
+                                    <img id="slider-img-3" src="http://media.newjobs.com/mm/xvaderinnlx/cjt2/slide2.jpg"/>
+                                    <img id="slider-img-4" src="http://media.newjobs.com/mm/xvaderinnlx/cjt2/slide3.png"/>
+                                    <img id="slider-img-5" src="http://media.newjobs.com/mm/xvaderinnlx/cjt2/slide3.png"/>
+                                    <img id="slider-img-6" src="http://media.newjobs.com/mm/xvaderinnlx/cjt2/slide3.png"/>
+                                </figure>
+                            </div>
                         </div>
                         <div id="home" class="tab-pane fade in">
                             <!--LISTING DETAILS: LEFT PART 1-->

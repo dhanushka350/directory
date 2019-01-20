@@ -28,7 +28,7 @@ var VENDOR = {
                 $("#email").val(data.email);
                 $("#last_name").val(data.lastName);
                 $("#phone").val(data.phone);
-                $("#dob").val(data.nic);
+                $("#nic").val(data.nic);
                 $("#address").val(data.address);
 
             },

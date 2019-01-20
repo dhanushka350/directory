@@ -30,24 +30,29 @@ function getDataFromBackend(selctedAd) {
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
             // $("#img-main").css("background-image", "url('" + data.coverImage1 + "')");
-            $("#image-comp").css("background-image", "url('" + data.coverImage1 + "')");
+            // $("#image-comp").css("background-image", "url('" + data.coverImage1 + "')");
 
-            document.getElementById("com-txt").innerHTML = data.title;
+            // document.getElementById("com-txt").innerHTML = data.title;
             // document.getElementById("txt-address").innerHTML = "<b>Address:</b>" + data.venodr.address;
 
             document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
             document.getElementById("txt-desc").innerHTML = data.description;
 
 
-            document.getElementById("slider-img-1").innerHTML = "<img src='" + data.coverImage1 + "'>";
-            document.getElementById("slider-img-2").innerHTML = "<img src='" + data.coverImage2 + "'>";
-            document.getElementById("slider-img-3").innerHTML = "<img src='" + data.coverImage3 + "'>";
-            document.getElementById("slider-img-4").innerHTML = "<img src='" + data.coverImage4 + "'>";
-
-            // document.getElementById("img1").innerHTML = "<img src='" + data.coverImage1 + "'>";
-            // document.getElementById("img2").innerHTML = "<img src='" + data.coverImage2 + "'>";
-            // document.getElementById("img3").innerHTML = "<img src='" + data.coverImage3 + "'>";
-            // document.getElementById("img4").innerHTML = "<img src='" + data.coverImage4 + "'>";
+            // document.getElementById("slider-img-1").innerHTML = "<img src='" + data.coverImage1 + "'>";
+            // document.getElementById("slider-img-2").innerHTML = "<img src='" + data.coverImage2 + "'>";
+            // document.getElementById("slider-img-3").innerHTML = "<img src='" + data.coverImage3 + "'>";
+            // document.getElementById("slider-img-4").innerHTML = "<img src='" + data.coverImage4 + "'>";
+            $('#slider-img-1').attr('src', data.coverImage1);
+            $('#slider-img-2').attr('src', data.coverImage2);
+            $('#slider-img-3').attr('src', data.coverImage3);
+            $('#slider-img-4').attr('src', data.coverImage4);
+            $('#slider-img-5').attr('src', data.coverImage1);
+            $('#slider-img-6').attr('src', data.coverImage3);
+            document.getElementById("img1").innerHTML = "<img src='" + data.coverImage1 + "'>";
+            document.getElementById("img2").innerHTML = "<img src='" + data.coverImage2 + "'>";
+            document.getElementById("img3").innerHTML = "<img src='" + data.coverImage3 + "'>";
+            document.getElementById("img4").innerHTML = "<img src='" + data.coverImage4 + "'>";
 
             document.getElementById("open_time").innerHTML = data.openingTime;
             document.getElementById("close_time").innerHTML = data.closingTime;
@@ -61,8 +66,8 @@ function getDataFromBackend(selctedAd) {
                 "                                        src='" + data.map + "' " +
                 "                                        allowfullscreen></iframe>";
 
-            document.getElementById("image-comp").innerHTML = "<img style='width: 150px;height: 150px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
-            document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
+            // document.getElementById("profile_image").innerHTML = "<img style='width: 150px;height: 150px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
+            // document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
             document.getElementById("inq-text").innerHTML = "Send Enquiry to <span style='color: orangered'> " + data.title + "</span> \n" +
                 "                                        Fill in your details and <span style='color: orangered'> " + data.title + "</span>  will get back to you\n" +
                 "                                        shortly.";
@@ -282,11 +287,11 @@ function getPackgeDetails(id) {
         type: 'POST',
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            if (data.length === 0) {
+            if (data.length === 0 || data === null) {
                 document.getElementById("pack_img").innerHTML = "no packages found";
             } else {
 
-                if (data.packageName1 !== "") {
+                if (data.packageName1 !== "" || data.packageName1 !== null) {
                     document.getElementById("pack_1").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage1 + "' alt=\"\"></div>\n" +
                         "                                <!--LISTINGS: CONTENT-->\n" +
                         "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
@@ -294,7 +299,7 @@ function getPackgeDetails(id) {
                         "                                        <h3>" + data.packageName1 + "</h3>\n" +
                         "                                    </a>\n" +
                         "                                    <h4>" + data.packageDes1 + "</h4>\n" +
-                        "                                    <h4 style='color: red'><span>RS </span>" + data.packagePrice1 + "</h4>\n" +
+                        "                                    <h4 style='color: red'><span></span>" + data.packagePrice1 + "</h4>\n" +
                         "                                </div>";
                 }
                 if (data.packageName2 !== "") {
