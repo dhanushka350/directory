@@ -1,3 +1,5 @@
+
+
 function getCity() {
     $.ajax({
         url: "/advertisement/getAllCities",
@@ -98,7 +100,8 @@ function search() {
 
     var city = $("#city").val();
     var cate = $("#category").val();
-    alert(city);
+    var elmnt = document.getElementById("top-ads");
+    elmnt.scrollIntoView();
     $.ajax({
         url: "/advertisement/getTopByCity/" + city + "/" + cate,
         dataType: 'json',
