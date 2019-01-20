@@ -44,6 +44,9 @@ function loadOn() {
 $('#category').on('click', function () {
     var city = $("#city").val();
     var cate = $("#category").val();
+    if (cate.length < 2) {
+        cate = "Select City";
+    }
     search(city, cate);
 });
 $('#city').on('change', function () {

@@ -3,13 +3,19 @@ var selctedAd;
 
 function loadData() {
     selctedAd = localStorage.getItem("selectedAd");
+    // getDataFromBackend(selctedAd);
+    // getAllAdsByVendor();
+    getPackgeDetails(selctedAd);
     getDataFromBackend(selctedAd);
+    setRatings(selctedAd);
     getAllAdsByVendor();
 }
 
 
 $('#btn_review').click(function (e) {
+    selctedAd = localStorage.getItem("selectedAd");
     saveRatings();
+    setRatings(selctedAd);
     e.preventDefault();
 });
 
@@ -29,11 +35,31 @@ function getDataFromBackend(selctedAd) {
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-            // $("#img-main").css("background-image", "url('" + data.coverImage1 + "')");
-            // $("#image-comp").css("background-image", "url('" + data.coverImage1 + "')");
 
-            // document.getElementById("com-txt").innerHTML = data.title;
-            // document.getElementById("txt-address").innerHTML = "<b>Address:</b>" + data.venodr.address;
+            document.getElementById("image-gallery").innerHTML =
+                "                       <li data-thumb='" + data.coverImage1 + "'>\n" +
+                "                            <img src='" + data.coverImage1 + "' alt=\"\" width='900' height='600'/>\n" +
+                "                        </li>\n" +
+                "                        <li data-thumb='" + data.coverImage2 + "' width='900' height='600'>\n" +
+                "                            <img src='" + data.coverImage2 + "' alt=\"\"/>\n" +
+                "                        </li>\n" +
+                "                        <li data-thumb='" + data.coverImage3 + "' width='900' height='600'>\n" +
+                "                            <img src='" + data.coverImage3 + "' alt=\"\"/>\n" +
+                "                        </li>\n" +
+                "                        <li data-thumb='" + data.coverImage4 + "' width='900' height='600'>\n" +
+                "                            <img src='" + data.coverImage4 + "' alt=\"\"/>\n" +
+                "                        </li>";
+
+            document.getElementById("title").innerHTML = data.title;
+            document.getElementById("ad_title").innerHTML = data.title;
+            document.getElementById("address").innerHTML = data.city;
+            document.getElementById("desc").innerHTML = data.description;
+            document.getElementById("main_desc").innerHTML = data.description;
+            document.getElementById("main_number").innerHTML = data.venodr.phone;
+            document.getElementById("lcation").innerHTML = "<iframe style='height: 100%' src='" + data.map + "' " +
+                "                                        allowfullscreen></iframe>";
+            document.getElementById("web_sites").innerHTML = "<h4>Our social media links</h4><h5>Facebook</h5><a href='" + data.facebook + "'>CLICK HERE!</a><h5>Web Site</h5><a href='" + data.twitter + "'>CLICK HERE!</a>";
+
 
             document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
             document.getElementById("txt-desc").innerHTML = data.description;
@@ -59,12 +85,7 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("open_days").innerHTML = data.openingDates;
             document.getElementById("txt_mob").innerHTML = data.venodr.phone;
             document.getElementById("txt_email").innerHTML = data.venodr.email;
-            document.getElementById("fb").innerHTML = "<a href='" + data.facebook + "' target='_blank'><i class=\"fa fa-facebook\"></i> Facebook</a>";
-            document.getElementById("tw").innerHTML = "<a href='" + data.twitter + "' target='_blank'><i class=\"fa fa-edge\"></i> Web Site</a>";
 
-            document.getElementById("lcation").innerHTML = "<iframe id=\"lcation\"\n" +
-                "                                        src='" + data.map + "' " +
-                "                                        allowfullscreen></iframe>";
 
             // document.getElementById("profile_image").innerHTML = "<img style='width: 150px;height: 150px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
             // document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
@@ -126,7 +147,8 @@ function getRatings(avg, data) {
     if (data === "0") {
         return 0;
     } else {
-        return avg / data;
+        var rate = avg / data
+        return parseFloat(Math.round(rate * 100) / 100).toFixed(2);
     }
 }
 
@@ -144,13 +166,13 @@ function getAllAdsByVendor() {
             } else {
                 for (var i = 0; i < data.length; i++) {
 
-                    $('#other_ads').append($("<div onclick='itemView(" + data[i].id + ")' style='cursor: pointer' >\n" +
-                        '<li class="col-md-4" style="cursor: pointer">\n' +
-                        '<div class=\"pg-list-ser-p1\"><img src="' + data[i].coverImage1 + '" alt=\"\"> </div>\n' +
-                        '<div class=\"pg-list-ser-p2\">\n' +
-                        '<h4>' + data[i].title + '</h4></div>\n' +
-                        '</li>\n' +
-                        '</div>'));
+                    $('#other_ads').append($("<li onclick='itemView(" + data[i].id + ")'>\n" +
+                        "<a href=\"#\">\n" +
+                        "<h3>" + data[i].title + "</h3>\n" +
+                        "<p>" + data[i].description + "</p>\n" +
+                        "<span>" + data[i].category + "</span>\n" +
+                        "</a>\n" +
+                        "</li>"));
                 }
             }
         },
@@ -177,62 +199,21 @@ function setRatings(param) {
             for (var i = 0; i < data.length; i++) {
                 avg += data[i].ratings;
 
-                $('#review_div\n').append($("<li>\n" +
-                    "                                        <div class=\"lr-user-wr-img\"><img src=\"/profile/images/users/2.png\" alt=\"\"></div>\n" +
-                    "                                        <div class=\"lr-user-wr-con\">\n" +
-                    "                                            <h6>" + data[i].fullName + " <span>" + data[i].ratings + " <i class=\"fa fa-star\"\n" +
-                    "                                                                           aria-hidden=\"true\"></i></span></h6> <span\n" +
-                    "                                                class=\"lr-revi-date\">" + data[i].review + " </p>\n" +
-                    "                                        </div>\n" +
-                    "                                    </li>"
-                ));
+                $('#review').append($("<li>" +
+                    "                  <figure class=\"left\">\n" +
+                    "                  <img src=\"/client/images/uploads/avatar.jpg\" alt=\"avatar\"/>\n" +
+                    "                  <address><span>" + data[i].fullName + "</span><br/>" + data[i].email + "<br/>" + data[i].mobile + "</address>\n" +
+                    "                  </figure>\n" +
+                    "                  <div class=\"rev pro\"><p>" + data[i].review + "</p></div>\n" +
+                    "                  </li>"));
             }
+
             if (data.length === 0) {
-                document.getElementById("raings_count").innerHTML = "<span>" + "0" + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + "No" + " reviews</p>";
+                document.getElementById("review_count").innerText = "Based on no reviews";
+                document.getElementById("avg").innerText = "0";
             } else {
-                document.getElementById("raings_count").innerHTML = "<span>" + getRatings(avg, data.length) + " <i class=\"fa fa-star\" aria-hidden=\"true\"></i></span> based on " + data.length + " reviews</p>";
-            }
-
-            if ((avg / data.length) < 5) {
-                $('#review_status').append($("<div class='lp-ur-all-left-1'>\n" +
-                    "                                        <div class='lp-ur-all-left-11' style='font-weight: bold;'>Below Average</div>\n" +
-                    "                                        <div class='lp-ur-all-left-12'>\n" +
-                    "                                            <div class='lp-ur-all-left-13 lp-ur-all-left-below'></div>\n" +
-                    "                                        </div>\n" +
-                    "                                    </div>"));
-
-                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i>"));
-
-            } else if ((avg / data.length) > 5 & (avg / data.length) < 10) {
-                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
-                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Satisfactory</div>\n" +
-                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
-                    "                                            <div class=\"lp-ur-all-left-13 lp-ur-all-left-satis\"></div>\n" +
-                    "                                        </div>\n" +
-                    "                                    </div>"));
-
-                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i>"));
-
-            } else if ((avg / data.length) > 10 & (avg / data.length) < 20) {
-                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
-                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Good</div>\n" +
-                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
-                    "                                            <div class=\"lp-ur-all-left-13 lp-ur-all-left-Good\"></div>\n" +
-                    "                                        </div>\n" +
-                    "                                    </div>"));
-
-                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i>"));
-
-            } else if ((avg / data.length) > 20) {
-                $('#review_status\n').append($("<div class=\"lp-ur-all-left-1\">\n" +
-                    "                                        <div class=\"lp-ur-all-left-11\" style='font-weight: bold;'>Excellent</div>\n" +
-                    "                                        <div class=\"lp-ur-all-left-12\">\n" +
-                    "                                            <div class=\"lp-ur-all-left-13\"></div>\n" +
-                    "                                        </div>\n" +
-                    "                                    </div>"));
-
-                $('#ad_rating').append($("<i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i>"));
-
+                document.getElementById("review_count").innerText = "Based on " + data.length + " reviews";
+                document.getElementById("avg").innerText = getRatings(avg, data.length);
             }
 
         },
@@ -280,6 +261,7 @@ function getTopRating(city, catogry) {
 }
 
 function getPackgeDetails(id) {
+
     $.ajax({
         url: "/advertisement/view_packages/" + id,
         dataType: 'json',
@@ -296,88 +278,82 @@ function getPackgeDetails(id) {
 
                     document.getElementById("pack_1").innerHTML =
                         "<figure class=\"left\" id=\"gallery1\">\n" +
-                        "<a href='" + data.packageImage1 + "'\n" +
                         "<img src='" + data.packageImage1 + "' alt=\"\"/>\n" +
                         "<span class=\"image-overlay\"></span>\n" +
-                        "</a>\n" +
-                        "<a href='" + data.packageImage2 +"'\n" +
-                        "<img src='" + data.packageImage2 + "' alt=\"\"/>\n" +
-                        "</a>\n" +
                         "</figure>\n" +
                         "<div class=\"meta\">\n" +
-                        "<h3>Superior Double Room</h3>\n" +
-                        "<p>Prices are per room20 % VAT Included in price</p>\n" +
-                        "<p>Non-refundableFull English breakfast $ 24.80 </p>\n" +
+                        "<h3>" + data.packageName1 + "</h3>\n" +
+                        "<p>" + data.packageDes1 + "</p>\n" +
                         "</div>\n" +
                         "<div class=\"room-information\">\n" +
-                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">Rs.8000.00</a>\n" +
+                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">" + data.packagePrice1 + "</a>\n" +
+                        "</div>";
+
+                    document.getElementById("pack_2").innerHTML =
+                        "<figure class=\"left\" id=\"gallery2\">\n" +
+                        "<img src='" + data.packageImage2 + "' alt=\"\"/>\n" +
+                        "<span class=\"image-overlay\"></span>\n" +
+                        "</figure>\n" +
+                        "<div class=\"meta\">\n" +
+                        "<h3>" + data.packageName2 + "</h3>\n" +
+                        "<p>" + data.packageDes2 + "</p>\n" +
+                        "</div>\n" +
+                        "<div class=\"room-information\">\n" +
+                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">" + data.packagePrice2 + "</a>\n" +
                         "</div>";
 
 
-                    document.getElementById("pack_1").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage1 + "' alt=\"\"></div>\n" +
-                        "                                <!--LISTINGS: CONTENT-->\n" +
-                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
-                        "                                    <a href=\"#!\">\n" +
-                        "                                        <h3>" + data.packageName1 + "</h3>\n" +
-                        "                                    </a>\n" +
-                        "                                    <h4>" + data.packageDes1 + "</h4>\n" +
-                        "                                    <h4 style='color: red'><span></span>" + data.packagePrice1 + "</h4>\n" +
-                        "                                </div>";
-                }
-                if (data.packageName2 !== "") {
-                    document.getElementById("pack_2").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage2 + "' alt=\"\"></div>\n" +
-                        "                                <!--LISTINGS: CONTENT-->\n" +
-                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
-                        "                                    <a href=\"#!\">\n" +
-                        "                                        <h3>" + data.packageName2 + "</h3>\n" +
-                        "                                    </a>\n" +
-                        "                                    <h4>" + data.packageDes2 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice2 + "</h4>\n" +
-                        "                                </div>";
-                }
-                if (data.packageName3 !== "") {
-                    document.getElementById("pack_3").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage3 + "' alt=\"\"></div>\n" +
-                        "                                <!--LISTINGS: CONTENT-->\n" +
-                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
-                        "                                    <a href=\"#!\">\n" +
-                        "                                        <h3>" + data.packageName3 + "</h3>\n" +
-                        "                                    </a>\n" +
-                        "                                    <h4>" + data.packageDes3 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice3 + "</h4>\n" +
-                        "                                </div>";
-                }
-                if (data.packageName4 !== "") {
-                    document.getElementById("pack_4").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage4 + "' alt=\"\"></div>\n" +
-                        "                                <!--LISTINGS: CONTENT-->\n" +
-                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
-                        "                                    <a href=\"#!\">\n" +
-                        "                                        <h3>" + data.packageName4 + "</h3>\n" +
-                        "                                    </a>\n" +
-                        "                                    <h4>" + data.packageDes4 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice4 + "</h4>\n" +
-                        "                                </div>";
-                }
-                if (data.packageName5 !== "") {
-                    document.getElementById("pack_5").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage5 + "' alt=\"\"></div>\n" +
-                        "                                <!--LISTINGS: CONTENT-->\n" +
-                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
-                        "                                    <a href=\"#!\">\n" +
-                        "                                        <h3>" + data.packageName5 + "</h3>\n" +
-                        "                                    </a>\n" +
-                        "                                    <h4>" + data.packageDes5 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice5 + "</h4>\n" +
-                        "                                </div>";
-                }
-                if (data.packageName6 !== "") {
-                    document.getElementById("pack_6").innerHTML = " <div class=\"col-md-3\"><img src='" + data.packageImage6 + "' alt=\"\"></div>\n" +
-                        "                                <!--LISTINGS: CONTENT-->\n" +
-                        "                                <div class=\"col-md-9 home-list-pop-desc inn-list-pop-desc list-room-deta\">\n" +
-                        "                                    <a href=\"#!\">\n" +
-                        "                                        <h3>" + data.packageName6 + "</h3>\n" +
-                        "                                    </a>\n" +
-                        "                                    <h4>" + data.packageDes6 + "</h4>\n" +
-                        "                                    <h4 style='color: red'>" + data.packagePrice6 + "</h4>\n" +
-                        "                                </div>";
+                    document.getElementById("pack_3").innerHTML =
+                        "<figure class=\"left\" id=\"gallery3\">\n" +
+                        "<img src='" + data.packageImage3 + "' alt=\"\"/>\n" +
+                        "<span class=\"image-overlay\"></span>\n" +
+                        "</figure>\n" +
+                        "<div class=\"meta\">\n" +
+                        "<h3>" + data.packageName3 + "</h3>\n" +
+                        "<p>" + data.packageDes3 + "</p>\n" +
+                        "</div>\n" +
+                        "<div class=\"room-information\">\n" +
+                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">" + data.packagePrice3 + "</a>\n" +
+                        "</div>";
+
+                    document.getElementById("pack_4").innerHTML =
+                        "<figure class=\"left\" id=\"gallery4\">\n" +
+                        "<img src='" + data.packageImage4 + "' alt=\"\"/>\n" +
+                        "<span class=\"image-overlay\"></span>\n" +
+                        "</figure>\n" +
+                        "<div class=\"meta\">\n" +
+                        "<h3>" + data.packageName4 + "</h3>\n" +
+                        "<p>" + data.packageDes4 + "</p>\n" +
+                        "</div>\n" +
+                        "<div class=\"room-information\">\n" +
+                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">" + data.packagePrice4 + "</a>\n" +
+                        "</div>";
+
+                    document.getElementById("pack_5").innerHTML =
+                        "<figure class=\"left\" id=\"gallery5\">\n" +
+                        "<img src='" + data.packageImage5 + "' alt=\"\"/>\n" +
+                        "<span class=\"image-overlay\"></span>\n" +
+                        "</figure>\n" +
+                        "<div class=\"meta\">\n" +
+                        "<h3>" + data.packageName5 + "</h3>\n" +
+                        "<p>" + data.packageDes5 + "</p>\n" +
+                        "</div>\n" +
+                        "<div class=\"room-information\">\n" +
+                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">" + data.packagePrice5 + "</a>\n" +
+                        "</div>";
+
+                    document.getElementById("pack_6").innerHTML =
+                        "<figure class=\"left\" id=\"gallery6\">\n" +
+                        "<img src='" + data.packageImage6 + "' alt=\"\"/>\n" +
+                        "<span class=\"image-overlay\"></span>\n" +
+                        "</figure>\n" +
+                        "<div class=\"meta\">\n" +
+                        "<h3>" + data.packageName6 + "</h3>\n" +
+                        "<p>" + data.packageDes6 + "</p>\n" +
+                        "</div>\n" +
+                        "<div class=\"room-information\">\n" +
+                        "<a class=\"gradient-button\" style=\"margin-bottom: 50%\" title=\"PRICE\">" + data.packagePrice6 + "</a>\n" +
+                        "</div>";
                 }
             }
         }
