@@ -21,4 +21,11 @@ public class Test {
         modelAndView.setViewName("client/search_results.html");
         return modelAndView;
     }
+
+    @RequestMapping(value = {"/test/advertisement"}, method = RequestMethod.GET)
+    public ModelAndView public_advertisement() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("client/advertisement.html");
+        return modelAndView;
+    }
 }
