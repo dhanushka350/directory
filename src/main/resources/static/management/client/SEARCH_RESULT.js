@@ -41,20 +41,20 @@ function loadOn() {
     search("Select City", "Select Vendor Category");
 };
 
-$('#category').on('click', function () {
+
+function searchData() {
+
+//methana check karahn
+//     "Select City", "Select Vendor Category"
+// uda cmnt eke theena deka pass karnna oneee hode
     var city = $("#city").val();
-    var cate = $("#category").val();
+    var city = $("#cate").val();
+
+
     search(city, cate);
-});
-$('#city').on('change', function () {
-    var city = $("#city").val();
-    var cate = $("#category").val();
-    search(city, cate);
-});
+}
 
 function search(city, cate) {
-
-    console.log(city + "sssssss" + cate + "ddddddddd");
     $.ajax({
         url: "/advertisement/getAllads/" + city + "/" + cate,
         dataType: 'json',
