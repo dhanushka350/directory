@@ -36,62 +36,30 @@ function getDataFromBackend(selctedAd) {
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
 
-            document.getElementById("image-gallery").innerHTML =
-                "                       <li data-thumb='" + data.coverImage1 + "'>\n" +
-                "                            <img src='" + data.coverImage1 + "' alt=\"\" width='900' height='600'/>\n" +
-                "                        </li>\n" +
-                "                        <li data-thumb='" + data.coverImage2 + "' width='900' height='600'>\n" +
-                "                            <img src='" + data.coverImage2 + "' alt=\"\"/>\n" +
-                "                        </li>\n" +
-                "                        <li data-thumb='" + data.coverImage3 + "' width='900' height='600'>\n" +
-                "                            <img src='" + data.coverImage3 + "' alt=\"\"/>\n" +
-                "                        </li>\n" +
-                "                        <li data-thumb='" + data.coverImage4 + "' width='900' height='600'>\n" +
-                "                            <img src='" + data.coverImage4 + "' alt=\"\"/>\n" +
-                "                        </li>";
+            $('#slider-img-1').attr('src', data.coverImage1);
+            $('#slider-img-2').attr('src', data.coverImage2);
+            $('#slider-img-3').attr('src', data.coverImage3);
 
             document.getElementById("title").innerHTML = data.title;
+            document.getElementById("nav_title").innerHTML = data.title;
             document.getElementById("ad_title").innerHTML = data.title;
             document.getElementById("address").innerHTML = data.city;
             document.getElementById("desc").innerHTML = data.description;
             document.getElementById("main_desc").innerHTML = data.description;
             document.getElementById("main_number").innerHTML = data.venodr.phone;
+            document.getElementById("main_email").innerHTML = data.venodr.email;
             document.getElementById("lcation").innerHTML = "<iframe style='height: 100%' src='" + data.map + "' " +
                 "                                        allowfullscreen></iframe>";
-            document.getElementById("web_sites").innerHTML = "<h4>Our social media links</h4><h5>Facebook</h5><a href='" + data.facebook + "'>CLICK HERE!</a><h5>Web Site</h5><a href='" + data.twitter + "'>CLICK HERE!</a>";
+            document.getElementById("web_sites").innerHTML = "<h4>Useful Information</h4><a href='" + data.facebook + "'>Facebook Page</a>" +
+                "<a href='" + data.twitter + "' style='margin-left: 5%'>Our web site</a>" +
+                "<h5>Opening Days</h5><p>'" + data.openingDates + "'</p>" +
+                "<h5>Opening Time</h5><p>'" + data.openingTime + "'</p>" +
+                "<h5>Closing Time</h5><p>'" + data.closingTime + "'</p>";
 
 
             document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
             document.getElementById("txt-desc").innerHTML = data.description;
 
-
-            // document.getElementById("slider-img-1").innerHTML = "<img src='" + data.coverImage1 + "'>";
-            // document.getElementById("slider-img-2").innerHTML = "<img src='" + data.coverImage2 + "'>";
-            // document.getElementById("slider-img-3").innerHTML = "<img src='" + data.coverImage3 + "'>";
-            // document.getElementById("slider-img-4").innerHTML = "<img src='" + data.coverImage4 + "'>";
-            $('#slider-img-1').attr('src', data.coverImage1);
-            $('#slider-img-2').attr('src', data.coverImage2);
-            $('#slider-img-3').attr('src', data.coverImage3);
-            $('#slider-img-4').attr('src', data.coverImage4);
-            $('#slider-img-5').attr('src', data.coverImage1);
-            $('#slider-img-6').attr('src', data.coverImage3);
-            document.getElementById("img1").innerHTML = "<img src='" + data.coverImage1 + "'>";
-            document.getElementById("img2").innerHTML = "<img src='" + data.coverImage2 + "'>";
-            document.getElementById("img3").innerHTML = "<img src='" + data.coverImage3 + "'>";
-            document.getElementById("img4").innerHTML = "<img src='" + data.coverImage4 + "'>";
-
-            document.getElementById("open_time").innerHTML = data.openingTime;
-            document.getElementById("close_time").innerHTML = data.closingTime;
-            document.getElementById("open_days").innerHTML = data.openingDates;
-            document.getElementById("txt_mob").innerHTML = data.venodr.phone;
-            document.getElementById("txt_email").innerHTML = data.venodr.email;
-
-
-            // document.getElementById("profile_image").innerHTML = "<img style='width: 150px;height: 150px;border-radius: 50%' src=" + data.venodr.image + " alt='' > ";
-            // document.getElementById("name-txt").innerHTML = data.venodr.name + " " + data.venodr.lastName;
-            document.getElementById("inq-text").innerHTML = "Send Enquiry to <span style='color: orangered'> " + data.title + "</span> \n" +
-                "                                        Fill in your details and <span style='color: orangered'> " + data.title + "</span>  will get back to you\n" +
-                "                                        shortly.";
             userid = data.id;
             setRatings(userid);
             getTopRating(data.city, data.category);
@@ -168,8 +136,8 @@ function getAllAdsByVendor() {
 
                     $('#other_ads').append($("<li onclick='itemView(" + data[i].id + ")'>\n" +
                         "<a href=\"#\">\n" +
-                        "<h3>" + data[i].title + "</h3>\n" +
-                        "<p>" + data[i].description + "</p>\n" +
+                        "<h3 style='color: teal'>" + data[i].title + "</h3>\n" +
+                        "<span>" + data[i].city + "<span><br>\n" +
                         "<span>" + data[i].category + "</span>\n" +
                         "</a>\n" +
                         "</li>"));
@@ -363,7 +331,7 @@ function getPackgeDetails(id) {
 function itemView(param) {
 
     localStorage.setItem("selectedAd", param);
-    window.open("/home/profileview", "_self");
+    window.open("/main/advertisement", "_self");
 }
 
 function sentInquiry() {

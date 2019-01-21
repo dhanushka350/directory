@@ -68,7 +68,7 @@ function guestView() {
     localStorage.removeItem("selectedAd");
     localStorage.setItem("selectedAd", selctedAd);
     if (activated === true) {
-        window.open("/home/profileview", "_blank");
+        window.open("/main/advertisement", "_blank");
     } else {
         $('.ui.basic.modal')
             .modal('show')

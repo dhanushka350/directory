@@ -37,20 +37,29 @@ function getVendorCat() {
 }
 
 function loadOn() {
+    var city = localStorage.getItem("selectedCity");
+    var cate = localStorage.getItem("selectedCate");
+    if (city.length < 2 || city === null) {
+        city = "Select City";
+    }
+    if (cate.length < 2 || cate === null) {
+        cate = "Select Vendor Category";
+    }
     $('#allAds\n').empty();
-    search("Select City", "Select Vendor Category");
+    search(city, cate);
 };
 
 
 function searchData() {
-
-//methana check karahn
-//     "Select City", "Select Vendor Category"
-// uda cmnt eke theena deka pass karnna oneee hode
     var city = $("#city").val();
-    var city = $("#cate").val();
+    var cate = $("#category").val();
 
-
+    if (city.length < 2) {
+        city = "Select City";
+    }
+    if (cate.length < 2) {
+        cate = "Select Vendor Category";
+    }
     search(city, cate);
 }
 
@@ -61,7 +70,7 @@ function search(city, cate) {
         contentType: "application/json",
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
-
+            document.getElementById("rec_count").innerText = "Found " + data.length + " Results.";
             $('#allAds\n').empty();
             if (data.length === 0) {
                 document.getElementById("allAds").innerHTML = "<h1 style='text-align: center'>No Result Found</h1>";
@@ -72,17 +81,9 @@ function search(city, cate) {
                         "                        </figure>\n" +
                         "                        <div class=\"details\">\n" +
                         "                            <h3>" + data[i].title + "\n" +
-                        "                                <span class=\"stars\">\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<i class=\"material-icons\">&#xE838;</i>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<i class=\"material-icons\">&#xE838;</i>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<i class=\"material-icons\">&#xE838;</i>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<i class=\"material-icons\">&#xE838;</i>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<i class=\"material-icons\">&#xE838;</i>\n" +
-                        "\t\t\t\t\t\t\t\t\t</span>\n" +
                         "                            </h3>\n" +
-                        "                            <span class=\"address\"> " + data[i].city + " •  <a href=\"#\">Show on map</a></span>\n" +
-                        "                            <span class=\"rating\"> 9 /10</span>\n" +
-                        "                            <a  onclick='itemView(" + data[i].id + ")' title=\"Book now\" class=\"gradient-button\">Book now</a>\n" +
+                        "                            <span class=\"address\"> " + data[i].city + " •  <a>Working days - " + data[i].openingDates + "</a></span>\n" +
+                        "                            <a  onclick='itemView(" + data[i].id + ")' title=\"Book now\" class=\"gradient-button\">More Details</a>\n" +
                         "                        </div>\n" +
                         "                    </article>"));
 
@@ -119,5 +120,5 @@ function search(city, cate) {
 
 function itemView(param) {
     localStorage.setItem("selectedAd", param);
-    window.open("/home/profileview", "_self");
+    window.open("/main/advertisement", "_self");
 }

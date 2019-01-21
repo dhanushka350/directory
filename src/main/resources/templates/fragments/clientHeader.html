@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+<header class="header" th:fragment="clientheader">
+    <div class="wrap">
+        <!--logo-->
+        <div class="logo"><a href="/main/index" title="Book Your Travel"><img src="/client/images/txt/logo.png"
+                                                                              alt="Book Your Travel"/></a></div>
+        <!--//logo-->
+
+        <!--ribbon-->
+        <div class="ribbon">
+            <nav style="text-align: center;">
+                <ul class="profile-nav">
+                    <li class="active"><a href="#" title="My Account">WELCOME</a></li>
+                </ul>
+                <ul class="lang-nav">
+                    <li class="active"><a href="#" title="English (US)">TO</a></li>
+                </ul>
+                <ul class="currency-nav">
+                    <li class="active"><a href="#" title="$US Dollar">ZEEBO DIRECTORY</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!--//ribbon-->
+
+        <!--search-->
+        <div class="search">
+            <form id="search-form">
+                <input type="search" placeholder="Search your vendors here" name="site_search" id="site_search"/>
+                <input type="submit" id="submit-site-search" value="submit-site-search" name="submit-site-search"/>
+            </form>
+        </div>
+        <!--//search-->
+
+        <!--contact-->
+        <div class="contact">
+            <span>24/7 Support number</span>
+            <span class="number">+94- 711 - 215 - 863</span>
+        </div>
+        <!--//contact-->
+    </div>
+
+    <!--main navigation-->
+    <nav class="main-nav">
+        <div class="wrap">
+            <ul class="slimmenu" id="nav">
+                <li><a href="/main/index" title="HOME">HOME</a></li>
+                <li><a href="/main/category" title="CATEGORISE">CATEGORISE</a></li>
+                <li><a href="/main/search_results" title="SEARCH">SEARCH</a></li>
+                <li><a href="" title="ABOUT US">ABOUT US</a></li>
+                <li><a href="" title="CONTACT">CONTACT</a></li>
+                <li><a href="" title="FAQ">FAQ</a></li>
+                <li><a href="" title="NEWS">NEWS</a></li>
+                <li><a href="" title="BLOG">BLOG</a></li>
+                <li><a href="/main/login" title="VENDORS LOGIN">VENDORS LOGIN</a></li>
+                <li><a href="" title="COUPLES LOGIN" disabled="disabled">COUPLES LOGIN</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--//main navigation-->
+</header>
 </html>

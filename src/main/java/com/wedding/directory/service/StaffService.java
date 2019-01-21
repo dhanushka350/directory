@@ -1,6 +1,8 @@
 package com.wedding.directory.service;
 
 import com.wedding.directory.modal.Broker;
+import com.wedding.directory.modal.Role;
+import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.ADProfile;
 import com.wedding.directory.modal.advertisement.Category;
 import com.wedding.directory.modal.advertisement.City;
@@ -179,4 +181,38 @@ public class StaffService {
         return payload;
     }
 
+    public String saveVendor(Venodr response) {
+        User user = userRepository.findByEmail(response.getEmail());
+        if (user == null) {
+            user = new User();
+            user.setName(response.getName());
+            user.setEmail(response.getEmail());
+            user.setPassword(response.getPassword());
+            user.setLastName("please update profile");
+            user.setActive(1);
+            userRepository.save(user);
+            return "/main/login";
+        } else {
+            return "ERROR";
+        }
+    }
+
+    public String vendorLogin(User user) {
+        System.err.println("==================================================");
+        User email = userRepository.findByEmail(user.getEmail());
+        if (email != null) {
+            if (email.getPassword().equalsIgnoreCase(user.getPassword())) {
+                for (Role role : email.getRoles()) {
+                    if (role.getRole().equalsIgnoreCase("ADMIN")) {
+                        return "/system/admin/home";
+                    }
+                }
+                return "/admin/home";
+            } else {
+                return "WRONG PASSWORD";
+            }
+        } else {
+            return "WRONG EMAIL";
+        }
+    }
 }

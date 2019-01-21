@@ -4,10 +4,7 @@ import com.wedding.directory.modal.Broker;
 import com.wedding.directory.modal.User;
 import com.wedding.directory.modal.advertisement.Category;
 import com.wedding.directory.modal.advertisement.City;
-import com.wedding.directory.payload.ADResponse;
-import com.wedding.directory.payload.Area;
-import com.wedding.directory.payload.BrokerPayload;
-import com.wedding.directory.payload.CategoryDto;
+import com.wedding.directory.payload.*;
 import com.wedding.directory.service.StaffService;
 import com.wedding.directory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +75,18 @@ public class AdminSettings {
     @RequestMapping(value = "/getBroker/{brokerNIC}", method = RequestMethod.GET)
     public BrokerPayload getOneBroker(@PathVariable String brokerNIC) {
         return staffService.getBrokerByNic(brokerNIC);
+    }
+
+    @RequestMapping(value = "/save/vendor", method = RequestMethod.POST)
+    @ResponseBody
+    public String saveAd(@RequestBody Venodr response) {
+
+        return staffService.saveVendor(response);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public String login(@RequestBody User user) {
+        return staffService.vendorLogin(user);
     }
 }

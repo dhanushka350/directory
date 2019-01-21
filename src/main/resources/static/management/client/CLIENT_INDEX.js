@@ -1,5 +1,3 @@
-
-
 function getCity() {
     $.ajax({
         url: "/advertisement/getAllCities",
@@ -51,7 +49,6 @@ function setFrontPageAdv() {
             } else {
                 for (var i = 0; i < data.length; i++) {
 
-
                     $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth\">" +
                         "<figure><a title=\"\" style='width: 250px; height: 100px;'>\n" +
                         "<img src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
@@ -63,13 +60,13 @@ function setFrontPageAdv() {
                         "<span class=\"count\">" + data[i].city + "</span>\n" +
                         "<div class=\"ribbon\">\n" +
                         "<div>\n" +
-                        "<a href=\"hotels.html\" title=\"View all\">\n" +
+                        "<a  title=\"View all\">\n" +
                         "<span class=\"small\">VENDOR</span>\n" +
                         "<span class='small'>" + data[i].vendor + "</span>\n" +
                         "</a>\n" +
                         "</div>\n" +
                         "<div>\n" +
-                        "<a href=\"flights.html\" title=\"View all\">\n" +
+                        "<a  title=\"View all\">\n" +
                         "<span class=\"small\">CATEGORY</span>\n" +
                         "<span class='small'>" + data[i].category + "</span>\n" +
                         "</a>\n" +
@@ -86,7 +83,13 @@ function setFrontPageAdv() {
 
 function itemView(param) {
     localStorage.setItem("selectedAd", param);
-    window.open("/home/profileview", "_self");
+    window.open("/main/advertisement", "_self");
+}
+
+function viewMore(param) {
+    localStorage.setItem("selectedCity", "Select City");
+    localStorage.setItem("selectedCate", param);
+    window.open("/main/search_results", "_self");
 }
 
 $('#cmb-city').on('change', function () {
@@ -144,12 +147,6 @@ function search() {
         }
 
     });
-}
-
-function viewMore() {
-    localStorage.setItem("selectedCity", $('#cmb-city').find(":selected").text());
-    localStorage.setItem("selectedCate", $('#cmb-cate').find(":selected").text());
-    window.open("/home/listing/vendors", "_self");
 }
 
 

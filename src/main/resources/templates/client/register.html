@@ -20,7 +20,7 @@
     <script src="../../../../use.fontawesome.com/e808bf9397.js"></script>
     <link rel="shortcut icon" href="/client/images/favicon.ico"/>
     <link rel="stylesheet" href="/client/css/styler.css" type="text/css"/>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,7 +28,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body onload="getCity();getVendorCat();setFrontPageAdv();">
+<body>
 <!--- loading animation -->
 <div class="loading">
     <div class="ball"></div>
@@ -125,7 +125,7 @@
                             </figure>
                             <div class="details">
                                 <h3 style="text-align: center">Photographers</h3>
-                                <a  title="Explore" class="gradient-button" onclick="viewMore('Photographers')">Explore</a>
+                                <a href="#" title="Explore" class="gradient-button" onclick="viewMore('Photographers')">Explore</a>
                             </div>
                         </article>
                         <!--//column-->
@@ -138,26 +138,26 @@
                             </figure>
                             <div class="details">
                                 <h3 style="text-align: center">Hotels</h3>
-                                <a title="More info" class="gradient-button" onclick="viewMore('Hotels')">Explore</a>
+                                <a href="#" title="More info" class="gradient-button" onclick="viewMore('Hotels')">Explore</a>
                             </div>
                         </article>
                         <!--//column-->
 
                         <!--column-->
                         <article class="one-fourth" onclick="viewMore('Bridal Wear')">
-                            <figure><a  title=""><img src="/images/wear.jpg"
+                            <figure><a href="#" title=""><img src="/images/wear.jpg"
                                                               alt=""/></a>
                             </figure>
                             <div class="details">
                                 <h3 style="text-align: center">Bridal Wear</h3>
-                                <a  title="More info" class="gradient-button" onclick="viewMore('Bridal Wear')">Explore</a>
+                                <a href="#" title="More info" class="gradient-button" onclick="viewMore('Bridal Wear')">Explore</a>
                             </div>
                         </article>
                         <!--//column-->
 
                         <!--column-->
                         <article class="one-fourth" onclick="viewMore('Beauticians & Hair Dressers')">
-                            <figure><a  title=""><img src="/images/beau.jpg" alt=""/></a>
+                            <figure><a href="#" title=""><img src="/images/beau.jpg" alt=""/></a>
                             </figure>
                             <div class="details">
                                 <h3 style="text-align: center">Beauticians & Hair Dressers</h3>
@@ -279,6 +279,38 @@
 <!--footer-->
 <div th:replace="fragments/clientFooter :: clientfooter"/>
 <!---footer-->
+<div class="lightbox" style="display:block;" id="registrationForum">
+    <div class="lb-wrap">
+        <a href="#" class="close">x</a>
+        <div class="lb-content">
+            <form class="row">
+                <h3>Register</h3>
+                <div class="f-item full-width">
+                    <label for="f_name">Name and surname</label>
+                    <input type="text" id="f_name" name="ns_name"/>
+                </div>
+                <div class="f-item full-width">
+                    <label for="email">E-mail address</label>
+                    <input type="email" id="email" name="email"/>
+                </div>
+                <div class="f-item full-width">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"/>
+                </div>
+                <div class="f-item checkbox full-width">
+                    <input type="checkbox" id="newsletter_s" name="newsletter"/>
+                    <label for="newsletter_s">Tell me about inspiring travel news, and exclusive discounts!</label>
+                </div>
+                <div class="f-item checkbox full-width">
+                    <p>By clicking "Create Account" you confirm that you accept the <a href="#">Terms of Service</a> and
+                        <a href="#">Privacy Policy</a>. </p>
+                    <input type="button" id="register" name="register" value="Create Account" class="gradient-button"
+                           onclick="REGISTRATION.saveVendor();"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -311,8 +343,11 @@
             });
         });
     })(jQuery);
+
+
 </script>
 <script src="/client/js/styler.js"></script>
 <script src="/management/client/CLIENT_INDEX.js"></script>
+<script src="/management/client/REGISTRATION.js"></script>
 </body>
 </html>
