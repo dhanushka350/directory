@@ -60,14 +60,14 @@ function setFrontPageAdv() {
                         "<span class=\"count\">" + data[i].city + "</span>\n" +
                         "<div class=\"ribbon\">\n" +
                         "<div>\n" +
-                        "<a  title=\"View all\">\n" +
-                        "<span class=\"small\">VENDOR</span>\n" +
+                        "<a  title=\"View all\" style='text-align: left'>\n" +
+                        "<span class=\"small\" style='text-anchor: start'>VENDOR</span>\n" +
                         "<span class='small'>" + data[i].vendor + "</span>\n" +
                         "</a>\n" +
                         "</div>\n" +
                         "<div>\n" +
-                        "<a  title=\"View all\">\n" +
-                        "<span class=\"small\">CATEGORY</span>\n" +
+                        "<a  title=\"View all\" style='text-align: right'>\n" +
+                        "<span class=\"small\" style='text-anchor: end'>CATEGORY</span>\n" +
                         "<span class='small'>" + data[i].category + "</span>\n" +
                         "</a>\n" +
                         "</div>\n" +
