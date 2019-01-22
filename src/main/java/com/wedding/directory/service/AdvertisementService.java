@@ -197,7 +197,14 @@ public class AdvertisementService {
         } else if (city.equals("Select City")) {
             return setAdResponse(repository.getTop17ByCategoryEquals(categoryRepo.getTopByCategoryEquals(vend)));
         } else {
-            return setAdResponse(repository.getTop17ByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
+            List<ADResponse> adResponses = setAdResponse(repository.getTop17ByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
+            List<ADResponse> adResponseList = setAdResponse(categoryRepo.getTopByCategoryEquals(vend).getAdProfiles());
+            for (ADResponse adProfile : adResponseList) {
+                if (!adProfile.getCity().equals(city)) {
+                    adResponses.add(adProfile);
+                }
+            }
+            return adResponses;
         }
     }
 
@@ -348,7 +355,9 @@ public class AdvertisementService {
             System.out.println(4);
             System.out.println("===========================");
             try {
-                return setAdResponse(repository.getAllByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
+                List<ADResponse> adResponses = setAdResponse(repository.getAllByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
+
+                return adResponses;
             } catch (NullPointerException e) {
                 return null;
             }
