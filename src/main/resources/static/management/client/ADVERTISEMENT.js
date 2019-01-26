@@ -1,4 +1,4 @@
-var selctedAd;
+    var selctedAd;
 
 
 function loadData() {
