@@ -51,7 +51,7 @@ function setFrontPageAdv() {
 
                     $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth\">" +
                         "<figure><a title=\"\" style='width: 250px; height: 100px;'>\n" +
-                        "<img src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
+                        "<img class='img-rip' src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
                         "</a>\n" +
                         "</figure>\n" +
                         "<div class=\"details\">\n" +
@@ -118,7 +118,7 @@ function search() {
                 for (var i = 0; i < data.length; i++) {
                     $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth\">" +
                         "<figure><a title=\"\" style='width: 250px; height: 100px;'>\n" +
-                        "<img src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
+                        "<img class='img-rip' src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
                         "</a>\n" +
                         "</figure>\n" +
                         "<div class=\"details\">\n" +
