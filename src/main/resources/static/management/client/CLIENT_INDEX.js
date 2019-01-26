@@ -92,17 +92,26 @@ function viewMore(param) {
     window.open("/main/search_results", "_self");
 }
 
-$('#cmb-city').on('change', function () {
-    search();
-});
-$('#cmb-cate').on('change', function () {
-    search();
-});
+// $('#cmb-city').on('change', function () {
+//     search();
+// });
+// $('#cmb-cate').on('change', function () {
+//     search();
+// });
+
 
 function search() {
 
     var city = $("#city").val();
     var cate = $("#category").val();
+
+    if (city.length < 2) {
+        city = "Select City";
+    }
+    if (cate.length < 2) {
+        cate = "Select Vendor Category";
+    }
+
     var elmnt = document.getElementById("top-ads");
     elmnt.scrollIntoView();
     $.ajax({
@@ -112,7 +121,7 @@ function search() {
         type: 'GET',
         success: function (data, textStatus, jqXHR) {
             $('#top-ads').empty();
-            if (data.length === 0) {
+            if (data.length === 0 || data == null) {
                 $('#top-ads').append($("<h1>No Results Found</h1>"));
             } else {
                 for (var i = 0; i < data.length; i++) {
@@ -144,7 +153,7 @@ function search() {
                     ));
                 }
             }
-        }
+        },
 
     });
 }

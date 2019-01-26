@@ -190,15 +190,29 @@ public class AdvertisementService {
         System.out.println("==========================================");
         System.out.println(city + " " + vend);
         System.out.println("==========================================");
+
+
         if (vend.equals("Select Vendor Category") && city.equals("Select City")) {
             return setAdResponse(repository.findAll());
+
         } else if (vend.equals("Select Vendor Category")) {
             return setAdResponse(repository.getTop17ByCityEquals(cityRepo.getTopByCityEquals(city)));
+
         } else if (city.equals("Select City")) {
             return setAdResponse(repository.getTop17ByCategoryEquals(categoryRepo.getTopByCategoryEquals(vend)));
         } else {
+            if (categoryRepo.getTopByCategoryEquals(vend) == null && cityRepo.getTopByCityEquals(city) == null) {
+                return setAdResponse(repository.findAll());
+            } else if (categoryRepo.getTopByCategoryEquals(vend) == null && cityRepo.getTopByCityEquals(city) != null) {
+                return setAdResponse(repository.getTop17ByCityEquals(cityRepo.getTopByCityEquals(city)));
+            } else if (categoryRepo.getTopByCategoryEquals(vend) != null && cityRepo.getTopByCityEquals(city) == null) {
+                return setAdResponse(repository.getTop17ByCategoryEquals(categoryRepo.getTopByCategoryEquals(vend)));
+            }
+
+
             List<ADResponse> adResponses = setAdResponse(repository.getTop17ByCityEqualsAndCategoryEquals(cityRepo.getTopByCityEquals(city), categoryRepo.getTopByCategoryEquals(vend)));
             List<ADResponse> adResponseList = setAdResponse(categoryRepo.getTopByCategoryEquals(vend).getAdProfiles());
+
             for (ADResponse adProfile : adResponseList) {
                 if (!adProfile.getCity().equals(city)) {
                     adResponses.add(adProfile);
