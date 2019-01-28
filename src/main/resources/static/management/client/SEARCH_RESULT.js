@@ -17,42 +17,46 @@ function getCity() {
     });
 }
 
-function getVendorCat() {
-    $.ajax({
-        url: "/advertisement/getAllVendorCat",
-        dataType: 'json',
-        contentType: "application/json",
-        type: 'GET',
-        success: function (data, textStatus, jqXHR) {
-
-            for (var i = 0; i < data.length; i++) {
-
-                $('#cateList').append($('<option>', {
-                    value: data[i],
-                    text: data[i]
-                }));
-            }
-        },
-    });
-}
+// function getVendorCat() {
+//     $.ajax({
+//         url: "/advertisement/getAllVendorCat",
+//         dataType: 'json',
+//         contentType: "application/json",
+//         type: 'GET',
+//         success: function (data, textStatus, jqXHR) {
+//
+//             for (var i = 0; i < data.length; i++) {
+//
+//                 $('#cateList').append($('<option>', {
+//                     value: data[i],
+//                     text: data[i]
+//                 }));
+//             }
+//         },
+//     });
+// }
 
 function loadOn() {
-    var city = localStorage.getItem("selectedCity");
-    var cate = localStorage.getItem("selectedCate");
-    if (city.length < 2 || city === null) {
-        city = "Select City";
-    }
-    if (cate.length < 2 || cate === null) {
-        cate = "Select Vendor Category";
-    }
+    // var city = localStorage.getItem("selectedCity");
+    // var cate = localStorage.getItem("selectedCate");
+    // alert(city);
+    // if (city.length < 2 || city === null) {
+    //     city = "Select City";
+    // }
+    // if (cate.length < 2 || cate === null) {
+    //     cate = "Select Vendor Category";
+    // }
     $('#allAds\n').empty();
-    search(city, cate);
+    search("Select City", "Select Vendor Category");
 };
 
+$('#category').on('change', function () {
+    searchData();
+});
 
 function searchData() {
     var city = $("#city").val();
-    var cate = $("#category").val();
+    var cate = $('#category').find(":selected").text();
 
     if (city.length < 2) {
         city = "Select City";
@@ -76,13 +80,13 @@ function search(city, cate) {
                 document.getElementById("allAds").innerHTML = "<h1 style='text-align: center'>No Result Found</h1>";
             } else {
                 for (var i = 0; i < data.length; i++) {
-                    $('#allAds\n').append($("<article class=\"one-third\">\n" +
-                        "                        <figure><a href=\"hotel.html\" title=\"\"><img src='" + data[i].coverImage1 + "' alt=\"\"/></a>\n" +
+                    $('#allAds\n').append($("<article class='one-third' style='max-height: 300px; min-height: 300px; margin-bottom: 1%;'>\n" +
+                        "                        <figure><a onclick='itemView(" + data[i].id + ")' title=\"\"><img class='img-rip' src='" + data[i].coverImage1 + "' alt=\"\"/></a>\n" +
                         "                        </figure>\n" +
                         "                        <div class=\"details\">\n" +
-                        "                            <h3>" + data[i].title + "\n" +
-                        "                            </h3>\n" +
-                        "                            <span class=\"address\"> " + data[i].city + " •  <a>Working days - " + data[i].openingDates + "</a></span>\n" +
+                        "                            <h5>" + data[i].title + "\n" +
+                        "                            </h5>\n" +
+                        "                            <span class=\"address\"> " + data[i].city + " •  <a href='" + data[i].facebook + "'>FACEBOOK<i class='fa fa-facebook'></i></a></span>\n" +
                         "                            <a  onclick='itemView(" + data[i].id + ")' title=\"Book now\" class=\"gradient-button\">More Details</a>\n" +
                         "                        </div>\n" +
                         "                    </article>"));

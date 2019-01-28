@@ -1,6 +1,17 @@
 var page = 0;
 
 
+function setPage(page) {
+
+    if (page.trim() === "Next") {
+        this.page++;
+        ADVERTISMENTS.AllList();
+    } else {
+        this.page--;
+        ADVERTISMENTS.AllList();
+    }
+}
+
 function notWorkingAlert() {
     swal("Service not available");
 }
@@ -12,17 +23,6 @@ function viewAdvertisement(row) {
     // window.open("/home/profileview", "_blank");
 }
 
-
-function setPage(page) {
-    swal("Service not available");
-    // if (page.trim() === "Next") {
-    //     this.page++;
-    //     CATEGORY.CateList();
-    // } else {
-    //     this.page--;
-    //     CATEGORY.CateList();
-    // }
-}
 
 var ADVERTISMENTS = {
     AllList: function () {

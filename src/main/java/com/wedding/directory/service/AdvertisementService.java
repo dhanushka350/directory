@@ -201,10 +201,14 @@ public class AdvertisementService {
         } else if (city.equals("Select City")) {
             return setAdResponse(repository.getTop17ByCategoryEquals(categoryRepo.getTopByCategoryEquals(vend)));
         } else {
+
             if (categoryRepo.getTopByCategoryEquals(vend) == null && cityRepo.getTopByCityEquals(city) == null) {
                 return setAdResponse(repository.findAll());
+
             } else if (categoryRepo.getTopByCategoryEquals(vend) == null && cityRepo.getTopByCityEquals(city) != null) {
+
                 return setAdResponse(repository.getTop17ByCityEquals(cityRepo.getTopByCityEquals(city)));
+
             } else if (categoryRepo.getTopByCategoryEquals(vend) != null && cityRepo.getTopByCityEquals(city) == null) {
                 return setAdResponse(repository.getTop17ByCategoryEquals(categoryRepo.getTopByCategoryEquals(vend)));
             }

@@ -27,6 +27,7 @@
     <link href="/vendors/starrr/dist/starrr.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/Simple-Flexible-jQuery-Alert-Notification-Plugin-notify-js/css/notify.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
@@ -266,7 +267,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input class="form-control" list="citylist" id="city" placeholder="Choose city"/>
+                                            <input class="form-control" list="citylist" id="city"
+                                                   placeholder="Choose city"/>
                                         </div>
                                     </div>
                                     <datalist id="citylist"></datalist>
@@ -274,7 +276,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input class="form-control" id="category" list="catelist" placeholder="Choose category">
+                                            <input class="form-control" id="category" list="catelist"
+                                                   placeholder="Choose category">
                                         </div>
                                     </div>
                                     <datalist id="catelist"></datalist>
@@ -410,7 +413,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cover Images (1920*1200)</label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cover Images
+                                            (1920*1200)</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <!--<a class="btn btn-success" href="#openModal">Upload-->
                                             <!--Covers</a>-->
@@ -431,7 +435,7 @@
                                             <button type="button" class="btn btn-primary">Cancel</button>
                                             <button type="reset" class="btn btn-primary">Reset</button>
                                             <button type="button" id="save" class="btn btn-success" disabled="disabled">
-                                                Submit
+                                                Submit 4 Images To Continue
                                             </button>
                                         </div>
                                     </div>
@@ -469,7 +473,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                Zeebo.ml <a href="zeebo.ml">ZEEBO</a>
             </div>
             <div class="clearfix"></div>
         </footer>
@@ -512,6 +516,7 @@
 <script src="/vendors/starrr/dist/starrr.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
+<script src="/Simple-Flexible-jQuery-Alert-Notification-Plugin-notify-js/js/notify.js"></script>
 <script src="/management/ADD_LISTING.js"></script>
 <script>
     var name = localStorage.getItem('VENDOR');
@@ -555,36 +560,46 @@
     var user = localStorage.getItem('VENDOR');
 
     function uploadMultipleFiles(files) {
-        var formData = new FormData();
-        formData.append("user", user);
-        for (var index = 0; index < files.length; index++) {
-            formData.append("files", files[index]);
-        }
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/uploadMultipleFiles");
-
-        xhr.onload = function () {
-            console.log(xhr.responseText);
-            var response = JSON.parse(xhr.responseText);
-            if (xhr.status == 200) {
-                localStorage.removeItem('SL1');
-                localStorage.removeItem('SL2');
-                localStorage.removeItem('SL3');
-                localStorage.removeItem('SL4');
-
-                localStorage.setItem('SL1', response[0].fileDownloadUri);
-                localStorage.setItem('SL2', response[1].fileDownloadUri);
-                localStorage.setItem('SL3', response[2].fileDownloadUri);
-                localStorage.setItem('SL4', response[3].fileDownloadUri);
-                $('#save').prop("disabled", false);
-                document.getElementsByClassName("close")[0].click();
-            } else {
-                swal("Some Error Occurred", response && response.message, "error");
+        if (files.length < 4) {
+            $.notify("Please Select 4 Images For Your SlideShow.", {blur: 0.2, delay: 5000, type: "danger"});
+        } else {
+            $("#save").html('UPLOADING..');
+            var formData = new FormData();
+            formData.append("user", user);
+            for (var index = 0; index < files.length; index++) {
+                formData.append("files", files[index]);
             }
-        }
 
-        xhr.send(formData);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/uploadMultipleFiles");
+
+            xhr.onload = function () {
+                console.log(xhr.responseText);
+                var response = JSON.parse(xhr.responseText);
+                if (xhr.status == 200) {
+                    localStorage.removeItem('SL1');
+                    localStorage.removeItem('SL2');
+                    localStorage.removeItem('SL3');
+                    localStorage.removeItem('SL4');
+
+                    localStorage.setItem('SL1', response[0].fileDownloadUri);
+                    $("#save").html('UPLOADED 1');
+                    localStorage.setItem('SL2', response[1].fileDownloadUri);
+                    $("#save").html('UPLOADED 2');
+                    localStorage.setItem('SL3', response[2].fileDownloadUri);
+                    $("#save").html('UPLOADED 3');
+                    localStorage.setItem('SL4', response[3].fileDownloadUri);
+                    $("#save").html('UPLOADED 4');
+                    $('#save').prop("disabled", false);
+                    $("#save").html('Submit');
+                    document.getElementsByClassName("close")[0].click();
+                } else {
+                    swal("Some Error Occurred", response && response.message, "error");
+                }
+            }
+
+            xhr.send(formData);
+        }
     }
 
     function multiple(n) {

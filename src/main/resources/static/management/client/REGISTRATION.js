@@ -44,10 +44,10 @@ var REGISTRATION = {
             data: d,
             success: function (data, textStatus, jqXHR) {
                 if (data === "WRONG EMAIL") {
-                    document.getElementById("loginForum").style.display = "none";
+                    // document.getElementById("loginForum").style.display = "none";
                     swal("Hmm!", "we don't know any user for this email. \n make sure your credentials and lets try again", "error");
                 } else if (data === "WRONG PASSWORD") {
-                    document.getElementById("loginForum").style.display = "none";
+                    // document.getElementById("loginForum").style.display = "none";
                     swal("WARNING!", "wrong password. \n if you want to reset please click forgot password.", "error");
                 } else {
                     var name = $("#email").val();
@@ -57,7 +57,7 @@ var REGISTRATION = {
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                document.getElementById("loginForum").style.display = "none";
+                // document.getElementById("loginForum").style.display = "none";
                 swal("Oops!", "something went wrong.\n please try again later.", "error");
             },
             beforeSend: function (xhr) {

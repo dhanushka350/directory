@@ -49,7 +49,14 @@
 <!--header-->
 <div th:replace="fragments/clientHeader :: clientheader"/>
 <!--//header-->
-
+<style>
+    .img-rip {
+        max-width: 278px;
+        max-height: 170px;
+        min-width: 278px;
+        min-height: 170px;
+    }
+</style>
 <!--main-->
 <main class="main">
     <div class="wrap">
@@ -137,6 +144,7 @@
                     <ul>
                         <li class="description"><a href="#description" title="Description">Description</a></li>
                         <li class="availability"><a href="#availability" title="Availability">Packages</a></li>
+                        <li class="availability"><a href="#other_ads" title="Other Service">Other Services</a></li>
                         <li class="location"><a href="#location" title="Location">Location</a></li>
                         <li class="reviews"><a href="#reviews" title="Reviews">Reviews</a></li>
                         <li class="things-to-do"><a href="#things-to-do" title="Things to do">Inquiry</a></li>
@@ -179,6 +187,17 @@
                 </section>
                 <!--//availability-->
 
+                <section id="other_ads" class="tab-content">
+                    <article>
+                        <h2>Services</h2>
+                        <div class="text-wrap">
+                            <p>Other Ads By This Vendor</span>.</p>
+                        </div>
+                        <ul class="room-types" id="oAds">
+
+                        </ul>
+                    </article>
+                </section>
 
                 <!--location-->
                 <section id="location" class="tab-content" style="background-color: teal; height: 400px">
@@ -209,27 +228,27 @@
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input id="full_name" type="text" class="validate">
-                                    <label for="full_name">Full Name</label>
+                                    <label for="full_name" style="color: black">Full Name</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="mobile_txt" type="number" class="validate">
-                                    <label for="mobile_txt">Mobile</label>
+                                    <label for="mobile_txt" style="color: black">Mobile</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
                                     <input id="email_txt" type="email" class="validate">
-                                    <label for="email_txt">Email id</label>
+                                    <label for="email_txt" style="color: black">Email id</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="city_txt" type="text" class="validate">
-                                    <label for="city_txt">City</label>
+                                    <label for="city_txt" style="color: black">City</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <textarea id="review_txt" class="materialize-textarea"></textarea>
-                                    <label for="review_txt">Write review</label>
+                                    <label for="review_txt" style="color: black">Write review</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -320,13 +339,22 @@
                     <h4>Need Help Booking?</h4>
                     <p>Call our customer services team on the number below to speak to one of our advisors who will help
                         you with all of your needs.</p>
-                    <p class="number" id="main_number">1- 555 - 555 - 555</p>
-                    <p class="email" id="main_email">1- 555 - 555 - 555</p>
+                    <p class="number" id="main_number"></p>
+                    <p class="email" id="main_email"></p>
+                    <p>
+                        <a class="email" id="main_fb" target="_blank"
+                           style="width: 100%; font-weight: bold">Facebook</a>
+                    </p>
+                    <p>
+                        <a class="email" id="main_site" target="_blank"
+                           style="width: 100%; font-weight: bold">Website</a>
+                    </p>
+                    <p id="main_address" style="text-align: center; font-weight: bold; color: #0e8c8c"></p>
                 </article>
                 <!--//Need Help Booking?-->
 
                 <!--Why Book with us?-->
-                <article class="widget" id="web_sites">
+                <article class="widget" id="opening">
                     <h4>Our social media links</h4>
                     <h5>Facebook</h5>
                     <a></a>
@@ -336,12 +364,7 @@
                 <!--//Why Book with us?-->
 
                 <!--Popular hotels in the area-->
-                <article class="widget">
-                    <h4>Other Services</h4>
-                    <ul class="popular-hotels small-list" id="other_ads">
 
-                    </ul>
-                </article>
                 <!--//Popular hotels in the area-->
 
                 <!--Deal of the day-->
@@ -449,23 +472,23 @@
 </script>
 
 <!-- TEMPLATE STYLES -->
-<div id="template-styles">
-    <h2>Template Styles <a href="#"><img class="s-s-icon" src="/client/images/settings.png" alt="Style switcher"/></a>
-    </h2>
-    <div>
-        <h3>Colors</h3>
-        <ul class="colors">
-            <li><a href="#" class="yellow" title="yellow"></a></li>
-            <li><a href="#" class="orange" title="orange"></a></li>
-            <li><a href="#" class="strawberry" title="strawberry"></a></li>
-            <li><a href="#" class="pink" title="pink"></a></li>
-            <li><a href="#" class="purple" title="purple"></a></li>
-            <li><a href="#" class="blue" title="blue"></a></li>
-            <li><a href="#" class="turqoise" title="turqoise"></a></li>
-            <li><a href="#" class="black" title="black"></a></li>
-        </ul>
-    </div>
-</div>
+<!--<div id="template-styles">-->
+<!--<h2>Template Styles <a href="#"><img class="s-s-icon" src="/client/images/settings.png" alt="Style switcher"/></a>-->
+<!--</h2>-->
+<!--<div>-->
+<!--<h3>Colors</h3>-->
+<!--<ul class="colors">-->
+<!--<li><a href="#" class="yellow" title="yellow"></a></li>-->
+<!--<li><a href="#" class="orange" title="orange"></a></li>-->
+<!--<li><a href="#" class="strawberry" title="strawberry"></a></li>-->
+<!--<li><a href="#" class="pink" title="pink"></a></li>-->
+<!--<li><a href="#" class="purple" title="purple"></a></li>-->
+<!--<li><a href="#" class="blue" title="blue"></a></li>-->
+<!--<li><a href="#" class="turqoise" title="turqoise"></a></li>-->
+<!--<li><a href="#" class="black" title="black"></a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
 <script src="/management/client/ADVERTISEMENT.js"></script>
 <script src="/client/js/styler.js"></script>
 

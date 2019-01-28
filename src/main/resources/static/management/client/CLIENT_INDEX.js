@@ -17,26 +17,27 @@ function getCity() {
     });
 }
 
-function getVendorCat() {
-    $.ajax({
-        url: "/advertisement/getAllVendorCat",
-        dataType: 'json',
-        contentType: "application/json",
-        type: 'GET',
-        success: function (data, textStatus, jqXHR) {
-
-            for (var i = 0; i < data.length; i++) {
-
-                $('#cateList').append($('<option>', {
-                    value: data[i],
-                    text: data[i]
-                }));
-            }
-        },
-    });
-}
+// function getVendorCat() {
+//     $.ajax({
+//         url: "/advertisement/getAllVendorCat",
+//         dataType: 'json',
+//         contentType: "application/json",
+//         type: 'GET',
+//         success: function (data, textStatus, jqXHR) {
+//
+//             for (var i = 0; i < data.length; i++) {
+//
+//                 $('#cateList').append($('<option>', {
+//                     value: data[i],
+//                     text: data[i]
+//                 }));
+//             }
+//         },
+//     });
+// }
 
 function setFrontPageAdv() {
+
     $.ajax({
         url: "/advertisement/getTop",
         dataType: 'json',
@@ -95,15 +96,16 @@ function viewMore(param) {
 // $('#cmb-city').on('change', function () {
 //     search();
 // });
-// $('#cmb-cate').on('change', function () {
-//     search();
-// });
+
+$('#category').on('change', function () {
+    search();
+});
 
 
 function search() {
 
     var city = $("#city").val();
-    var cate = $("#category").val();
+    var cate = $('#category').find(":selected").text();
 
     if (city.length < 2) {
         city = "Select City";

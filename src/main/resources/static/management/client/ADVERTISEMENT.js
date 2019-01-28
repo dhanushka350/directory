@@ -1,4 +1,4 @@
-    var selctedAd;
+var selctedAd;
 
 
 function loadData() {
@@ -48,13 +48,14 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("main_desc").innerHTML = data.description;
             document.getElementById("main_number").innerHTML = data.venodr.phone;
             document.getElementById("main_email").innerHTML = data.venodr.email;
+            document.getElementById("main_address").innerHTML = data.venodr.address;
+            document.getElementById("main_fb").setAttribute('href', data.facebook);
+            document.getElementById("main_site").setAttribute('href', data.twitter);
             document.getElementById("lcation").innerHTML = "<iframe style='height: 100%' src='" + data.map + "' " +
                 "                                        allowfullscreen></iframe>";
-            document.getElementById("web_sites").innerHTML = "<h4>Useful Information</h4><a href='" + data.facebook + "'>Facebook Page</a>" +
-                "<a href='" + data.twitter + "' style='margin-left: 5%'>Our web site</a>" +
-                "<h5>Opening Days</h5><p>'" + data.openingDates + "'</p>" +
-                "<h5>Opening Time</h5><p>'" + data.openingTime + "'</p>" +
-                "<h5>Closing Time</h5><p>'" + data.closingTime + "'</p>";
+            document.getElementById("opening").innerHTML = "<h4>Useful Information</h4><h5>Opening Days</h5><p>" + data.openingDates + "</p>" +
+                "<h5>Opening Time</h5><p>" + data.openingTime + "</p>" +
+                "<h5>Closing Time</h5><p>" + data.closingTime + "</p>";
 
 
             document.getElementById("txt-compname").innerHTML = "<span>About </span>" + data.title;
@@ -134,13 +135,25 @@ function getAllAdsByVendor() {
             } else {
                 for (var i = 0; i < data.length; i++) {
 
-                    $('#other_ads').append($("<li onclick='itemView(" + data[i].id + ")'>\n" +
-                        "<a href=\"#\">\n" +
-                        "<h3 style='color: teal'>" + data[i].title + "</h3>\n" +
-                        "<span>" + data[i].city + "<span><br>\n" +
-                        "<span>" + data[i].category + "</span>\n" +
-                        "</a>\n" +
+                    // $('#other_ads').append($("<li onclick='itemView(" + data[i].id + ")'>\n" +
+                    //     "<a href=\"#\">\n" +
+                    //     "<h3 style='color: teal'>" + data[i].title + "</h3>\n" +
+                    //     "<span>" + data[i].city + "<span><br>\n" +
+                    //     "<span>" + data[i].category + "</span>\n" +
+                    //     "</a>\n" +
+                    //     "</li>"));
+
+                    $('#oAds').append($("<li><figure  onclick='itemView( " + data[i].id + ")' class=\"left\" style='cursor: pointer'>\n" +
+                        "<img src='" + data[i].coverImage1 + "' class='img-rip' style='margin-right: 1px;'/>\n" +
+                        "<span class=\"image-overlay\"></span>\n" +
+                        "</figure>\n" +
+                        "<div class=\"meta\">\n" +
+                        "<h3>" + data[i].title + "</h3>\n" +
+                        "<p style='font-weight: bold; height: 100%'>" + data[i].description + "</p>\n" +
+                        "</div>\n" +
                         "</li>"));
+
+
                 }
             }
         },

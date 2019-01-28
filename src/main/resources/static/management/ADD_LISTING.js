@@ -48,60 +48,80 @@ var VENDOR = {
     }
 };
 
+function checkFields() {
+    var res = true;
+    if ($('#ad_title').val().length < 5) {
+        $.notify("Please Set Ad Title.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
+        return false;
+    } else if ($('#category').val().length < 2) {
+        $.notify("Select Category before continue.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
+        return false;
+    } else if ($('#city').val().length < 2) {
+        $.notify("City is empty", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
+        return false;
+    } else if ($('#desc').val().length < 20) {
+        $.notify("Minimum description length is 20 characters.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
+        return false;
+    }
+    return false;
+}
+
 var AD = {
     saveAd: function () {
 
-        var e = {};
-        e["id"] = $('#cmb_ads').find(":selected").val();
-        e["vendor"] = localStorage.getItem('VENDOR');
-        e["title"] = $('#ad_title').val();
-        e["type"] = $('#type').val();
-        e["city"] = $('#city').val();
-        e["category"] = $('#category').val();
-        e["openingDates"] = $('#opening_days').val();
-        e["openingTime"] = $('#opening_time').val();
-        e["closingTime"] = $('#closing_time').val();
-        e["description"] = $('#desc').val();
-        e["facebook"] = $('#facebook').val();
-        e["twitter"] = $('#twitter').val();
-        e["experience"] = $('#experience').find(":selected").text();
-        e["professionals"] = $('input[name=optionsRadios]:checked').val();
-        e["map"] = $('#google').val();
-        e["view"] = $('#view').val();
-        e["referral"] = $('#referral').val();
+        if (checkFields()) {
 
-        e["coverImage1"] = localStorage.getItem('SL1');
-        e["coverImage2"] = localStorage.getItem('SL2');
-        e["coverImage3"] = localStorage.getItem('SL3');
-        e["coverImage4"] = localStorage.getItem('SL4');
+            var e = {};
+            e["id"] = $('#cmb_ads').find(":selected").val();
+            e["vendor"] = localStorage.getItem('VENDOR');
+            e["title"] = $('#ad_title').val();
+            e["type"] = $('#type').val();
+            e["city"] = $('#city').val();
+            e["category"] = $('#category').val();
+            e["openingDates"] = $('#opening_days').val();
+            e["openingTime"] = $('#opening_time').val();
+            e["closingTime"] = $('#closing_time').val();
+            e["description"] = $('#desc').val();
+            e["facebook"] = $('#facebook').val();
+            e["twitter"] = $('#twitter').val();
+            e["experience"] = $('#experience').find(":selected").text();
+            e["professionals"] = $('input[name=optionsRadios]:checked').val();
+            e["map"] = $('#google').val();
+            e["view"] = $('#view').val();
+            e["referral"] = $('#referral').val();
 
-        var d = JSON.stringify(e);
+            e["coverImage1"] = localStorage.getItem('SL1');
+            e["coverImage2"] = localStorage.getItem('SL2');
+            e["coverImage3"] = localStorage.getItem('SL3');
+            e["coverImage4"] = localStorage.getItem('SL4');
 
-        $.ajax({
-            url: '/admin/save_advertisement/step-1',
-            dataType: 'text',
-            contentType: "application/json",
-            type: 'POST',
-            data: d,
-            success: function (data, textStatus, jqXHR) {
-                swal("Step one completed!", "Let's add some packages.", "success");
-                setTimeout(function () {
-                    window.location.replace("/admin/db/packages");
-                }, 1000);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log("error" + jqXHR + " - " + errorThrown);
-                console.log(textStatus);
-                console.log("R: " + jqXHR.status);
-                console.log("R: " + jqXHR.responseText);
-                swal("Oops!", "please try again later.", "error");
+            var d = JSON.stringify(e);
 
-            },
-            beforeSend: function (xhr) {
+            $.ajax({
+                url: '/admin/save_advertisement/step-1',
+                dataType: 'text',
+                contentType: "application/json",
+                type: 'POST',
+                data: d,
+                success: function (data, textStatus, jqXHR) {
+                    swal("Step one completed!", "Let's add some packages.", "success");
+                    setTimeout(function () {
+                        window.location.replace("/admin/db/packages");
+                    }, 1000);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("error" + jqXHR + " - " + errorThrown);
+                    console.log(textStatus);
+                    console.log("R: " + jqXHR.status);
+                    console.log("R: " + jqXHR.responseText);
+                    swal("Oops!", "please try again later.", "error");
 
-            }
-        });
+                },
+                beforeSend: function (xhr) {
 
+                }
+            });
+        }
     },
     getAdDetails: function () {
         var user = localStorage.getItem('VENDOR');
@@ -114,7 +134,8 @@ var AD = {
             type: 'POST',
             data: user,
             success: function (data, textStatus, jqXHR) {
-                swal(data.title + " Loaded.");
+                // swal();
+                $.notify(data.title + " Loaded.", {type: "info"});
                 $("#s1").attr("src", data.coverImage1);
                 $("#s2").attr("src", data.coverImage2);
                 $("#s3").attr("src", data.coverImage3);
@@ -154,7 +175,7 @@ var AD = {
             data: name,
             success: function (data, textStatus, jqXHR) {
                 if (data.length <= 0) {
-                    swal("No advertisement found.");
+                    $.notify("Congratulations with your first advertisement.", {blur: 0.2, type: "info", delay: 5000});
                 } else {
                     for (var i = 0; i < data.length; i++) {
                         $('#cmb_ads').append('<option value="' + data[i].id + '">' + data[i].title + '</option>');
@@ -196,7 +217,7 @@ var AD = {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                swal("No advertisement found.");
+                $.notify("Advertisement " + id + " Not Found.", {blur: 0.2, type: "danger", delay: 5000});
             },
             beforeSend: function (xhr) {
 
