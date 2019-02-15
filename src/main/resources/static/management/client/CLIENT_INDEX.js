@@ -37,7 +37,7 @@ function getCity() {
 // }
 
 function setFrontPageAdv() {
-
+    $(".head").tooltip();
     $.ajax({
         url: "/advertisement/getTop",
         dataType: 'json',
@@ -49,15 +49,19 @@ function setFrontPageAdv() {
                 $('#top-ads').append($("<h1>No Results Found</h1>"));
             } else {
                 for (var i = 0; i < data.length; i++) {
-
+                    var tool = data[i].title;
+                    var title = data[i].title;
+                    if (data[i].title.length > 20) {
+                        title = data[i].title.substring(0, 20);
+                    }
                     $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth\">" +
                         "<figure><a title=\"\" style='width: 250px; height: 100px;'>\n" +
                         "<img class='img-rip' src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
                         "</a>\n" +
                         "</figure>\n" +
-                        "<div class=\"details\">\n" +
+                        "<div class='ad details'>\n" +
                         "<a  title=\"View \" class=\"gradient-button\" onclick='itemView(" + data[i].id + ")'>View</a>\n" +
-                        "<h4>" + data[i].title + "</h4>\n" +
+                        "<h6 title='" + title + "' class='head'>" + tool + "</h6>\n" +
                         "<span class=\"count\">" + data[i].city + "</span>\n" +
                         "<div class=\"ribbon\">\n" +
                         "<div>\n" +
@@ -77,6 +81,7 @@ function setFrontPageAdv() {
                         "</article>"
                     ));
                 }
+                $(".head").tooltip();
             }
         }
     });
@@ -127,14 +132,20 @@ function search() {
                 $('#top-ads').append($("<h1>No Results Found</h1>"));
             } else {
                 for (var i = 0; i < data.length; i++) {
+
+                    var tool = data[i].title;
+                    var title = data[i].title;
+                    if (data[i].title.length > 20) {
+                        title = data[i].title.substring(0, 20);
+                    }
                     $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth\">" +
                         "<figure><a title=\"\" style='width: 250px; height: 100px;'>\n" +
                         "<img class='img-rip' src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
                         "</a>\n" +
                         "</figure>\n" +
-                        "<div class=\"details\">\n" +
+                        "<div class='ad details'>\n" +
                         "<a  title=\"View \" class=\"gradient-button\" onclick='itemView(" + data[i].id + ")'>View</a>\n" +
-                        "<h4>" + data[i].title + "</h4>\n" +
+                        "<h6 title='" + title + "'>" + tool + "</h6>\n" +
                         "<span class=\"count\">" + data[i].city + "</span>\n" +
                         "<div class=\"ribbon\">\n" +
                         "<div>\n" +

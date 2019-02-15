@@ -49,9 +49,12 @@ var VENDOR = {
 };
 
 function checkFields() {
-    var res = true;
-    if ($('#ad_title').val().length < 5) {
+
+    if ($('#ad_title').val().length < 2) {
         $.notify("Please Set Ad Title.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
+        return false;
+    } else if ($('#ad_title').val().length > 59) {
+        $.notify("Maximum ad title length is 60 characters.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
         return false;
     } else if ($('#category').val().length < 2) {
         $.notify("Select Category before continue.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
@@ -63,7 +66,7 @@ function checkFields() {
         $.notify("Minimum description length is 20 characters.", {blur: 0.2, delay: 0, type: "danger", delay: 5000});
         return false;
     }
-    return false;
+    return true;
 }
 
 var AD = {
@@ -199,9 +202,9 @@ var AD = {
             type: 'POST',
             data: id,
             success: function (data, textStatus, jqXHR) {
-
+                // console.log(data.type);
                 $('#ad_title').val(data.title);
-                $('#type').val(data.type.split(" ")[0]);
+                // $('#type').val(data.type.split(" ")[0]);
                 $('#city').val(data.city);
                 $('#category').val(data.category);
                 $('#opening_days').val(data.openingDates);

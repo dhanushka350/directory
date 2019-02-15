@@ -45,7 +45,7 @@ function getDataFromBackend(selctedAd) {
             document.getElementById("ad_title").innerHTML = data.title;
             document.getElementById("address").innerHTML = data.city;
             document.getElementById("desc").innerHTML = data.description;
-            document.getElementById("main_desc").innerHTML = data.description;
+            // document.getElementById("main_desc").innerHTML = data.description;
             document.getElementById("main_number").innerHTML = data.venodr.phone;
             document.getElementById("main_email").innerHTML = data.venodr.email;
             document.getElementById("main_address").innerHTML = data.venodr.address;
