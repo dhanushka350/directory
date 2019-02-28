@@ -6,7 +6,7 @@
     <groupId>com.wedding</groupId>
     <artifactId>directory</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>directory</name>
     <description>Demo project for Spring Boot</description>

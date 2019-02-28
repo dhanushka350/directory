@@ -39,6 +39,7 @@ function getDataFromBackend(selctedAd) {
             $('#slider-img-1').attr('src', data.coverImage1);
             $('#slider-img-2').attr('src', data.coverImage2);
             $('#slider-img-3').attr('src', data.coverImage3);
+            $('#slider-img-4').attr('src', data.coverImage4);
 
             document.getElementById("title").innerHTML = data.title;
             document.getElementById("nav_title").innerHTML = data.title;
