@@ -54,7 +54,7 @@ function setFrontPageAdv() {
                     if (data[i].title.length > 20) {
                         title = data[i].title.substring(0, 20);
                     }
-                    $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth\">" +
+                    $('#top-ads\n').append($("<article id='" + data[i].id + "' onclick='itemView(" + data[i].id + ")' class=\"one-fourth ads\">" +
                         "<figure><a title=\"\" style='width: 250px; height: 100px;'>\n" +
                         "<img class='img-rip' src=" + data[i].coverImage1 + "; style='height: 100%;width: 100%'>\n" +
                         "</a>\n" +
